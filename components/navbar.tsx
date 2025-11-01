@@ -80,19 +80,19 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
             <Image
               src="/dark_mode_logo/favicon-32x32.png"
               alt="Arcline Logo"
-              width={32}
-              height={32}
-              className="mr-2"
+              width={28}
+              height={28}
+              className="mr-3"
               priority
             />
             <span
               className="logo-text"
               style={{
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "18px",
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: "22px",
                 lineHeight: "1.1",
                 fontWeight: "600",
-                letterSpacing: "-0.04em",
+                letterSpacing: "-0.02em",
                 color: "#FFFFFF",
                 width: "auto",
                 height: "auto",
