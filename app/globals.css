@@ -45,6 +45,17 @@ body {
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+
+    /* ========================================
+       GRADIENT SYSTEM - Brand Colors
+       ========================================
+       All brand gradient colors are centralized here.
+       To change the gradient scheme, update these three variables.
+       All gradient classes automatically use these values.
+    */
+    --gradient-cyan: #22d3ee;
+    --gradient-orange: #ff5c28;
+    --gradient-pink: #ff5c9d;
   }
 
   .dark {
@@ -182,26 +193,131 @@ p[style*="--selection-text-color"]::-moz-selection {
   pointer-events: none;
 }
 
+/* Gradient Container Base */
 .gradient-container {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
 }
 
+/* Gradient Background Classes - Using Centralized Variables */
+.gradient-primary {
+  background: linear-gradient(
+    90deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
+}
+
+.gradient-primary-diagonal {
+  background: linear-gradient(
+    135deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
+}
+
+/* Legacy class names for backward compatibility - now using centralized variables */
 .gradient-yellow-red {
-  background: linear-gradient(90deg, #22d3ee 0%, #ff5c28 50%, #ff5c9d 100%);
+  background: linear-gradient(
+    90deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
 }
 
 .gradient-yellow-red-diagonal {
-  background: linear-gradient(135deg, #22d3ee 0%, #ff5c28 50%, #ff5c9d 100%);
+  background: linear-gradient(
+    135deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
 }
 
 .gradient-blue-red {
-  background: linear-gradient(90deg, #22d3ee 0%, #ff5c28 50%, #ff5c9d 100%);
+  background: linear-gradient(
+    90deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
 }
 
 .gradient-teal-red {
-  background: linear-gradient(90deg, #22d3ee 0%, #ff5c28 50%, #ff5c9d 100%);
+  background: linear-gradient(
+    90deg,
+    var(--gradient-cyan) 0%,
+    var(--gradient-orange) 50%,
+    var(--gradient-pink) 100%
+  );
+}
+
+/* ========================================
+   GRADIENT UTILITY CLASSES
+   ========================================
+   Pre-built gradient classes for common use cases.
+   All use the centralized brand color variables.
+   
+   Usage:
+   - .gradient-primary: Horizontal gradient (90deg) for section backgrounds
+   - .gradient-primary-diagonal: Diagonal gradient (135deg) for hero/sections
+   - .gradient-text: Text with gradient fill (for headings/accents)
+   - .gradient-icon: Icon container with bottom-right gradient
+   - .gradient-icon-vertical: Icon container with vertical gradient
+   - .gradient-border: Border/element with horizontal gradient
+   - .gradient-overlay: Subtle transparent overlay for hover effects
+*/
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--gradient-cyan),
+    var(--gradient-orange),
+    var(--gradient-pink)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-icon {
+  background: linear-gradient(
+    to bottom right,
+    var(--gradient-cyan),
+    var(--gradient-orange),
+    var(--gradient-pink)
+  );
+}
+
+.gradient-icon-vertical {
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-cyan),
+    var(--gradient-orange),
+    var(--gradient-pink)
+  );
+}
+
+.gradient-border {
+  background: linear-gradient(
+    to right,
+    var(--gradient-cyan),
+    var(--gradient-orange),
+    var(--gradient-pink)
+  );
+}
+
+.gradient-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.1),
+    rgba(255, 92, 40, 0.1),
+    rgba(255, 92, 157, 0.1)
+  );
 }
 
 /* Hide scrollbar but allow scrolling */

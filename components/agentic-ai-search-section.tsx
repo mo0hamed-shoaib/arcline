@@ -317,14 +317,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
 
                           {/* Hover Effect Border - SIMPLIFIED */}
                           {hoveredQuery === query.id && activeQuery.id !== query.id && (
-                            <div
-                              className="pointer-events-none absolute inset-0 rounded-xl"
-                              style={{
-                                background:
-                                  "linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(255, 92, 40, 0.1), rgba(255, 92, 157, 0.1))",
-                                border: "1px solid rgba(255, 255, 255, 0.2)",
-                              }}
-                            />
+                            <div className="gradient-overlay pointer-events-none absolute inset-0 rounded-xl border border-white/20" />
                           )}
                         </button>
                       ))}

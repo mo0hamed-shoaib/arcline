@@ -121,7 +121,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
         >
           {/* Gradient accent bar - now part of the main content group */}
           <div
-            className={`h-4 w-1 rounded-full bg-gradient-to-b from-cyan-400 via-orange-400 to-pink-400 transition-all duration-300 ease-out motion-reduce:transition-none ${
+            className={`gradient-icon-vertical h-4 w-1 rounded-full transition-all duration-300 ease-out motion-reduce:transition-none ${
               isTransitioning ? "scale-110 shadow-lg shadow-cyan-400/50" : "scale-100"
             }`}
           ></div>
@@ -143,7 +143,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
             rel="noopener noreferrer"
             className="cursor-pointer text-xs leading-tight text-white/90 sm:text-sm"
             style={{
-              fontFamily: 'var(--font-geist-mono)',
+              fontFamily: "var(--font-geist-mono)",
               fontWeight: 500,
               letterSpacing: "-0.01em",
               lineHeight: "1.3",

@@ -48,15 +48,11 @@ export default function TestimonialsSection() {
                 <p
                   className="mb-6 text-3xl font-medium leading-tight text-white md:text-4xl lg:text-5xl"
                   style={{
-                    fontFamily: 'var(--font-geist-mono)',
+                    fontFamily: "var(--font-geist-mono)",
                     letterSpacing: "-0.02em",
                   }}
                 >
-                  "Vibe Coding is the{" "}
-                  <span className="bg-gradient-to-r from-cyan-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
-                    Punk Rock
-                  </span>{" "}
-                  of Software"
+                  "Vibe Coding is the <span className="gradient-text">Punk Rock</span> of Software"
                 </p>
               </blockquote>
 
@@ -65,7 +61,7 @@ export default function TestimonialsSection() {
                 <cite
                   className="mb-2 block text-xl font-bold not-italic text-white md:text-2xl"
                   style={{
-                    fontFamily: 'var(--font-geist-mono)',
+                    fontFamily: "var(--font-geist-mono)",
                   }}
                 >
                   Rick Rubin
@@ -73,7 +69,7 @@ export default function TestimonialsSection() {
                 <p
                   className="mb-2 text-base text-white/80 md:text-lg"
                   style={{
-                    fontFamily: 'var(--font-geist-mono)',
+                    fontFamily: "var(--font-geist-mono)",
                   }}
                 >
                   Legendary Music Producer
@@ -81,7 +77,7 @@ export default function TestimonialsSection() {
                 <p
                   className="text-sm text-white/60"
                   style={{
-                    fontFamily: 'var(--font-geist-mono)',
+                    fontFamily: "var(--font-geist-mono)",
                   }}
                 >
                   a16z The Ben & Marc Show
@@ -91,7 +87,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Gradient Border Effect */}
-          <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-500/20 via-orange-500/20 to-pink-500/20 opacity-0 transition-opacity duration-500 hover:opacity-100" />
+          <div className="gradient-overlay pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 hover:opacity-100" />
         </a>
 
         {/* Bottom Text */}
@@ -99,7 +95,7 @@ export default function TestimonialsSection() {
           <p
             className="mx-auto max-w-3xl text-white/60"
             style={{
-              fontFamily: 'var(--font-geist-mono)',
+              fontFamily: "var(--font-geist-mono)",
               fontSize: "18px",
               lineHeight: "1.6",
             }}

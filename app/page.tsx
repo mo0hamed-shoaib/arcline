@@ -43,12 +43,7 @@ export default function Home() {
         <section className="rounded-all-devices relative mb-6 mt-2 flex flex-col rounded-[16px] text-white">
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
-            <div
-              className="absolute inset-0 h-full w-full rounded-[16px]"
-              style={{
-                background: "linear-gradient(135deg, #22D3EE 0%, #FF5C28 50%, #FF5C9D 100%)",
-              }}
-            />
+            <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
             <div
               className="absolute inset-0 h-full w-full rounded-[16px]"
               style={{
@@ -63,7 +58,7 @@ export default function Home() {
             <div className="flex flex-col md:hidden">
               <div className="mb-4">
                 <h1
-                  className="heading-with-selection mb-2 select-text overflow-visible font-semibold animate-in fade-in slide-in-from-bottom-4 duration-1000"
+                  className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
                   style={{
                     fontSize: "clamp(48px, 8vw, 154px)",
                     lineHeight: "1.1",
@@ -81,7 +76,7 @@ export default function Home() {
                   Build Your Vision
                 </h1>
                 <p
-                  className="mx-auto mb-3 h-auto select-text animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200"
+                  className="mx-auto mb-3 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
                   style={
                     {
                       fontFamily: "var(--font-geist-mono)",
@@ -137,7 +132,7 @@ export default function Home() {
             {/* Desktop Layout (Original) */}
             <div className="hidden md:flex md:flex-grow md:flex-col">
               <h1
-                className="heading-with-selection mb-2 select-text overflow-visible font-semibold animate-in fade-in slide-in-from-bottom-4 duration-1000"
+                className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
                 style={{
                   fontSize: "clamp(36px, 8vw, 154px)",
                   lineHeight: "1.1",
@@ -155,7 +150,7 @@ export default function Home() {
                 Build Your Vision
               </h1>
               <p
-                className="mx-auto mb-6 h-auto select-text sm:mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200"
+                className="mx-auto mb-6 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4 sm:mb-8"
                 style={
                   {
                     fontFamily: "var(--font-geist-mono)",

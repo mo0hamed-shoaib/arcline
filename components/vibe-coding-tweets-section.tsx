@@ -182,10 +182,7 @@ export default function VibeCodingTweetsSection() {
 
         {/* Gradient Container - Matching other sections */}
         <div className="flex justify-center">
-          <div
-            className="gradient-container relative w-full max-w-[1296px]"
-            style={{ background: "linear-gradient(135deg, #22d3ee 0%, #ff5c28 50%, #ff5c9d 100%)" }}
-          >
+          <div className="gradient-container gradient-primary-diagonal relative w-full max-w-[1296px]">
             {/* Dark Overlay */}
             <div className="absolute inset-0 rounded-[16px] bg-black/35"></div>
 
