@@ -145,11 +145,12 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
         {/* Call to action */}
         <div className="mt-12 text-center md:mt-16">
           <p
-            className="mb-6 text-white/80"
+            className="mx-auto mb-6 max-w-2xl text-white/90"
             style={{
               fontFamily: "var(--font-geist-mono)",
-              fontSize: "16px",
-              lineHeight: "1.5",
+              fontSize: "clamp(18px, 3vw, 24px)",
+              lineHeight: "1.4",
+              textAlign: "center",
             }}
           >
             Ready to get started? Let's discuss your project and bring your vision to life.

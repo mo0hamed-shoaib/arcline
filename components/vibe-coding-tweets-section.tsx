@@ -151,10 +151,10 @@ export default function VibeCodingTweetsSection() {
             Client Feedback and Testimonials
           </h2>
           <p
-            className="mx-auto max-w-3xl text-white/80"
+            className="mx-auto mb-8 max-w-2xl text-white/90"
             style={{
               fontFamily: "var(--font-geist-mono)",
-              fontSize: "clamp(14px, 3vw, 18px)",
+              fontSize: "clamp(18px, 3vw, 24px)",
               lineHeight: "1.4",
               textAlign: "center",
             }}

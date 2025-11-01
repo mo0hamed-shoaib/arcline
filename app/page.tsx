@@ -15,12 +15,6 @@ import { Button } from "@/components/ui/button";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
 import WhyNotGitSection from "@/components/why-not-git-section";
 
-// Direct Vercel Blob URLs for videos
-const VIDEO_URLS = {
-  savePreview:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/save-review-restore-g3BK0sricXTSPMzxK4iGrmXBUwPt11.mp4",
-};
-
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -215,10 +209,10 @@ export default function Home() {
               Services Tailored to You
             </h2>
             <p
-              className="mx-auto max-w-3xl text-white/80"
+              className="mx-auto mb-8 max-w-2xl text-white/90"
               style={{
                 fontFamily: "var(--font-geist-mono)",
-                fontSize: "clamp(16px, 3vw, 22px)",
+                fontSize: "clamp(18px, 3vw, 24px)",
                 lineHeight: "1.4",
                 textAlign: "center",
               }}
