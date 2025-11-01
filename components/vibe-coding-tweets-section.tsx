@@ -180,17 +180,11 @@ export default function VibeCodingTweetsSection() {
           </p>
         </div>
 
-        {/* Gradient Container - Matching other sections */}
+        {/* Content Container */}
         <div className="flex justify-center">
-          <div className="gradient-container gradient-primary-diagonal relative w-full max-w-[1296px]">
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 rounded-[16px] bg-black/35"></div>
-
-            {/* Noise Overlay */}
-            <div className="noise-texture"></div>
-
+          <div className="relative w-full max-w-[1296px]">
             {/* Content */}
-            <div className="relative z-10 px-4 pb-6 pt-6 sm:px-6 sm:pb-8 sm:pt-8 md:px-12 md:pb-12 md:pt-12">
+            <div className="relative z-10 px-4 sm:px-6 md:px-8">
               {/* Enhanced Tweets Layout - Making 7 tweets feel substantial */}
               <div className="space-y-6 sm:space-y-8">
                 {/* Featured Tweet - Most relevant (Ben South retweet with commentary) */}
@@ -199,11 +193,11 @@ export default function VibeCodingTweetsSection() {
                     href={tweets[0].url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative block cursor-pointer rounded-[16px] border border-white/30 bg-white/15 p-4 backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 sm:rounded-[20px] sm:border-2 sm:p-6 md:p-10"
+                    className="group relative block cursor-pointer rounded-[16px] border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 sm:p-6 md:p-10"
                   >
                     {/* Original Tweet (if retweet) */}
                     {tweets[0].isRetweet && tweets[0].originalTweet && (
-                      <div className="mb-4 rounded-lg border border-white/10 bg-white/5 p-3 sm:p-4">
+                      <div className="mb-4 rounded-[16px] border border-white/10 bg-white/5 p-3 backdrop-blur-sm sm:p-4">
                         <p
                           className="mb-2 break-words text-xs leading-relaxed text-white/80 sm:text-sm"
                           style={{
@@ -383,11 +377,11 @@ export default function VibeCodingTweetsSection() {
                         href={tweet.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative block flex cursor-pointer flex-col rounded-[16px] border border-white/20 bg-white/10 p-4 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-white/15 sm:p-6"
+                        className="group relative block flex cursor-pointer flex-col rounded-[16px] border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 sm:p-6"
                       >
                         {/* Original Tweet (if retweet) */}
                         {tweet.isRetweet && tweet.originalTweet && (
-                          <div className="mb-4 rounded-lg border border-white/10 bg-white/5 p-3">
+                          <div className="mb-4 rounded-[16px] border border-white/10 bg-white/5 p-3 backdrop-blur-sm">
                             <p
                               className="mb-2 break-words text-xs leading-relaxed text-white/80"
                               style={{

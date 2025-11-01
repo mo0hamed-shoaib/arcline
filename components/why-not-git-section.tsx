@@ -77,7 +77,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
           {features.map((feature, index) => (
             <div
               key={index}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 md:p-8"
+              className="rounded-[16px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 md:p-8"
             >
               <div className="flex flex-col gap-4 md:flex-row md:items-start">
                 <div className="flex flex-shrink-0 justify-center md:block">

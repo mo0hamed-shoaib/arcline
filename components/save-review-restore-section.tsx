@@ -6,6 +6,7 @@ import { Download } from "lucide-react";
 
 import FeatureVideo from "@/components/feature-video";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface FeatureData {
   id: string;
@@ -125,18 +126,21 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
         </p>
       </div>
 
-      {/* Gradient Section with Video - ORIGINAL DESIGN with overlay only on desktop */}
+      {/* Card Section with Video */}
       <div className="flex justify-center">
-        <div className="gradient-container gradient-yellow-red relative w-full max-w-[1296px]">
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 rounded-[16px] bg-black/35"></div>
-
+        <Card
+          className="relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-white/15 bg-black/90 backdrop-blur-sm"
+          style={{
+            boxShadow:
+              "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 5px 18px 0 rgba(204,204,204,0.1)",
+          }}
+        >
           {/* Noise Overlay */}
           <div className="noise-texture"></div>
 
-          {/* Original Video Section */}
-          <div className="relative z-10 px-4 pb-0 pt-4 sm:px-6 sm:pt-12 md:px-12 md:pt-16">
-            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-t-lg border border-b-0 border-white/10 shadow-2xl">
+          {/* Video Section - Fits tightly in card */}
+          <div className="relative z-10">
+            <div className="relative w-full overflow-hidden shadow-2xl">
               <FeatureVideo
                 src={activeFeature.videoSrc}
                 alt={activeFeature.title}
@@ -145,7 +149,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
               />
 
               {/* Mobile Navigation Dots - Only visible on mobile */}
-              <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 transform lg:hidden">
+              <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 transform lg:hidden">
                 <div className="flex gap-2 rounded-full bg-black/50 px-3 py-2 backdrop-blur-sm">
                   {features.map((feature) => (
                     <button
@@ -172,7 +176,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
               ></div>
 
               {/* Overlay Content on top of the video - HIDDEN on mobile and tablet */}
-              <div className="absolute inset-0 hidden flex-col justify-end p-6 lg:flex lg:p-8">
+              <div className="absolute inset-0 z-20 hidden flex-col justify-end p-6 lg:flex lg:p-8">
                 {/* Bottom Section: Content Left, Thumbnails Right */}
                 <div className="flex items-end gap-4 lg:gap-8">
                   {/* Left: Feature Info and Install Button */}
@@ -260,7 +264,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

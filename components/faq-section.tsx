@@ -113,7 +113,7 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="overflow-hidden rounded-lg border border-white/10 bg-white/5"
+              className="overflow-hidden rounded-[16px] border border-white/10 bg-white/5 backdrop-blur-sm"
             >
               <AccordionTrigger className="px-5 py-4 hover:no-underline">
                 <span

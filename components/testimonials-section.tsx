@@ -13,7 +13,7 @@ export default function TestimonialsSection() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Watch Rick Rubin discuss Vibe Coding on The Ben & Marc Show"
-          className="group relative block cursor-pointer rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 md:p-12 lg:p-16"
+          className="group relative block cursor-pointer rounded-[16px] border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 md:p-12 lg:p-16"
         >
           {/* Quote Icon */}
           <div className="absolute left-8 top-8 opacity-20">
@@ -87,7 +87,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Gradient Border Effect */}
-          <div className="gradient-overlay pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 hover:opacity-100" />
+          <div className="gradient-overlay pointer-events-none absolute inset-0 rounded-[16px] opacity-0 transition-opacity duration-500 hover:opacity-100" />
         </a>
 
         {/* Bottom Text */}

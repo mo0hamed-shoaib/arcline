@@ -5,6 +5,7 @@ import { Download, Play } from "lucide-react";
 
 import FeatureVideo from "@/components/feature-video";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 interface SearchQuery {
   id: string;
@@ -171,19 +172,21 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
         </p>
       </div>
 
-      {/* Gradient Section with Video */}
+      {/* Card Section with Video */}
       <div className="flex justify-center">
-        <div className="gradient-container gradient-blue-red relative w-full max-w-[1296px]">
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 rounded-[16px] bg-black/35"></div>
-
+        <Card
+          className="relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-white/15 bg-black/90 backdrop-blur-sm"
+          style={{
+            boxShadow:
+              "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 5px 18px 0 rgba(204,204,204,0.1)",
+          }}
+        >
           {/* Noise Overlay */}
           <div className="noise-texture"></div>
 
-          {/* Video Section */}
-          <div className="relative z-10 px-4 pb-0 pt-4 sm:px-6 sm:pt-12 md:px-12 md:pt-16">
-            {/* FIXED ASPECT RATIO CONTAINER */}
-            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-t-lg border border-b-0 border-white/10 shadow-2xl">
+          {/* Video Section - Fits tightly in card */}
+          <div className="relative z-10">
+            <div className="relative w-full overflow-hidden shadow-2xl">
               <FeatureVideo
                 src={activeQuery.videoSrc}
                 alt={`Agentic AI Search: ${activeQuery.question}`}
@@ -192,7 +195,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
               />
 
               {/* Mobile Navigation Dots - Only visible on mobile */}
-              <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 transform lg:hidden">
+              <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 transform lg:hidden">
                 <div className="flex gap-2 rounded-full bg-black/50 px-3 py-2 backdrop-blur-sm">
                   {searchQueries.map((query) => (
                     <button
@@ -220,7 +223,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
 
               {/* Overlay Content on top of the video - HIDDEN on mobile and tablet */}
               <div
-                className="absolute inset-0 hidden flex-col justify-end p-6 lg:flex lg:p-8"
+                className="absolute inset-0 z-20 hidden flex-col justify-end p-6 lg:flex lg:p-8"
                 onMouseEnter={handleSectionEnter}
                 onMouseLeave={handleSectionLeave}
               >
@@ -327,7 +330,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );
