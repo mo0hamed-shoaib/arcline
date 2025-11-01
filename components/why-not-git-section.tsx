@@ -77,17 +77,28 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
           {features.map((feature, index) => (
             <div
               key={index}
-              className="rounded-[16px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 md:p-8"
+              className="group relative overflow-hidden rounded-[16px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:p-8"
+              style={{
+                boxShadow:
+                  "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+              }}
             >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start">
+              {/* Subtle gradient overlay on hover */}
+              <div className="pointer-events-none absolute inset-0 rounded-[16px] bg-gradient-to-br from-white/0 to-white/0 opacity-0 transition-opacity duration-300 group-hover:from-white/5 group-hover:to-transparent group-hover:opacity-100"></div>
+
+              <div className="relative z-10 flex flex-col gap-4 md:flex-row md:items-start">
                 <div className="flex flex-shrink-0 justify-center md:block">
-                  <div className="gradient-icon flex h-10 w-10 items-center justify-center rounded-xl md:h-12 md:w-12">
-                    <feature.icon className="h-5 w-5 text-white md:h-6 md:w-6" strokeWidth={2} />
+                  <div className="gradient-icon relative flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 md:h-14 md:w-14">
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                    <feature.icon
+                      className="relative h-6 w-6 text-white transition-all duration-300 group-hover:scale-105 md:h-7 md:w-7"
+                      strokeWidth={2.5}
+                    />
                   </div>
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <h3
-                    className="mb-3 font-semibold text-white"
+                    className="mb-3 font-semibold text-white transition-colors duration-300 group-hover:text-white"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "18px",
@@ -98,7 +109,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
                     {feature.title}
                   </h3>
                   <p
-                    className="text-white/80"
+                    className="text-white/80 transition-colors duration-300 group-hover:text-white/90"
                     style={{
                       fontFamily: "var(--font-geist-mono)",
                       fontSize: "15px",
@@ -109,23 +120,15 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
                   </p>
                 </div>
               </div>
+
+              {/* Subtle gradient overlay on hover */}
+              <div className="gradient-overlay pointer-events-none absolute inset-0 rounded-[16px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             </div>
           ))}
         </div>
 
         {/* Call to Action */}
         <div className="text-center">
-          <p
-            className="mx-auto mb-6 max-w-3xl text-white/80"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-              fontSize: "16px",
-              lineHeight: "1.5",
-            }}
-          >
-            Stop worrying about breaking your code. Start exploring with confidence.
-          </p>
-
           {onOpenInstall && (
             <Button
               onClick={onOpenInstall}
