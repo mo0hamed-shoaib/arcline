@@ -141,36 +141,86 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
             </AccordionItem>
           ))}
         </Accordion>
+      </div>
 
-        {/* Call to action */}
-        <div className="mt-12 text-center md:mt-16">
-          <p
-            className="mx-auto mb-6 max-w-2xl text-white/90"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-              fontSize: "clamp(18px, 3vw, 24px)",
-              lineHeight: "1.4",
-              textAlign: "center",
-            }}
-          >
-            Ready to get started? Let's discuss your project and bring your vision to life.
-          </p>
-
-          {onOpenInstall && (
-            <Button
-              onClick={onOpenInstall}
-              className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black hover:bg-gray-100"
+      {/* Call to action - Full width like hero section */}
+      <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
+        <section className="rounded-all-devices relative mb-6 mt-12 flex flex-col rounded-[16px] text-white md:mt-16">
+          {/* Gradient Background Image */}
+          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
+            <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
+            <div
+              className="absolute inset-0 h-full w-full rounded-[16px]"
               style={{
-                fontFamily: "var(--font-geist-mono)",
-                letterSpacing: "0.56px",
-                height: "48px",
+                backgroundColor: "rgba(0, 0, 0, 0.35)",
+              }}
+            />
+            {/* Noise texture overlay */}
+            <div className="noise-texture absolute inset-0 rounded-[16px]"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 flex h-full w-full flex-col px-4 pb-8 pt-[38px] text-center sm:px-6 sm:pt-[50px] md:pb-12 md:pt-[70px] lg:px-8">
+            {/* Headline */}
+            <h2
+              className="heading-with-selection mb-6 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
+              style={{
+                fontSize: "clamp(32px, 6vw, 64px)",
+                lineHeight: "1.1",
+                letterSpacing: "clamp(-1.5px, -0.04em, -3px)",
+                fontFamily: "var(--font-geist-sans)",
+                height: "auto",
+                maxWidth: "100%",
+                paddingBottom: "0",
+                marginBottom: "0.5em",
+                color: "#FFFFFF",
+                textShadow: "0 2px 8px rgba(0,0,0,0.4)",
               }}
             >
-              <Download className="mr-2 h-4 w-4 stroke-[2.5px]" />
-              GET STARTED
-            </Button>
-          )}
-        </div>
+              Ready to Get Started?
+            </h2>
+
+            {/* Description */}
+            <p
+              className="mx-auto mb-10 max-w-2xl select-text text-white/95 delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
+              style={
+                {
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: "clamp(18px, 3vw, 26px)",
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                  letterSpacing: "normal",
+                  textAlign: "center",
+                  textShadow: "0 1px 4px rgba(0,0,0,0.3)",
+                } as React.CSSProperties
+              }
+            >
+              Let's discuss your project and bring your vision to life.
+            </p>
+
+            {onOpenInstall && (
+              <Button
+                onClick={onOpenInstall}
+                className="group/btn relative mx-auto overflow-hidden rounded-lg bg-white px-8 py-4 font-mono text-sm font-semibold tracking-wider text-black shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-2xl md:px-10 md:py-5 md:text-base"
+                style={{
+                  fontFamily: "var(--font-geist-mono)",
+                  letterSpacing: "0.56px",
+                  height: "auto",
+                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.1)",
+                }}
+              >
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full"></div>
+
+                {/* Button content */}
+                <div className="relative z-10 flex items-center">
+                  <Download className="mr-2 h-4 w-4 stroke-[2.5px] transition-transform duration-300 group-hover/btn:translate-y-[-2px] md:h-5 md:w-5" />
+                  <span>GET STARTED</span>
+                </div>
+              </Button>
+            )}
+          </div>
+        </section>
       </div>
     </section>
   );
