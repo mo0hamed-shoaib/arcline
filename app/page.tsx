@@ -12,6 +12,7 @@ import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
 import SaveReviewRestoreSection from "@/components/save-review-restore-section";
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/ui/marquee";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
 import WhyNotGitSection from "@/components/why-not-git-section";
 
@@ -222,142 +223,109 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="space-y-8 overflow-hidden">
-            <div className="relative">
-              <div className="flex animate-scroll-left whitespace-nowrap">
-                <div className="flex">
-                  {[
-                    "Tourism Websites",
-                    "E-commerce Platforms",
-                    "Personal Portfolios",
-                    "Business Websites",
-                    "Landing Pages",
-                    "Admin Dashboards",
-                    "Blog Platforms",
-                    "Booking Systems",
-                    "Product Showcases",
-                    "Corporate Sites",
-                    "Real Estate",
-                    "Restaurant Menus",
-                    "Event Pages",
-                    "SaaS Products",
-                    "Education Portals",
-                    "Healthcare Sites",
-                    "Non-profit Sites",
-                    "Art Galleries",
-                    "Tech Startups",
-                    "Custom Solutions",
-                  ]
-                    .concat([
-                      "Tourism Websites",
-                      "E-commerce Platforms",
-                      "Personal Portfolios",
-                      "Business Websites",
-                      "Landing Pages",
-                      "Admin Dashboards",
-                      "Blog Platforms",
-                      "Booking Systems",
-                      "Product Showcases",
-                      "Corporate Sites",
-                      "Real Estate",
-                      "Restaurant Menus",
-                      "Event Pages",
-                      "SaaS Products",
-                      "Education Portals",
-                      "Healthcare Sites",
-                      "Non-profit Sites",
-                      "Art Galleries",
-                      "Tech Startups",
-                      "Custom Solutions",
-                    ])
-                    .map((service, index) => (
-                      <span
-                        key={index}
-                        style={{
-                          fontFamily: "var(--font-geist-sans)",
-                          fontSize: "20px",
-                          lineHeight: "28px",
-                          fontWeight: "700",
-                          letterSpacing: "normal",
-                          color: "#999999",
-                          whiteSpace: "nowrap",
-                          padding: "0 1rem",
-                        }}
-                      >
-                        {service}
-                      </span>
-                    ))}
+          {/* Marquee Container */}
+          <div className="relative w-full overflow-hidden">
+            {/* Services Marquee - Left to Right */}
+            <Marquee
+              pauseOnHover
+              repeat={3}
+              className="mb-6 [--duration:50s] [--gap:1.5rem] md:mb-6"
+            >
+              {[
+                "Tourism Websites",
+                "E-commerce Platforms",
+                "Personal Portfolios",
+                "Business Websites",
+                "Landing Pages",
+                "Admin Dashboards",
+                "Blog Platforms",
+                "Booking Systems",
+                "Product Showcases",
+                "Corporate Sites",
+                "Real Estate",
+                "Restaurant Menus",
+                "Event Pages",
+                "SaaS Products",
+                "Education Portals",
+                "Healthcare Sites",
+                "Non-profit Sites",
+                "Art Galleries",
+                "Tech Startups",
+                "Custom Solutions",
+              ].map((service, index) => (
+                <div
+                  key={`service-${index}`}
+                  className="group flex h-14 min-w-[180px] items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:h-16 md:min-w-[200px]"
+                  style={{
+                    boxShadow:
+                      "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+                  }}
+                >
+                  <span
+                    className="font-semibold text-white transition-colors duration-300 group-hover:text-white"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                      fontSize: "16px",
+                      lineHeight: "1.2",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {service}
+                  </span>
                 </div>
-              </div>
-            </div>
+              ))}
+            </Marquee>
 
-            <div className="relative">
-              <div className="flex animate-scroll-right whitespace-nowrap">
-                <div className="flex">
-                  {[
-                    "Next.js",
-                    "TypeScript",
-                    "Tailwind CSS",
-                    "shadcn/ui",
-                    "Supabase",
-                    "Framer Motion",
-                    "React",
-                    "Responsive Design",
-                    "SEO Optimized",
-                    "Fast Performance",
-                    "Modern UI/UX",
-                    "Accessible",
-                    "Mobile First",
-                    "Clean Code",
-                    "Testing",
-                    "Version Control",
-                    "API Integration",
-                    "State Management",
-                    "Component Library",
-                    "Tailored Solutions",
-                  ]
-                    .concat([
-                      "Next.js",
-                      "TypeScript",
-                      "Tailwind CSS",
-                      "shadcn/ui",
-                      "Supabase",
-                      "Framer Motion",
-                      "React",
-                      "Responsive Design",
-                      "SEO Optimized",
-                      "Fast Performance",
-                      "Modern UI/UX",
-                      "Accessible",
-                      "Mobile First",
-                      "Clean Code",
-                      "Testing",
-                      "Version Control",
-                      "API Integration",
-                      "State Management",
-                      "Component Library",
-                      "Tailored Solutions",
-                    ])
-                    .map((tech, index) => (
-                      <span
-                        key={index}
-                        style={{
-                          fontFamily: "var(--font-geist-sans)",
-                          fontSize: "20px",
-                          lineHeight: "28px",
-                          fontWeight: "700",
-                          letterSpacing: "normal",
-                          color: "#999999",
-                          whiteSpace: "nowrap",
-                          padding: "0 1rem",
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+            {/* Technologies Marquee - Right to Left */}
+            <Marquee pauseOnHover reverse repeat={3} className="[--duration:50s] [--gap:1.5rem]">
+              {[
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "shadcn/ui",
+                "Supabase",
+                "Framer Motion",
+                "React",
+                "Responsive Design",
+                "SEO Optimized",
+                "Fast Performance",
+                "Modern UI/UX",
+                "Accessible",
+                "Mobile First",
+                "Clean Code",
+                "Testing",
+                "Version Control",
+                "API Integration",
+                "State Management",
+                "Component Library",
+                "Tailored Solutions",
+              ].map((tech, index) => (
+                <div
+                  key={`tech-${index}`}
+                  className="group flex h-14 min-w-[160px] items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:h-16 md:min-w-[180px]"
+                  style={{
+                    boxShadow:
+                      "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+                  }}
+                >
+                  <span
+                    className="font-semibold text-white transition-colors duration-300 group-hover:text-white"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                      fontSize: "16px",
+                      lineHeight: "1.2",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {tech}
+                  </span>
                 </div>
-              </div>
-            </div>
+              ))}
+            </Marquee>
+
+            {/* Gradient Fade Overlays */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent"></div>
           </div>
         </section>
 
