@@ -65,6 +65,7 @@ export const AnimatedThemeToggler = ({
         });
       }).ready;
 
+      // Read layout properties after view transition is ready (layout already computed)
       const { top, left, width, height } = elementRef.getBoundingClientRect();
       const x = left + width / 2;
       const y = top + height / 2;

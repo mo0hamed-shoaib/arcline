@@ -134,7 +134,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
               </Button>
             </a>
             <Button
-              className="hover:bg-foreground/90 h-12 rounded-lg bg-foreground px-6 text-background"
+              className="h-12 rounded-lg bg-foreground px-6 text-background"
               style={{
                 fontFamily: "var(--font-geist-sans)",
                 fontSize: "14px",
@@ -206,7 +206,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
                   </Button>
                 </a>
                 <Button
-                  className="hover:bg-foreground/90 w-full justify-start rounded-lg bg-foreground text-background"
+                  className="w-full justify-start rounded-lg bg-foreground text-background"
                   style={{
                     fontFamily: "var(--font-geist-sans)",
                     fontSize: "14px",
