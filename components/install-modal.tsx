@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy, Download, Search, Terminal, X } from "lucide-react";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface InstallModalProps {
@@ -65,8 +66,8 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-black border-white/10 text-white p-0 gap-0 !translate-x-[-50%] !translate-y-[-50%] flex flex-col">
-        <DialogHeader className="sticky top-0 z-10 bg-black border-b border-white/10 p-4 md:p-6 rounded-t-[16px] !text-left !space-y-0 flex-row items-center justify-between">
+      <DialogContent className="flex max-h-[90vh] max-w-2xl flex-col gap-0 overflow-y-auto border-border bg-background p-0 text-foreground duration-300">
+        <DialogHeader className="sticky top-0 z-10 flex-row items-center justify-between !space-y-0 rounded-t-[16px] border-b border-border bg-background p-4 !text-left md:p-6">
           <DialogTitle
             className="text-xl font-semibold md:text-2xl"
             style={{
@@ -79,7 +80,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
           </DialogTitle>
           <button
             onClick={onClose}
-            className="hidden md:flex rounded-full p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+            className="hover:bg-accent/50 hidden rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground md:flex"
             aria-label="Close"
           >
             <X size={20} />
@@ -88,7 +89,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
 
         <div className="p-4 md:p-6">
           {/* Tabs - scrollable on mobile */}
-          <div className="hide-scrollbar mb-4 flex overflow-x-auto border-b border-white/10 pb-2">
+          <div className="hide-scrollbar mb-4 flex overflow-x-auto border-b border-border pb-2">
             <div className="flex min-w-max gap-2">
               {installOptions.map((option) => (
                 <button
@@ -96,8 +97,8 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                   onClick={() => setActiveTab(option.id)}
                   className={`whitespace-nowrap rounded-lg px-4 py-2 font-mono text-sm transition-colors ${
                     activeTab === option.id
-                      ? "bg-white text-black"
-                      : "bg-transparent text-white/80 hover:bg-white/10"
+                      ? "bg-foreground text-background"
+                      : "text-foreground/80 hover:bg-accent/50 bg-transparent"
                   }`}
                 >
                   {option.name}
@@ -111,8 +112,8 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
             {/* Claude Code Special Section */}
             {activeTab === "claude-code" && (
               <div className="space-y-4">
-                <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-                  <h3 className="mb-2 flex items-center gap-2 font-semibold text-white">
+                <div className="bg-card/50 rounded-lg border border-border p-4">
+                  <h3 className="mb-2 flex items-center gap-2 font-semibold text-foreground">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2L2 7L12 12L22 7L12 2Z" />
                       <path
@@ -130,13 +131,13 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                     </svg>
                     Claude Code + Arcline Setup
                   </h3>
-                  <p className="mb-3 text-sm text-white/80">
+                  <p className="text-foreground/80 mb-3 text-sm">
                     Run Claude Code in your terminal inside editors like Cursor, Windsurf, or VS
                     Code. Pair it with Arcline in the sidebar for the ideal vibe coding workflow.
                   </p>
 
                   {/* Demo Video */}
-                  <div className="mb-4 overflow-hidden rounded-lg bg-black">
+                  <div className="mb-4 overflow-hidden rounded-lg bg-background">
                     <video
                       className="h-auto w-full"
                       controls
@@ -152,15 +153,15 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 1:</strong> Install Arcline extension in your editor (Cursor,
                       Windsurf, or VS Code)
                     </div>
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 2:</strong> Run Claude Code from the built-in terminal inside
                       your editor
                     </div>
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 3:</strong> Use Arcline sidebar to save/restore versions
                       instantly
                     </div>
@@ -172,8 +173,8 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
             {/* Codex CLI Special Section */}
             {activeTab === "codex-cli" && (
               <div className="space-y-4">
-                <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-                  <h3 className="mb-2 flex items-center gap-2 font-semibold text-white">
+                <div className="bg-card/50 rounded-lg border border-border p-4">
+                  <h3 className="mb-2 flex items-center gap-2 font-semibold text-foreground">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2L2 7L12 12L22 7L12 2Z" />
                       <path
@@ -191,14 +192,14 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                     </svg>
                     Codex CLI + Arcline Setup
                   </h3>
-                  <p className="mb-3 text-sm text-white/80">
+                  <p className="text-foreground/80 mb-3 text-sm">
                     Run OpenAI Codex CLI in your terminal inside editors like Cursor, Windsurf, or
                     VS Code. Pair it with Arcline in the sidebar for seamless AI-assisted
                     development with version control.
                   </p>
 
                   {/* Demo Video */}
-                  <div className="mb-4 overflow-hidden rounded-lg bg-black">
+                  <div className="mb-4 overflow-hidden rounded-lg bg-background">
                     <video
                       className="h-auto w-full"
                       controls
@@ -214,15 +215,15 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                   </div>
 
                   <div className="space-y-3">
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 1:</strong> Install Arcline extension in your editor (Cursor,
                       Windsurf, or VS Code)
                     </div>
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 2:</strong> Run OpenAI Codex CLI from the built-in terminal
                       inside your editor
                     </div>
-                    <div className="text-sm text-white/70">
+                    <div className="text-sm text-muted-foreground">
                       <strong>Step 3:</strong> Use Arcline sidebar to save/restore versions
                       instantly
                     </div>
@@ -239,7 +240,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                   <div className="space-y-2">
                     <a
                       href={activeOption.deeplink}
-                      className="block w-full rounded-lg bg-white px-4 py-3 text-center font-mono text-sm font-semibold tracking-wider text-black transition-colors hover:bg-gray-100"
+                      className="hover:bg-foreground/90 block w-full rounded-lg bg-foreground px-4 py-3 text-center font-mono text-sm font-semibold tracking-wider text-background transition-colors"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         letterSpacing: "0.56px",
@@ -252,7 +253,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                       <Download className="mr-2 h-4 w-4 stroke-[2.5px]" />
                       INSTALL IN {activeOption.name.toUpperCase()}
                     </a>
-                    <p className="text-center text-xs text-white/50">
+                    <p className="text-center text-xs text-muted-foreground">
                       Click the button above to open {activeOption.name} and install Arcline
                       directly
                     </p>
@@ -261,13 +262,13 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
 
                 {/* Search in Extensions Option */}
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 font-mono text-sm text-white/70">
+                  <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
                     <Search size={16} />
                     {activeTab === "other"
                       ? "Search in Extensions:"
                       : `Search in ${activeOption.name} Extensions:`}
                   </div>
-                  <div className="rounded-lg border border-white/10 bg-white/5 p-3 font-mono text-sm text-white">
+                  <div className="bg-card/50 rounded-lg border border-border p-3 font-mono text-sm text-foreground">
                     {activeTab === "other" ? (
                       <>
                         1. Open your IDE
@@ -275,7 +276,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                         2. Go to Extensions view (usually Ctrl+Shift+X / Cmd+Shift+X)
                         <br />
                         3. Search for{" "}
-                        <span className="rounded bg-white/10 px-2 py-0.5">Arcline</span>
+                        <span className="bg-accent/50 rounded px-2 py-0.5">Arcline</span>
                         <br />
                         4. Click Install
                       </>
@@ -286,7 +287,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                         2. Go to Extensions view (Ctrl+Shift+X / Cmd+Shift+X)
                         <br />
                         3. Search for{" "}
-                        <span className="rounded bg-white/10 px-2 py-0.5">Arcline</span>
+                        <span className="bg-accent/50 rounded px-2 py-0.5">Arcline</span>
                         <br />
                         4. Click Install
                       </>
@@ -297,21 +298,21 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                 {/* Command Palette Option */}
                 {activeOption.command && (
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 font-mono text-sm text-white/70">
+                    <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
                       <Terminal size={16} />
                       {activeTab === "other"
                         ? "Run in command palette:"
                         : `Run in ${activeOption.name} command palette:`}
                     </div>
                     <div className="relative">
-                      <div className="overflow-x-auto rounded-lg border border-white/10 bg-white/5 p-3 font-mono text-sm text-white">
+                      <div className="bg-card/50 overflow-x-auto rounded-lg border border-border p-3 font-mono text-sm text-foreground">
                         {activeOption.command}
                       </div>
                       <button
                         onClick={() =>
                           copyToClipboard(activeOption.command, `${activeOption.id}-command`)
                         }
-                        className="absolute right-2 top-2 rounded-md bg-white/10 p-1.5 transition-colors hover:bg-white/20"
+                        className="bg-accent/50 hover:bg-accent/80 absolute right-2 top-2 rounded-md p-1.5 transition-colors"
                         aria-label="Copy command"
                       >
                         {copied === `${activeOption.id}-command` ? (
@@ -322,7 +323,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                       </button>
                     </div>
                     {activeTab === "other" && (
-                      <p className="text-xs text-white/50">
+                      <p className="text-xs text-muted-foreground">
                         Open the command palette with Ctrl+Shift+P / Cmd+Shift+P, then paste and run
                         the command above
                       </p>
@@ -331,11 +332,11 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                 )}
 
                 {activeTab === "other" && (
-                  <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-4">
-                    <p className="mb-2 text-sm text-white/70">
+                  <div className="bg-card/50 mt-4 rounded-lg border border-border p-4">
+                    <p className="mb-2 text-sm text-muted-foreground">
                       Arcline works with most VS Code-compatible editors and IDEs, including:
                     </p>
-                    <ul className="list-disc space-y-1 pl-5 text-sm text-white/60">
+                    <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                       <li>VS Codium</li>
                       <li>GitPod</li>
                       <li>Code-OSS</li>
@@ -347,9 +348,9 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
               </>
             )}
 
-            <div className="mt-6 border-t border-white/10 pt-4">
+            <div className="mt-6 border-t border-border pt-4">
               <p
-                className="text-sm text-white/50"
+                className="text-sm text-muted-foreground"
                 style={{
                   fontFamily: "var(--font-geist-mono)",
                 }}
@@ -365,10 +366,10 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
         </div>
 
         {/* Mobile close button at bottom */}
-        <div className="border-t border-white/10 p-4 md:hidden">
+        <div className="border-t border-border p-4 md:hidden">
           <button
             onClick={onClose}
-            className="w-full rounded-lg bg-white/10 px-4 py-3 font-mono text-sm text-white transition-colors hover:bg-white/20"
+            className="hover:bg-accent/80 w-full rounded-lg bg-accent px-4 py-3 font-mono text-sm text-foreground transition-colors"
           >
             Close
           </button>

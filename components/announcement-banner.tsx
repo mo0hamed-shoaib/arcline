@@ -84,7 +84,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
     // Show different icons based on banner type
     if (currentBanner.id === "visual-studio-magazine") {
       return (
-        <svg className="h-4 w-4 text-white/70" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="h-4 w-4 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
         </svg>
       );
@@ -92,7 +92,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
 
     // YouTube icon for video content
     return (
-      <svg className="h-4 w-4 text-white/70" fill="currentColor" viewBox="0 0 24 24">
+      <svg className="h-4 w-4 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136C4.495 20.455 12 20.455 12 20.455s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
       </svg>
     );
@@ -104,7 +104,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
     : "opacity-100 transform scale-100";
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-[60] border-b border-white/10 bg-black">
+    <div className="fixed left-0 right-0 top-0 z-[60] border-b border-border bg-background">
       {/* Screen reader announcement for banner changes */}
       <div className="sr-only" aria-live="polite" aria-atomic="true" key={currentBanner.id}>
         {currentBanner.desktopText}
@@ -141,7 +141,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
             href={currentBanner.linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer text-xs leading-tight text-white/90 sm:text-sm"
+            className="text-foreground/90 cursor-pointer text-xs leading-tight sm:text-sm"
             style={{
               fontFamily: "var(--font-geist-mono)",
               fontWeight: 500,
@@ -151,7 +151,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
           >
             <span className="hidden sm:inline">{currentBanner.desktopText} → </span>
             <span className="sm:hidden">{currentBanner.mobileText} →</span>
-            <span className="text-white underline decoration-white/30 underline-offset-2 transition-colors hover:text-white/80 hover:decoration-white/60">
+            <span className="decoration-foreground/30 hover:text-foreground/80 hover:decoration-foreground/60 text-foreground underline underline-offset-2 transition-colors">
               {currentBanner.linkText}
             </span>
           </a>
@@ -166,8 +166,8 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
                 onClick={() => setCurrentBannerIndex(index)}
                 className={`h-1.5 rounded-full transition-all duration-500 ease-out motion-reduce:transition-none ${
                   index === currentBannerIndex
-                    ? "w-6 bg-white shadow-sm"
-                    : "w-1.5 bg-white/30 hover:bg-white/50"
+                    ? "w-6 bg-foreground shadow-sm"
+                    : "bg-foreground/30 hover:bg-foreground/50 w-1.5"
                 }`}
                 style={{
                   transitionDelay: `${index * 50}ms`,
@@ -181,7 +181,7 @@ export default function AnnouncementBanner({ onVisibilityChange }: AnnouncementB
         {/* Close button - positioned absolutely to not affect centering */}
         <button
           onClick={handleClose}
-          className="absolute right-4 flex-shrink-0 rounded-md p-1.5 text-white/50 transition-all duration-200 hover:bg-white/5 hover:text-white/80 motion-reduce:transition-none"
+          className="hover:bg-accent/50 absolute right-4 flex-shrink-0 rounded-md p-1.5 text-muted-foreground transition-all duration-200 hover:text-foreground motion-reduce:transition-none"
           aria-label="Close banner"
         >
           <X className="h-4 w-4" />

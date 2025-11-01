@@ -76,7 +76,7 @@ export default function HeroVideo() {
 
   return (
     <div className="mx-auto w-full max-w-[1200px]">
-      <div ref={containerRef} className="w-full overflow-hidden rounded-[16px] bg-black">
+      <div ref={containerRef} className="w-full overflow-hidden rounded-[16px] bg-background">
         <video
           ref={videoRef}
           src="/videos/hero-video-v3.mp4"

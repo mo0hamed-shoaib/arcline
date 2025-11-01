@@ -11,14 +11,14 @@ export const metadata = {
 
 export default function CookiesPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar isBannerVisible={false} />
 
       <main className="pb-20 pt-24">
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-white/60 transition-colors hover:text-white"
+            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -39,10 +39,10 @@ export default function CookiesPage() {
             Cookie Policy
           </h1>
 
-          <div className="space-y-8 text-white/80">
+          <div className="text-foreground/80 space-y-8">
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -58,7 +58,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -80,7 +80,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -89,7 +89,7 @@ export default function CookiesPage() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Essential Cookies</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Essential Cookies</h3>
                   <p>
                     These cookies are strictly necessary for the website to function properly. They
                     enable basic features like page navigation, access to secure areas, and remember
@@ -101,7 +101,7 @@ export default function CookiesPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Performance Cookies</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Performance Cookies</h3>
                   <p>
                     These cookies allow us to count visits and traffic sources so we can measure and
                     improve the performance of our site. They help us understand how visitors
@@ -114,7 +114,7 @@ export default function CookiesPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Functional Cookies</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Functional Cookies</h3>
                   <p>
                     These cookies enable enhanced functionality and personalization. They may be set
                     by us or by third-party providers whose services we have added to our pages.
@@ -129,7 +129,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -159,7 +159,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -180,7 +180,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -210,15 +210,15 @@ export default function CookiesPage() {
                 Note: If you disable or delete cookies, you may need to manually adjust some
                 preferences every time you visit, and some features may not work as intended.
               </p>
-              <div className="mt-4 rounded-lg border border-white/20 bg-white/5 p-4">
-                <p className="font-semibold text-white">Browser-Specific Instructions:</p>
+              <div className="bg-card/50 mt-4 rounded-lg border border-border p-4">
+                <p className="font-semibold text-foreground">Browser-Specific Instructions:</p>
                 <ul className="mt-2 space-y-1 text-sm">
                   <li>
                     <a
                       href="https://support.google.com/chrome/answer/95647"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white underline hover:text-white/80"
+                      className="hover:text-foreground/80 text-foreground underline"
                     >
                       Google Chrome
                     </a>
@@ -228,7 +228,7 @@ export default function CookiesPage() {
                       href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white underline hover:text-white/80"
+                      className="hover:text-foreground/80 text-foreground underline"
                     >
                       Mozilla Firefox
                     </a>
@@ -238,7 +238,7 @@ export default function CookiesPage() {
                       href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white underline hover:text-white/80"
+                      className="hover:text-foreground/80 text-foreground underline"
                     >
                       Safari
                     </a>
@@ -248,7 +248,7 @@ export default function CookiesPage() {
                       href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white underline hover:text-white/80"
+                      className="hover:text-foreground/80 text-foreground underline"
                     >
                       Microsoft Edge
                     </a>
@@ -259,7 +259,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -276,7 +276,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -292,7 +292,7 @@ export default function CookiesPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -307,7 +307,10 @@ export default function CookiesPage() {
                 <strong>Email:</strong> privacy@arcline.dev
                 <br />
                 <strong>Website:</strong>{" "}
-                <a href="https://arcline.dev" className="text-white underline hover:text-white/80">
+                <a
+                  href="https://arcline.dev"
+                  className="hover:text-foreground/80 text-foreground underline"
+                >
                   arcline.dev
                 </a>
               </p>

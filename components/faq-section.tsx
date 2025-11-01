@@ -92,8 +92,7 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
         <h2
           className="mb-12 text-center font-semibold md:mb-16"
           style={{
-            backgroundImage:
-              "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+            backgroundImage: "var(--text-gradient)",
             color: "transparent",
             fontFamily: "var(--font-geist-sans)",
             fontSize: "clamp(32px, 6vw, 52px)",
@@ -113,11 +112,14 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="overflow-hidden rounded-[16px] border border-white/10 bg-white/5 backdrop-blur-sm"
+              className="bg-card/50 overflow-hidden rounded-[16px] border border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
             >
               <AccordionTrigger className="px-5 py-4 hover:no-underline">
                 <span
-                  className="text-left font-medium text-white"
+                  className="text-left font-medium text-foreground"
                   style={{
                     fontFamily: "var(--font-geist-sans)",
                     fontSize: "18px",
@@ -128,7 +130,7 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
               </AccordionTrigger>
               <AccordionContent className="px-5 pb-4 pt-0">
                 <p
-                  className="text-white/80"
+                  className="text-foreground/80"
                   style={{
                     fontFamily: "var(--font-geist-mono)",
                     fontSize: "15px",
@@ -145,14 +147,14 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
 
       {/* Call to action - Full width like hero section */}
       <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
-        <section className="rounded-all-devices relative mb-6 mt-12 flex flex-col rounded-[16px] text-white md:mt-16">
+        <section className="rounded-all-devices relative mb-6 mt-12 flex flex-col rounded-[16px] text-foreground md:mt-16">
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
             <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
             <div
               className="absolute inset-0 h-full w-full rounded-[16px]"
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.35)",
+                backgroundColor: "var(--hero-overlay)",
               }}
             />
             {/* Noise texture overlay */}
@@ -161,37 +163,42 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
 
           {/* Content */}
           <div className="relative z-10 flex h-full w-full flex-col px-4 pb-8 pt-[38px] text-center sm:px-6 sm:pt-[50px] md:pb-12 md:pt-[70px] lg:px-8">
-            {/* Headline */}
+            {/* Headline - Smaller than hero, sized appropriately for CTA section */}
             <h2
-              className="heading-with-selection mb-6 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
+              className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
               style={{
-                fontSize: "clamp(32px, 6vw, 64px)",
+                fontSize: "clamp(28px, 5vw, 72px)",
                 lineHeight: "1.1",
                 letterSpacing: "clamp(-1.5px, -0.04em, -3px)",
                 fontFamily: "var(--font-geist-sans)",
                 height: "auto",
                 maxWidth: "100%",
                 paddingBottom: "0",
-                marginBottom: "0.5em",
+                marginBottom: "0.2em",
                 color: "#FFFFFF",
-                textShadow: "0 2px 8px rgba(0,0,0,0.4)",
+                textShadow: "0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
               Ready to Get Started?
             </h2>
 
-            {/* Description */}
+            {/* Description - Matching hero section exactly */}
             <p
-              className="mx-auto mb-10 max-w-2xl select-text text-white/95 delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
+              className="mx-auto mb-6 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4 sm:mb-8"
               style={
                 {
                   fontFamily: "var(--font-geist-mono)",
-                  fontSize: "clamp(18px, 3vw, 26px)",
-                  lineHeight: "1.5",
+                  fontSize: "clamp(16px, 4vw, 24px)",
+                  lineHeight: "1.3",
                   fontWeight: "400",
                   letterSpacing: "normal",
+                  maxWidth: "2xl",
+                  color: "#FFFFFF",
+                  backgroundColor: "transparent",
                   textAlign: "center",
-                  textShadow: "0 1px 4px rgba(0,0,0,0.3)",
+                  // These styles ensure proper selection colors
+                  "--selection-text-color": "#FFFFFF",
+                  "--selection-background-color": "#000000",
                 } as React.CSSProperties
               }
             >
@@ -199,25 +206,18 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
             </p>
 
             {onOpenInstall && (
-              <Button
-                onClick={onOpenInstall}
-                className="group/btn relative mx-auto overflow-hidden rounded-lg bg-white px-8 py-4 font-mono text-sm font-semibold tracking-wider text-black shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 hover:shadow-2xl md:px-10 md:py-5 md:text-base"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  letterSpacing: "0.56px",
-                  height: "auto",
-                  boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(255, 255, 255, 0.1)",
-                }}
-              >
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full"></div>
-
-                {/* Button content */}
-                <div className="relative z-10 flex items-center">
-                  <Download className="mr-2 h-4 w-4 stroke-[2.5px] transition-transform duration-300 group-hover/btn:translate-y-[-2px] md:h-5 md:w-5" />
-                  <span>GET STARTED</span>
-                </div>
-              </Button>
+              <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:justify-center">
+                <Button
+                  onClick={onOpenInstall}
+                  className="hover:bg-foreground/90 flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:w-auto md:text-base"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    letterSpacing: "0.56px",
+                  }}
+                >
+                  <Download className="mr-2 h-4 w-4" /> GET STARTED
+                </Button>
+              </div>
             )}
           </div>
         </section>

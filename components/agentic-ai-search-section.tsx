@@ -131,7 +131,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
       case "Design":
         return "bg-purple-500/20 text-purple-300 border-purple-400/30";
       default:
-        return "bg-white/20 text-white border-white/30";
+        return "bg-card/50 text-foreground border-border/30";
     }
   };
 
@@ -142,8 +142,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
         <h2
           className="mb-4 font-semibold"
           style={{
-            backgroundImage:
-              "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+            backgroundImage: "var(--text-gradient)",
             color: "transparent",
             fontFamily: "var(--font-geist-sans)",
             fontSize: "clamp(32px, 6vw, 52px)",
@@ -160,7 +159,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
         <p
           className="mx-auto max-w-2xl"
           style={{
-            color: "#f5f5f5",
+            color: "var(--foreground)",
             fontFamily: "var(--font-geist-mono)",
             fontSize: "clamp(16px, 3vw, 22px)",
             lineHeight: "1.3",
@@ -175,10 +174,9 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
       {/* Card Section with Video */}
       <div className="flex justify-center">
         <Card
-          className="relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-white/15 bg-black/90 backdrop-blur-sm"
+          className="bg-card/90 relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-border backdrop-blur-sm"
           style={{
-            boxShadow:
-              "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 5px 18px 0 rgba(204,204,204,0.1)",
+            boxShadow: "var(--shadow-md)",
           }}
         >
           {/* Noise Overlay */}
@@ -216,8 +214,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
               <div
                 className="pointer-events-none absolute inset-0 hidden lg:block"
                 style={{
-                  background:
-                    "linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 70%)",
+                  background: "var(--video-overlay-gradient)",
                 }}
               ></div>
 
@@ -232,21 +229,23 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
                   {/* Left: Feature Info and Install Button - KEEPING ORIGINAL DESIGN */}
                   <div className="max-w-xs flex-1 lg:max-w-md">
                     <h3
-                      className="mb-3 text-xl font-semibold text-white lg:text-2xl"
+                      className="mb-3 text-xl font-semibold lg:text-2xl"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         letterSpacing: "-0.02em",
-                        textShadow: "0 2px 4px rgba(0,0,0,0.8)",
+                        color: "#FFFFFF",
+                        textShadow: "var(--text-shadow-md)",
                       }}
                     >
                       AI Search
                     </h3>
                     <p
-                      className="mb-6 text-base text-white/95 lg:text-lg"
+                      className="mb-6 text-base lg:text-lg"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         lineHeight: "1.4",
-                        textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                        color: "#FFFFFF",
+                        textShadow: "var(--text-shadow-sm)",
                       }}
                     >
                       "{activeQuery.question}"
@@ -254,7 +253,7 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
                     {onOpenInstall && (
                       <Button
                         onClick={onOpenInstall}
-                        className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black shadow-lg hover:bg-gray-100"
+                        className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black shadow-lg hover:bg-white/90"
                         style={{
                           fontFamily: "var(--font-geist-mono)",
                           letterSpacing: "0.56px",
@@ -278,13 +277,14 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
                           onMouseEnter={() => handleQueryHover(query)}
                           className={`group relative rounded-xl border-2 p-3 text-left transition-colors duration-200 ${
                             activeQuery.id === query.id
-                              ? "border-white/60 bg-white/15 text-white shadow-lg"
-                              : "border-white/20 bg-black/30 text-white/90 hover:border-white/40 hover:bg-white/10"
+                              ? "border-white/60 bg-white/10 shadow-lg"
+                              : "border-white/20 bg-white/5 text-white/90 hover:border-white/40 hover:bg-white/10"
                           }`}
                           style={{
                             backdropFilter: "blur(8px)",
                             height: "auto",
                             minHeight: "64px",
+                            color: "#FFFFFF",
                           }}
                         >
                           <div className="flex items-start gap-2">
@@ -310,7 +310,8 @@ export default function AgenticAISearchSection({ onOpenInstall }: AgenticAISearc
                                 className="text-xs leading-relaxed"
                                 style={{
                                   fontFamily: "var(--font-geist-mono)",
-                                  textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                                  color: "#FFFFFF",
+                                  textShadow: "var(--text-shadow-sm)",
                                 }}
                               >
                                 "{query.question}"

@@ -3,46 +3,69 @@
 @tailwind utilities;
 
 :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+.dark {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
+/* View transition styles for animated theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Optimize for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: oklch(0.99 0 0);
+    --foreground: oklch(0 0 0);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0 0 0);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: oklch(0.99 0 0);
+    --popover-foreground: oklch(0 0 0);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: oklch(0 0 0);
+    --primary-foreground: oklch(1 0 0);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: oklch(0.94 0 0);
+    --secondary-foreground: oklch(0 0 0);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.44 0 0);
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: oklch(0.94 0 0);
+    --accent-foreground: oklch(0 0 0);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: oklch(0.63 0.19 23.03);
+    --destructive-foreground: oklch(1 0 0);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: oklch(0.92 0 0);
+    --input: oklch(0.94 0 0);
+    --ring: oklch(0 0 0);
 
     --radius: 0.5rem;
 
@@ -56,67 +79,224 @@ body {
     --gradient-cyan: #22d3ee;
     --gradient-orange: #ff5c28;
     --gradient-pink: #ff5c9d;
+
+    /* ========================================
+       SHADOW SYSTEM
+       ========================================
+       Theme-aware shadow variables (keeping existing shadows)
+    */
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --shadow-blur: 2px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.18;
+    --shadow-color: hsl(0 0% 0%);
+    --shadow-2xs: 0px 0px 2px 0px hsl(0 0% 0% / 0.09);
+    --shadow-xs: 0px 0px 2px 0px hsl(0 0% 0% / 0.09);
+    --shadow-sm: 0px 0px 2px 0px hsl(0 0% 0% / 0.18), 0px 0px 2px 0px hsl(0 0% 0% / 0.18);
+    --shadow: 0px 0px 2px 0px hsl(0 0% 0% / 0.18), 0px 0px 2px 0px hsl(0 0% 0% / 0.18);
+    --shadow-md: 0px 0px 2px 0px hsl(0 0% 0% / 0.18), 0px 0px 4px 0px hsl(0 0% 0% / 0.18);
+    --shadow-lg: 0px 0px 2px 0px hsl(0 0% 0% / 0.18), 0px 0px 6px 0px hsl(0 0% 0% / 0.18);
+    --shadow-xl: 0px 0px 2px 0px hsl(0 0% 0% / 0.18), 0px 0px 10px 0px hsl(0 0% 0% / 0.18);
+    --shadow-2xl: 0px 0px 2px 0px hsl(0 0% 0% / 0.45);
+
+    /* Text shadow */
+    --text-shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.8);
+    --text-shadow-md: 0 2px 4px rgba(255, 255, 255, 0.9);
+    --text-shadow-lg: 0 4px 8px rgba(255, 255, 255, 1);
+
+    /* ========================================
+       OVERLAY SYSTEM
+       ========================================
+       Theme-aware overlay and fade variables
+    */
+    --overlay-light: rgba(255, 255, 255, 0.7);
+    --overlay-dark: rgba(0, 0, 0, 0.2);
+    --fade-from: rgba(255, 255, 255, 1);
+
+    /* Gradient fade overlays - using background color for seamless blend */
+    --fade-gradient-left: linear-gradient(to right, oklch(0.99 0 0), transparent);
+    --fade-gradient-right: linear-gradient(to left, oklch(0.99 0 0), transparent);
+    --fade-gradient-top: linear-gradient(to bottom, var(--fade-from), transparent);
+    --fade-gradient-bottom: linear-gradient(to top, var(--fade-from), transparent);
+
+    /* Video overlay gradients */
+    --video-overlay-gradient: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.5) 40%,
+      transparent 70%
+    );
+
+    /* Hero section overlay */
+    --hero-overlay: rgba(255, 255, 255, 0.2);
+
+    /* Text gradient for headings */
+    --text-gradient: linear-gradient(
+      to bottom,
+      rgb(15, 15, 15) 0%,
+      rgb(15, 15, 15) 29%,
+      rgb(80, 80, 80) 100%
+    );
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: oklch(0 0 0);
+    --foreground: oklch(1 0 0);
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: oklch(0.14 0 0);
+    --card-foreground: oklch(1 0 0);
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: oklch(0.18 0 0);
+    --popover-foreground: oklch(1 0 0);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: oklch(1 0 0);
+    --primary-foreground: oklch(0 0 0);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: oklch(0.25 0 0);
+    --secondary-foreground: oklch(1 0 0);
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: oklch(0.23 0 0);
+    --muted-foreground: oklch(0.72 0 0);
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: oklch(0.32 0 0);
+    --accent-foreground: oklch(1 0 0);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: oklch(0.69 0.2 23.91);
+    --destructive-foreground: oklch(0 0 0);
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: oklch(0.26 0 0);
+    --input: oklch(0.32 0 0);
+    --ring: oklch(0.72 0 0);
+
+    /* Shadow variables for dark mode - subtle glow effect */
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --shadow-blur: 4px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.15;
+    --shadow-color: hsl(0 0% 100%);
+    --shadow-2xs: 0px 0px 3px 0px hsl(0 0% 100% / 0.08);
+    --shadow-xs: 0px 0px 3px 0px hsl(0 0% 100% / 0.08);
+    --shadow-sm: 0px 0px 3px 0px hsl(0 0% 100% / 0.12), 0px 0px 2px 0px hsl(0 0% 100% / 0.08);
+    --shadow: 0px 0px 3px 0px hsl(0 0% 100% / 0.12), 0px 0px 2px 0px hsl(0 0% 100% / 0.08);
+    --shadow-md: 0px 0px 6px 0px hsl(0 0% 100% / 0.12), 0px 0px 3px 0px hsl(0 0% 100% / 0.08);
+    --shadow-lg: 0px 0px 8px 0px hsl(0 0% 100% / 0.15), 0px 0px 4px 0px hsl(0 0% 100% / 0.1);
+    --shadow-xl: 0px 0px 16px 0px hsl(0 0% 100% / 0.15), 0px 0px 8px 0px hsl(0 0% 100% / 0.1);
+    --shadow-2xl: 0px 0px 24px 0px hsl(0 0% 100% / 0.2);
+
+    /* Text shadows for dark mode */
+    --text-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --text-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.6);
+    --text-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.7);
+
+    /* Overlays for dark mode */
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    --overlay-dark: rgba(0, 0, 0, 0.7);
+    --fade-from: rgba(0, 0, 0, 1);
+
+    /* Gradient fade overlays for dark mode - using background color for seamless blend */
+    --fade-gradient-left: linear-gradient(to right, oklch(0 0 0), transparent);
+    --fade-gradient-right: linear-gradient(to left, oklch(0 0 0), transparent);
+
+    /* Video overlay for dark mode */
+    --video-overlay-gradient: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      transparent 70%
+    );
+
+    /* Hero overlay for dark mode */
+    --hero-overlay: rgba(0, 0, 0, 0.35);
+
+    /* Text gradient for dark mode */
+    --text-gradient: linear-gradient(
+      to bottom,
+      rgb(245, 245, 245) 0%,
+      rgb(245, 245, 245) 29%,
+      rgb(153, 153, 153) 100%
+    );
   }
 
-  /* Add light mode color overrides for text and borders */
+  /* Light mode uses same as :root */
   .light {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: oklch(0.99 0 0);
+    --foreground: oklch(0 0 0);
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0 0 0);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover: oklch(0.99 0 0);
+    --popover-foreground: oklch(0 0 0);
 
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
+    --primary: oklch(0 0 0);
+    --primary-foreground: oklch(1 0 0);
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: oklch(0.94 0 0);
+    --secondary-foreground: oklch(0 0 0);
 
-    --muted: 0 0% 90%;
-    --muted-foreground: 0 0% 50%;
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.44 0 0);
 
-    --accent: 0 0% 95%;
-    --accent-foreground: 0 0% 0%;
+    --accent: oklch(0.94 0 0);
+    --accent-foreground: oklch(0 0 0);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: oklch(0.63 0.19 23.03);
+    --destructive-foreground: oklch(1 0 0);
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 0%;
+    --border: oklch(0.92 0 0);
+    --input: oklch(0.94 0 0);
+    --ring: oklch(0 0 0);
+
+    /* Shadow variables for light mode - subtle glow effect (lighter for better blend) */
+    --shadow-x: 0px;
+    --shadow-y: 0px;
+    --shadow-blur: 4px;
+    --shadow-spread: 0px;
+    --shadow-opacity: 0.08;
+    --shadow-color: hsl(0 0% 0%);
+    --shadow-2xs: 0px 0px 3px 0px hsl(0 0% 0% / 0.04);
+    --shadow-xs: 0px 0px 3px 0px hsl(0 0% 0% / 0.04);
+    --shadow-sm: 0px 0px 3px 0px hsl(0 0% 0% / 0.06), 0px 0px 2px 0px hsl(0 0% 0% / 0.04);
+    --shadow: 0px 0px 3px 0px hsl(0 0% 0% / 0.06), 0px 0px 2px 0px hsl(0 0% 0% / 0.04);
+    --shadow-md: 0px 0px 6px 0px hsl(0 0% 0% / 0.06), 0px 0px 3px 0px hsl(0 0% 0% / 0.04);
+    --shadow-lg: 0px 0px 8px 0px hsl(0 0% 0% / 0.08), 0px 0px 4px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xl: 0px 0px 16px 0px hsl(0 0% 0% / 0.08), 0px 0px 8px 0px hsl(0 0% 0% / 0.05);
+    --shadow-2xl: 0px 0px 24px 0px hsl(0 0% 0% / 0.1);
+
+    /* Text shadows for light mode - matching dark mode for video overlays */
+    --text-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --text-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.6);
+    --text-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.7);
+
+    /* Overlays for light mode */
+    --overlay-light: rgba(255, 255, 255, 0.7);
+    --overlay-dark: rgba(0, 0, 0, 0.2);
+    --fade-from: rgba(249, 249, 249, 1);
+
+    /* Gradient fade overlays for light mode - using background color for seamless blend */
+    --fade-gradient-left: linear-gradient(to right, oklch(0.99 0 0), transparent);
+    --fade-gradient-right: linear-gradient(to left, oklch(0.99 0 0), transparent);
+
+    /* Video overlay for light mode - matching dark mode for better visibility */
+    --video-overlay-gradient: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      transparent 70%
+    );
+
+    /* Hero overlay for light mode */
+    --hero-overlay: rgba(255, 255, 255, 0.2);
+
+    /* Text gradient for light mode */
+    --text-gradient: linear-gradient(
+      to bottom,
+      rgb(15, 15, 15) 0%,
+      rgb(15, 15, 15) 29%,
+      rgb(80, 80, 80) 100%
+    );
   }
 
   * {
@@ -160,26 +340,26 @@ p[style*="--selection-text-color"]::-moz-selection {
   background-color: var(--selection-background-color);
 }
 
-/* Heading selection styles */
+/* Heading selection styles - Theme-aware */
 .heading-with-selection::selection {
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--foreground);
+  background-color: var(--background);
 }
 
 .heading-with-selection::-moz-selection {
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--foreground);
+  background-color: var(--background);
 }
 
-/* Logo text selection styles */
+/* Logo text selection styles - Theme-aware */
 .logo-text::selection {
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--foreground);
+  background-color: var(--background);
 }
 
 .logo-text::-moz-selection {
-  color: #ffffff;
-  background-color: #000000;
+  color: var(--foreground);
+  background-color: var(--background);
 }
 
 .noise-texture {

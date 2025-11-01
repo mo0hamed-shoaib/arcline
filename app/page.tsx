@@ -24,21 +24,21 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-20 text-white">
+    <div className="min-h-screen bg-background pt-20 text-foreground">
       {/* Navigation */}
       <Navbar isBannerVisible={false} />
 
       {/* Rest of the content remains the same... */}
       <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
         {/* Hero Section */}
-        <section className="rounded-all-devices relative mb-6 mt-2 flex flex-col rounded-[16px] text-white">
+        <section className="rounded-all-devices relative mb-6 mt-2 flex flex-col rounded-[16px] text-foreground">
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
             <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
             <div
               className="absolute inset-0 h-full w-full rounded-[16px]"
               style={{
-                backgroundColor: "rgba(0, 0, 0, 0.35)",
+                backgroundColor: "var(--hero-overlay)",
               }}
             />
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
               <div>
                 <div className="mb-4 flex flex-col gap-3 sm:gap-4">
                   <Button
-                    className="flex h-[50px] w-full items-center justify-center rounded-lg bg-white px-4 font-mono text-xs font-semibold tracking-wider text-black shadow-lg hover:bg-gray-100 sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
+                    className="hover:bg-foreground/90 flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                     onClick={openInstallModal}
                   >
                     <Download className="mr-2 h-4 w-4" /> GET STARTED
@@ -109,7 +109,7 @@ export default function Home() {
                     href="https://x.com/jackjack_eth"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-[50px] w-full items-center justify-center rounded-lg border border-white/10 bg-black px-4 font-mono text-xs font-semibold tracking-wider text-white shadow-lg hover:bg-black/80 sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
+                    className="hover:bg-card/80 flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                   >
                     <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -168,7 +168,7 @@ export default function Home() {
               </div>
               <div className="flex flex-row justify-center gap-3 md:gap-4">
                 <Button
-                  className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-white px-4 font-mono text-sm font-semibold tracking-wider text-black shadow-lg hover:bg-gray-100 md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="hover:bg-foreground/90 flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
                   onClick={openInstallModal}
                 >
                   <Download className="mr-2 h-4 w-4" /> GET STARTED
@@ -177,7 +177,7 @@ export default function Home() {
                   href="https://x.com/jackjack_eth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-white/10 bg-black px-4 font-mono text-sm font-semibold tracking-wider text-white shadow-lg hover:bg-black/80 md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="hover:bg-card/80 flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
                 >
                   <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -189,13 +189,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-black py-12 md:py-16">
+        <section className="bg-background py-12 md:py-16">
           <div className="mx-auto mb-12 max-w-6xl px-4 text-center sm:px-6">
             <h2
               className="mb-4 font-semibold"
               style={{
-                backgroundImage:
-                  "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+                backgroundImage: "var(--text-gradient)",
                 color: "transparent",
                 fontFamily: "var(--font-geist-sans)",
                 fontSize: "clamp(32px, 6vw, 52px)",
@@ -210,7 +209,7 @@ export default function Home() {
               Services Tailored to You
             </h2>
             <p
-              className="mx-auto mb-8 max-w-2xl text-white/90"
+              className="text-foreground/90 mx-auto mb-8 max-w-2xl"
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 fontSize: "clamp(18px, 3vw, 24px)",
@@ -255,14 +254,13 @@ export default function Home() {
               ].map((service, index) => (
                 <div
                   key={`service-${index}`}
-                  className="group flex h-14 min-w-[180px] items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:h-16 md:min-w-[200px]"
+                  className="bg-card/50 hover:border-border/50 hover:bg-card/80 group flex h-14 min-w-[180px] items-center justify-center rounded-xl border border-border px-6 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px]"
                   style={{
-                    boxShadow:
-                      "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+                    boxShadow: "var(--shadow-md)",
                   }}
                 >
                   <span
-                    className="font-semibold text-white transition-colors duration-300 group-hover:text-white"
+                    className="font-semibold text-foreground transition-colors duration-300 group-hover:text-foreground"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "16px",
@@ -302,14 +300,13 @@ export default function Home() {
               ].map((tech, index) => (
                 <div
                   key={`tech-${index}`}
-                  className="group flex h-14 min-w-[160px] items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:h-16 md:min-w-[180px]"
+                  className="bg-card/50 hover:border-border/50 hover:bg-card/80 group flex h-14 min-w-[160px] items-center justify-center rounded-xl border border-border px-6 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px]"
                   style={{
-                    boxShadow:
-                      "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+                    boxShadow: "var(--shadow-md)",
                   }}
                 >
                   <span
-                    className="font-semibold text-white transition-colors duration-300 group-hover:text-white"
+                    className="font-semibold text-foreground transition-colors duration-300 group-hover:text-foreground"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "16px",
@@ -323,9 +320,15 @@ export default function Home() {
               ))}
             </Marquee>
 
-            {/* Gradient Fade Overlays */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent"></div>
+            {/* Gradient Fade Overlays - Thinner and more subtle */}
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
+              style={{ background: "var(--fade-gradient-left)" }}
+            ></div>
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
+              style={{ background: "var(--fade-gradient-right)" }}
+            ></div>
           </div>
         </section>
 

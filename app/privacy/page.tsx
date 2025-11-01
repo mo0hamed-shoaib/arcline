@@ -11,14 +11,14 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar isBannerVisible={false} />
 
       <main className="pb-20 pt-24">
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-white/60 transition-colors hover:text-white"
+            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -39,10 +39,10 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
 
-          <div className="space-y-8 text-white/80">
+          <div className="text-foreground/80 space-y-8">
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -68,14 +68,14 @@ export default function PrivacyPage() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Account Information</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Account Information</h3>
                   <p>
                     When you create an account, we collect basic information like your email address
                     and username. This is used solely for account management and service delivery.
                   </p>
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Usage Data</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Usage Data</h3>
                   <p>
                     We collect anonymized analytics to understand how our service is used and where
                     we can improve. This includes aggregate statistics on features used, performance
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="mb-2 font-semibold text-white">Project Information</h3>
+                  <h3 className="mb-2 font-semibold text-foreground">Project Information</h3>
                   <p>
                     All project files and information are kept strictly confidential. We only access
                     what is necessary to provide development services and never share or use your
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -118,7 +118,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -166,7 +166,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -205,7 +205,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -221,7 +221,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -238,7 +238,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -255,7 +255,10 @@ export default function PrivacyPage() {
                 <strong>Mailing Address:</strong> Arcline Privacy Team
                 <br />
                 <strong>Website:</strong>{" "}
-                <a href="https://arcline.dev" className="text-white underline hover:text-white/80">
+                <a
+                  href="https://arcline.dev"
+                  className="hover:text-foreground/80 text-foreground underline"
+                >
                   arcline.dev
                 </a>
               </p>

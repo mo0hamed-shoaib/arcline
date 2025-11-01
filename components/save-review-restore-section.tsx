@@ -96,8 +96,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
         <h2
           className="mb-4 font-semibold"
           style={{
-            backgroundImage:
-              "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+            backgroundImage: "var(--text-gradient)",
             color: "transparent",
             fontFamily: "var(--font-geist-sans)",
             fontSize: "clamp(32px, 6vw, 52px)",
@@ -114,7 +113,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
         <p
           className="mx-auto max-w-2xl"
           style={{
-            color: "#f5f5f5",
+            color: "var(--foreground)",
             fontFamily: "var(--font-geist-mono)",
             fontSize: "clamp(16px, 3vw, 22px)",
             lineHeight: "1.3",
@@ -129,10 +128,9 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
       {/* Card Section with Video */}
       <div className="flex justify-center">
         <Card
-          className="relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-white/15 bg-black/90 backdrop-blur-sm"
+          className="bg-card/90 relative w-full max-w-[1296px] overflow-hidden rounded-[16px] border border-border backdrop-blur-sm"
           style={{
-            boxShadow:
-              "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 5px 18px 0 rgba(204,204,204,0.1)",
+            boxShadow: "var(--shadow-md)",
           }}
         >
           {/* Noise Overlay */}
@@ -170,8 +168,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
               <div
                 className="pointer-events-none absolute inset-0 hidden lg:block"
                 style={{
-                  background:
-                    "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%)",
+                  background: "var(--video-overlay-gradient)",
                 }}
               ></div>
 
@@ -182,21 +179,23 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
                   {/* Left: Feature Info and Install Button */}
                   <div className="max-w-xs flex-1 lg:max-w-md">
                     <h3
-                      className="mb-3 text-2xl font-semibold text-white lg:text-3xl"
+                      className="mb-3 text-2xl font-semibold lg:text-3xl"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         letterSpacing: "-0.02em",
-                        textShadow: "0 2px 4px rgba(0,0,0,0.8)",
+                        color: "#FFFFFF",
+                        textShadow: "var(--text-shadow-md)",
                       }}
                     >
                       {activeFeature.title}
                     </h3>
                     <p
-                      className="mb-6 text-base text-white/95 lg:text-lg"
+                      className="mb-6 text-base lg:text-lg"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         lineHeight: "1.4",
-                        textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                        color: "#FFFFFF",
+                        textShadow: "var(--text-shadow-sm)",
                       }}
                     >
                       {activeFeature.description}
@@ -204,7 +203,7 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
                     {onOpenInstall && (
                       <Button
                         onClick={onOpenInstall}
-                        className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black shadow-lg hover:bg-gray-100"
+                        className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black shadow-lg hover:bg-white/90"
                         style={{
                           fontFamily: "var(--font-geist-mono)",
                           letterSpacing: "0.56px",
@@ -246,12 +245,12 @@ export default function SaveReviewRestoreSection({ onOpenInstall }: SaveReviewRe
                         {/* Thumbnail Label */}
                         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 transform whitespace-nowrap">
                           <span
-                            className={`font-mono text-sm transition-colors duration-200 ${
-                              activeFeature.id === feature.id ? "text-white" : "text-white/80"
-                            }`}
+                            className="font-mono text-sm transition-opacity duration-200"
                             style={{
                               fontFamily: "var(--font-geist-mono)",
-                              textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                              color: "#FFFFFF",
+                              opacity: activeFeature.id === feature.id ? 1 : 0.8,
+                              textShadow: "var(--text-shadow-sm)",
                             }}
                           >
                             {feature.title}

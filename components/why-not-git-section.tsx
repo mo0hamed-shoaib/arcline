@@ -43,8 +43,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
           <h2
             className="mb-6 font-semibold"
             style={{
-              backgroundImage:
-                "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+              backgroundImage: "var(--text-gradient)",
               color: "transparent",
               fontFamily: "var(--font-geist-sans)",
               fontSize: "clamp(32px, 6vw, 52px)",
@@ -59,7 +58,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
             Why Choose Arcline
           </h2>
           <p
-            className="mx-auto mb-8 max-w-2xl text-white/90"
+            className="text-foreground/90 mx-auto mb-8 max-w-2xl"
             style={{
               fontFamily: "var(--font-geist-mono)",
               fontSize: "clamp(18px, 3vw, 24px)",
@@ -77,10 +76,9 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-[16px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:p-8"
+              className="bg-card/50 hover:border-border/50 hover:bg-card/80 group relative overflow-hidden rounded-[16px] border border-border p-6 backdrop-blur-sm transition-all duration-300 md:p-8"
               style={{
-                boxShadow:
-                  "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 2px 8px 0 rgba(204,204,204,0.05)",
+                boxShadow: "var(--shadow-md)",
               }}
             >
               {/* Subtle gradient overlay on hover */}
@@ -91,14 +89,14 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
                   <div className="gradient-icon relative flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 md:h-14 md:w-14">
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                     <feature.icon
-                      className="relative h-6 w-6 text-white transition-all duration-300 group-hover:scale-105 md:h-7 md:w-7"
+                      className="relative h-6 w-6 text-foreground transition-all duration-300 group-hover:scale-105 md:h-7 md:w-7"
                       strokeWidth={2.5}
                     />
                   </div>
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <h3
-                    className="mb-3 font-semibold text-white transition-colors duration-300 group-hover:text-white"
+                    className="mb-3 font-semibold text-foreground transition-colors duration-300 group-hover:text-foreground"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "18px",
@@ -109,7 +107,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
                     {feature.title}
                   </h3>
                   <p
-                    className="text-white/80 transition-colors duration-300 group-hover:text-white/90"
+                    className="text-foreground/80 group-hover:text-foreground/90 transition-colors duration-300"
                     style={{
                       fontFamily: "var(--font-geist-mono)",
                       fontSize: "15px",
@@ -132,7 +130,7 @@ export default function WhyNotGitSection({ onOpenInstall }: WhyNotGitSectionProp
           {onOpenInstall && (
             <Button
               onClick={onOpenInstall}
-              className="rounded-lg bg-white px-6 py-3 font-mono text-sm font-semibold tracking-wider text-black hover:bg-gray-100"
+              className="hover:bg-foreground/90 rounded-lg bg-foreground px-6 py-3 font-mono text-sm font-semibold tracking-wider text-background"
               style={{
                 fontFamily: "var(--font-geist-mono)",
                 letterSpacing: "0.56px",

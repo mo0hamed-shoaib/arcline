@@ -11,14 +11,14 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar isBannerVisible={false} />
 
       <main className="pb-20 pt-24">
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-white/60 transition-colors hover:text-white"
+            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -39,10 +39,10 @@ export default function TermsPage() {
             Terms of Service
           </h1>
 
-          <div className="space-y-8 text-white/80">
+          <div className="text-foreground/80 space-y-8">
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -76,7 +76,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -94,7 +94,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -116,7 +116,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -140,7 +140,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -161,7 +161,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -180,7 +180,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -202,7 +202,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -228,7 +228,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -245,7 +245,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -271,7 +271,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -287,7 +287,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -304,7 +304,7 @@ export default function TermsPage() {
 
             <section>
               <h2
-                className="mb-4 text-2xl font-semibold text-white"
+                className="mb-4 text-2xl font-semibold text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                 }}
@@ -316,7 +316,10 @@ export default function TermsPage() {
                 <strong>Email:</strong> legal@arcline.dev
                 <br />
                 <strong>Website:</strong>{" "}
-                <a href="https://arcline.dev" className="text-white underline hover:text-white/80">
+                <a
+                  href="https://arcline.dev"
+                  className="hover:text-foreground/80 text-foreground underline"
+                >
                   arcline.dev
                 </a>
               </p>

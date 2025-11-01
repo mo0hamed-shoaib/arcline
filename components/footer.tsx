@@ -6,24 +6,24 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 py-8 md:py-10">
+    <footer className="border-t border-border py-8 md:py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
           {/* Left section: Copyright and legal links */}
           <div className="flex flex-col items-center gap-4 text-center md:flex-row md:gap-6 md:text-left">
             <p
-              className="text-sm text-white/50"
+              className="text-sm text-muted-foreground"
               style={{
                 fontFamily: "var(--font-geist-mono)",
               }}
             >
               © 2025 Arcline. All rights reserved.
             </p>
-            <div className="hidden h-4 w-px bg-white/10 md:block"></div>
+            <div className="hidden h-4 w-px bg-border md:block"></div>
             <div className="flex gap-4 md:gap-6">
               <Link
                 href="/privacy"
-                className="text-sm text-white/50 transition-colors hover:text-white"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-mono)",
                 }}
@@ -32,7 +32,7 @@ export default function Footer() {
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-white/50 transition-colors hover:text-white"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-mono)",
                 }}
@@ -41,7 +41,7 @@ export default function Footer() {
               </Link>
               <Link
                 href="/cookies"
-                className="text-sm text-white/50 transition-colors hover:text-white"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 style={{
                   fontFamily: "var(--font-geist-mono)",
                 }}
@@ -60,7 +60,7 @@ export default function Footer() {
                     href="https://github.com/arcline"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/60 transition-colors hover:text-white"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="GitHub"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@ export default function Footer() {
                     href="https://linkedin.com/company/arcline"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/60 transition-colors hover:text-white"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="LinkedIn"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -96,7 +96,7 @@ export default function Footer() {
                     href="https://twitter.com/arcline_dev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/60 transition-colors hover:text-white"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="X (Twitter)"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ export default function Footer() {
                     href="https://arcline.dev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/60 transition-colors hover:text-white"
+                    className="text-muted-foreground transition-colors hover:text-foreground"
                     aria-label="Website"
                   >
                     <svg

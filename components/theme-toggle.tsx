@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
-export function ThemeToggle() {
+import { cn } from "@/lib/utils";
+
+interface ThemeToggleProps extends React.ComponentPropsWithoutRef<"button"> {
+  showLabel?: boolean;
+}
+
+export function ThemeToggle({ className, showLabel = false, ...props }: ThemeToggleProps) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -17,16 +23,24 @@ export function ThemeToggle() {
     return <div className="h-10 w-10" />;
   }
 
+  const handleToggle = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <button
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="rounded-lg p-2 transition-colors hover:bg-white/10"
+      onClick={handleToggle}
+      className={cn("rounded-lg p-2", className)}
       aria-label="Toggle theme"
+      {...props}
     >
       {theme === "dark" ? (
-        <Sun className="h-5 w-5 text-white" />
+        <Sun className="h-5 w-5 text-foreground" />
       ) : (
-        <Moon className="h-5 w-5 text-black" />
+        <Moon className="h-5 w-5 text-foreground" />
+      )}
+      {showLabel && (
+        <span className="ml-2 text-sm font-semibold">{theme === "dark" ? "LIGHT" : "DARK"}</span>
       )}
     </button>
   );

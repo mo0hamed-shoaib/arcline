@@ -81,9 +81,14 @@ const testimonials: Testimonial[] = [
 
 function TestimonialCard({ name, role, company, testimonial, avatar }: Testimonial) {
   return (
-    <div className="w-[350px] shrink-0 rounded-[16px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-white/10">
+    <div
+      className="bg-card/50 hover:bg-card/80 w-[350px] shrink-0 rounded-[16px] border border-border p-6 backdrop-blur-sm transition-all duration-300"
+      style={{
+        boxShadow: "var(--shadow-md)",
+      }}
+    >
       <div className="mb-4 flex items-center gap-3">
-        <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-white/20">
+        <div className="border-border/50 h-12 w-12 shrink-0 overflow-hidden rounded-full border">
           <Image
             src={avatar}
             alt={name}
@@ -94,7 +99,7 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
         </div>
         <div className="min-w-0">
           <p
-            className="text-sm font-semibold text-white"
+            className="text-sm font-semibold text-foreground"
             style={{
               fontFamily: "var(--font-geist-mono)",
             }}
@@ -102,7 +107,7 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
             {name}
           </p>
           <p
-            className="text-xs text-white/70"
+            className="text-xs text-muted-foreground"
             style={{
               fontFamily: "var(--font-geist-mono)",
             }}
@@ -113,7 +118,7 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
       </div>
       <blockquote>
         <p
-          className="text-sm leading-relaxed text-white/90"
+          className="text-foreground/90 text-sm leading-relaxed"
           style={{
             fontFamily: "var(--font-geist-mono)",
             lineHeight: "1.6",
@@ -135,8 +140,7 @@ export default function VibeCodingTweetsSection() {
           <h2
             className="mb-4 font-semibold"
             style={{
-              backgroundImage:
-                "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
+              backgroundImage: "var(--text-gradient)",
               color: "transparent",
               fontFamily: "var(--font-geist-sans)",
               fontSize: "clamp(32px, 6vw, 52px)",
@@ -151,7 +155,7 @@ export default function VibeCodingTweetsSection() {
             Client Feedback and Testimonials
           </h2>
           <p
-            className="mx-auto mb-8 max-w-2xl text-white/90"
+            className="text-foreground/90 mx-auto mb-8 max-w-2xl"
             style={{
               fontFamily: "var(--font-geist-mono)",
               fontSize: "clamp(18px, 3vw, 24px)",
@@ -179,9 +183,15 @@ export default function VibeCodingTweetsSection() {
             ))}
           </Marquee>
 
-          {/* Gradient Fade Overlays */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent"></div>
+          {/* Gradient Fade Overlays - Thinner and more subtle */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
+            style={{ background: "var(--fade-gradient-left)" }}
+          ></div>
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
+            style={{ background: "var(--fade-gradient-right)" }}
+          ></div>
         </div>
       </div>
     </section>

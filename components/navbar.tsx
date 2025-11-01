@@ -1,9 +1,11 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { Download, Menu, X } from "lucide-react";
 
 import InstallModal from "@/components/install-modal";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { Button } from "@/components/ui/button";
 
 interface NavbarProps {
@@ -15,6 +17,12 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMenuClosing, setMobileMenuClosing] = useState(false);
   const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Debounce the scroll handler to prevent flickering
   const handleScroll = useCallback(() => {
@@ -59,10 +67,8 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
 
   // Apply styles consistently
   const navStyle = {
-    boxShadow: scrolled
-      ? "0 0 0 0 rgba(0,0,0,0), 0 0 0 0 rgba(0,0,0,0), 0 5px 18px 0 rgba(204,204,204,0.1)"
-      : "none",
-    border: scrolled ? "1px solid #1a1a1a" : "1px solid transparent",
+    boxShadow: scrolled ? "var(--shadow-md)" : "none",
+    border: scrolled ? "1px solid var(--border)" : "1px solid transparent",
     borderRadius: "16px",
     transition: "all 0.3s ease-in-out",
   };
@@ -73,18 +79,25 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
     >
       <div className="mt-2 w-[calc(100%-24px)] max-w-[1400px]">
         <nav
-          className="font-geist flex h-16 items-center justify-between rounded-[16px] bg-black p-2 text-white"
+          className="font-geist border-border/50 flex h-16 items-center justify-between rounded-[16px] border bg-background p-2 text-foreground"
           style={navStyle}
         >
           <div className="ml-[15px] flex items-center">
-            <Image
-              src="/dark_mode_logo/favicon-32x32.png"
-              alt="Arcline Logo"
-              width={28}
-              height={28}
-              className="mr-3"
-              priority
-            />
+            {mounted && (
+              <Image
+                src={
+                  theme === "light"
+                    ? "/light_mode_logo/favicon-32x32.png"
+                    : "/dark_mode_logo/favicon-32x32.png"
+                }
+                alt="Arcline Logo"
+                width={28}
+                height={28}
+                className="mr-3"
+                priority
+              />
+            )}
+            {!mounted && <div className="mr-3 h-7 w-7" />}
             <span
               className="logo-text"
               style={{
@@ -93,7 +106,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
                 lineHeight: "1.1",
                 fontWeight: "600",
                 letterSpacing: "-0.02em",
-                color: "#FFFFFF",
+                color: "var(--foreground)",
                 width: "auto",
                 height: "auto",
               }}
@@ -106,14 +119,14 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
           <div className="hidden items-center gap-3 md:flex">
             <a href="https://tally.so/r/n0l7BB" target="_blank" rel="noopener noreferrer">
               <Button
-                className="rounded-lg border border-white/30 bg-transparent hover:bg-white/10"
+                className="hover:bg-accent/50 rounded-lg border border-border bg-transparent"
                 style={{
                   fontFamily: "var(--font-geist-sans)",
                   fontSize: "14px",
                   lineHeight: "18px",
                   fontWeight: "600",
                   letterSpacing: "0.32px",
-                  color: "#FFFFFF",
+                  color: "var(--foreground)",
                   height: "48px",
                 }}
               >
@@ -121,14 +134,14 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
               </Button>
             </a>
             <Button
-              className="h-12 rounded-lg bg-white px-6 text-black hover:bg-gray-200"
+              className="hover:bg-foreground/90 h-12 rounded-lg bg-foreground px-6 text-background"
               style={{
                 fontFamily: "var(--font-geist-sans)",
                 fontSize: "14px",
                 lineHeight: "18px",
                 fontWeight: "600",
                 letterSpacing: "0.56px",
-                color: "#000000",
+                color: "var(--background)",
                 height: "48px",
                 borderRadius: "8px",
               }}
@@ -137,19 +150,23 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
               <Download className="mr-2 h-4 w-4 stroke-[2.5px]" />
               INSTALL
             </Button>
+            <AnimatedThemeToggler
+              variant="icon"
+              className="hover:bg-accent/50 flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-transparent"
+            />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <button
-              className="mr-2 flex items-center justify-center rounded-md p-2 transition-colors hover:bg-white/10"
+              className="hover:bg-accent/50 mr-2 flex items-center justify-center rounded-md p-2 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6 text-white" />
+                <X className="h-6 w-6 text-foreground" />
               ) : (
-                <Menu className="h-6 w-6 text-white" />
+                <Menu className="h-6 w-6 text-foreground" />
               )}
             </button>
           </div>
@@ -159,11 +176,11 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
         {mobileMenuOpen && (
           <>
             <div
-              className={`fixed inset-0 z-40 bg-black bg-opacity-50 ${mobileMenuClosing ? "duration-200 animate-out fade-out" : "duration-200 animate-in fade-in"}`}
+              className={`bg-background/80 fixed inset-0 z-40 backdrop-blur-sm ${mobileMenuClosing ? "duration-200 animate-out fade-out" : "duration-200 animate-in fade-in"}`}
               onClick={handleCloseMobileMenu}
             />
             <div
-              className={`fixed right-6 top-[76px] z-50 w-[calc(100%-48px)] max-w-[400px] transform rounded-[16px] border border-[#1a1a1a] bg-black shadow-lg ${mobileMenuClosing ? "duration-200 animate-out fade-out slide-out-to-top-2" : "duration-300 animate-in fade-in slide-in-from-top-2"}`}
+              className={`fixed right-6 top-[76px] z-50 w-[calc(100%-48px)] max-w-[400px] transform rounded-[16px] border border-border bg-card shadow-lg ${mobileMenuClosing ? "duration-200 animate-out fade-out slide-out-to-top-2" : "duration-300 animate-in fade-in slide-in-from-top-2"}`}
             >
               <div className="flex flex-col gap-4 p-4">
                 <a
@@ -174,14 +191,14 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
                   onClick={handleCloseMobileMenu}
                 >
                   <Button
-                    className="w-full justify-start rounded-lg border border-white/30 bg-transparent hover:bg-white/10"
+                    className="hover:bg-accent/50 w-full justify-start rounded-lg border border-border bg-transparent"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "14px",
                       lineHeight: "18px",
                       fontWeight: "600",
                       letterSpacing: "0.32px",
-                      color: "#FFFFFF",
+                      color: "var(--foreground)",
                       height: "48px",
                     }}
                   >
@@ -189,14 +206,14 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
                   </Button>
                 </a>
                 <Button
-                  className="w-full justify-start rounded-lg bg-white text-black hover:bg-gray-200"
+                  className="hover:bg-foreground/90 w-full justify-start rounded-lg bg-foreground text-background"
                   style={{
                     fontFamily: "var(--font-geist-sans)",
                     fontSize: "14px",
                     lineHeight: "18px",
                     fontWeight: "600",
                     letterSpacing: "0.56px",
-                    color: "#000000",
+                    color: "var(--background)",
                     height: "48px",
                     borderRadius: "8px",
                   }}
@@ -208,6 +225,15 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
                   <Download className="mr-2 h-4 w-4 stroke-[2.5px]" />
                   INSTALL
                 </Button>
+                <AnimatedThemeToggler
+                  variant="split"
+                  onCloseMobileMenu={handleCloseMobileMenu}
+                  className="w-full"
+                  style={{
+                    fontFamily: "var(--font-geist-sans)",
+                    height: "48px",
+                  }}
+                />
               </div>
             </div>
           </>
