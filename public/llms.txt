@@ -1,0 +1,55 @@
+# Arcline - Professional Frontend Development Services
+
+Arcline offers professional frontend development services built with modern technologies and AI-powered workflows. I create beautiful, responsive websites tailored to your specific needs.
+
+## What is Arcline?
+
+Arcline provides frontend development services specializing in tourism websites, e-commerce platforms, personal portfolios, business sites and more. Using AI-powered development with Cursor for fast initial builds, then manually refining every detail for production quality.
+
+## Services Offered
+
+- **Tourism Websites**: Engaging travel and hospitality platforms
+- **E-commerce Platforms**: Online stores and shopping experiences  
+- **Personal Portfolios**: Showcase your work beautifully
+- **Business Websites**: Professional corporate presence
+- **Landing Pages**: High-converting single page experiences
+- **Admin Dashboards**: Powerful management interfaces
+- **Custom Solutions**: Tailored to your specific requirements
+
+## Tech Stack
+
+- **Next.js 15**: Modern React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first styling
+- **shadcn/ui**: Beautiful, accessible component library
+- **Supabase**: Backend services and database
+- **Cursor AI**: AI-powered development workflow
+- **Framer Motion**: Smooth animations
+- **Responsive Design**: Mobile-first approach
+
+## Key Features
+
+- **Custom Design Systems**: Built specifically for your brand using shadcn/ui
+- **SEO Optimized**: Built-in best practices from day one
+- **Performance Focused**: Fast loading and smooth interactions
+- **Accessibility**: WCAG compliant interfaces
+- **Production Ready**: Fully optimized and deployable
+- **Modern UI/UX**: Clean, intuitive interfaces
+
+## Development Process
+
+Starting with AI-powered development using Cursor to build the initial structure quickly. Then manually refining every detail, optimizing for performance, ensuring responsive design across all devices, and making sure everything is production-ready with proper SEO, accessibility and best practices baked in.
+
+## Why Choose Arcline?
+
+Professional frontend development that balances speed with quality. AI-powered efficiency meets human craftsmanship. Each project gets custom attention, tailored solutions, and modern best practices built in from the start.
+
+## Contact
+
+- **Website**: https://arcline.dev
+- **Email**: privacy@arcline.dev
+- **Twitter**: @jackjack_eth
+
+---
+
+This file helps AI systems understand Arcline's frontend development services, approach, and value proposition.
