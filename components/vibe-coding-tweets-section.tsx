@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
+import { Reveal } from "@/components/reveal";
 import { Marquee } from "@/components/ui/marquee";
 
 interface Testimonial {
@@ -9,7 +8,7 @@ interface Testimonial {
   role: string;
   company: string;
   testimonial: string;
-  avatar: string;
+  avatar: string; // Initials for avatar generation
 }
 
 const testimonials: Testimonial[] = [
@@ -19,7 +18,7 @@ const testimonials: Testimonial[] = [
     company: "TravelScape",
     testimonial:
       "Arcline transformed our tourism website into a modern, responsive platform. The AI-powered development process was incredibly fast, and the final result exceeded our expectations.",
-    avatar: "/images/profiles/bnj.jpg",
+    avatar: "SC",
   },
   {
     name: "Michael Rodriguez",
@@ -27,7 +26,7 @@ const testimonials: Testimonial[] = [
     company: "EcoStore",
     testimonial:
       "Working with Arcline was seamless. They built our e-commerce platform with Next.js and TypeScript, and it performs beautifully across all devices. Highly recommend!",
-    avatar: "/images/profiles/tom.jpg",
+    avatar: "MR",
   },
   {
     name: "Emily Watson",
@@ -35,7 +34,7 @@ const testimonials: Testimonial[] = [
     company: "Portfolio Studio",
     testimonial:
       "The personal portfolio Arcline created for me is stunning. Clean design, fast performance, and the development process was so smooth. Exactly what I needed.",
-    avatar: "/images/profiles/kitze.jpg",
+    avatar: "EW",
   },
   {
     name: "David Kim",
@@ -43,7 +42,7 @@ const testimonials: Testimonial[] = [
     company: "TechStart Inc",
     testimonial:
       "Our business website needed a complete overhaul. Arcline delivered a modern, SEO-optimized site that's already driving more leads. Professional and efficient.",
-    avatar: "/images/profiles/ian.jpg",
+    avatar: "DK",
   },
   {
     name: "Jessica Martinez",
@@ -51,7 +50,7 @@ const testimonials: Testimonial[] = [
     company: "SaaS Platform",
     testimonial:
       "The admin dashboard Arcline built is perfect. Clean UI, excellent UX, and it integrates seamlessly with our backend. The team's attention to detail is impressive.",
-    avatar: "/images/profiles/anuj.jpg",
+    avatar: "JM",
   },
   {
     name: "Alex Thompson",
@@ -59,7 +58,7 @@ const testimonials: Testimonial[] = [
     company: "Startup Co",
     testimonial:
       "From concept to launch, Arcline made the entire process easy. The AI-powered development saved us time and money while delivering a production-ready product.",
-    avatar: "/images/profiles/anushk.jpg",
+    avatar: "AT",
   },
   {
     name: "Rachel Green",
@@ -67,7 +66,7 @@ const testimonials: Testimonial[] = [
     company: "Blog Network",
     testimonial:
       "My blog platform built by Arcline is beautiful and fast. The modern design perfectly matches my brand, and the user experience is exceptional. Couldn't be happier!",
-    avatar: "/images/profiles/bnj.jpg",
+    avatar: "RG",
   },
   {
     name: "James Wilson",
@@ -75,27 +74,52 @@ const testimonials: Testimonial[] = [
     company: "Fine Dining Group",
     testimonial:
       "The restaurant website Arcline created showcases our menu beautifully. The booking system works flawlessly, and customers love the modern interface. Great work!",
-    avatar: "/images/profiles/tom.jpg",
+    avatar: "JW",
   },
 ];
 
+// Generate a consistent color for each avatar based on initials
+function getAvatarColor(initials: string): string {
+  let hash = 0;
+  for (let i = 0; i < initials.length; i++) {
+    hash = initials.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = hash % 360;
+  return `hsl(${hue}, 65%, 55%)`;
+}
+
 function TestimonialCard({ name, role, company, testimonial, avatar }: Testimonial) {
+  const avatarColor = getAvatarColor(avatar);
+
   return (
     <div
       className="bg-card/50 hover:bg-card/80 w-[350px] shrink-0 rounded-[16px] border border-border p-6 backdrop-blur-sm transition-all duration-300"
       style={{
         boxShadow: "var(--shadow-md)",
       }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "var(--shadow-xl)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "var(--shadow-md)";
+      }}
     >
       <div className="mb-4 flex items-center gap-3">
-        <div className="border-border/50 h-12 w-12 shrink-0 overflow-hidden rounded-full border">
-          <Image
-            src={avatar}
-            alt={name}
-            width={48}
-            height={48}
-            className="h-full w-full object-cover"
-          />
+        <div
+          className="border-border/50 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"
+          style={{
+            backgroundColor: avatarColor,
+          }}
+        >
+          <span
+            className="text-sm font-semibold"
+            style={{
+              fontFamily: "var(--font-geist-mono)",
+              color: "#FFFFFF",
+            }}
+          >
+            {avatar}
+          </span>
         </div>
         <div className="min-w-0">
           <p
@@ -133,67 +157,73 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 
 export default function VibeCodingTweetsSection() {
   return (
-    <section className="py-12 md:py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Header */}
-        <div className="mb-6 px-4 text-center md:mb-12">
-          <h2
-            className="mb-4 font-semibold"
-            style={{
-              backgroundImage: "var(--text-gradient)",
-              color: "transparent",
-              fontFamily: "var(--font-geist-sans)",
-              fontSize: "clamp(32px, 6vw, 52px)",
-              fontWeight: 600,
-              letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-              lineHeight: "1.15",
-              textAlign: "center",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-            }}
-          >
-            Client Feedback and Testimonials
-          </h2>
-          <p
-            className="text-foreground/90 mx-auto mb-8 max-w-2xl"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-              fontSize: "clamp(18px, 3vw, 24px)",
-              lineHeight: "1.4",
-              textAlign: "center",
-            }}
-          >
-            See what clients say about working with Arcline.
-          </p>
+    <Reveal>
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          {/* Header */}
+          <div className="mb-6 px-4 text-center md:mb-12">
+            <h2
+              className="mb-4 font-semibold"
+              style={{
+                backgroundImage: "var(--text-gradient)",
+                color: "transparent",
+                fontFamily: "var(--font-geist-sans)",
+                fontSize: "clamp(32px, 6vw, 52px)",
+                fontWeight: 600,
+                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
+                lineHeight: "1.15",
+                textAlign: "center",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+              }}
+            >
+              Client Feedback and Testimonials
+            </h2>
+            <p
+              className="text-foreground/90 mx-auto mb-8 max-w-2xl"
+              style={{
+                fontFamily: "var(--font-geist-mono)",
+                fontSize: "clamp(18px, 3vw, 24px)",
+                lineHeight: "1.4",
+                textAlign: "center",
+              }}
+            >
+              See what clients say about working with Arcline.
+            </p>
+          </div>
+
+          {/* Marquee Container */}
+          <div className="relative w-full overflow-hidden">
+            {/* First Marquee - Left to Right */}
+            <Marquee
+              pauseOnHover
+              repeat={3}
+              className="mb-4 [--duration:50s] [--gap:1.5rem] md:mb-4"
+            >
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard key={`first-${index}`} {...testimonial} />
+              ))}
+            </Marquee>
+
+            {/* Second Marquee - Right to Left */}
+            <Marquee pauseOnHover reverse repeat={3} className="[--duration:50s] [--gap:1.5rem]">
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard key={`second-${index}`} {...testimonial} />
+              ))}
+            </Marquee>
+
+            {/* Gradient Fade Overlays - Thinner and more subtle */}
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
+              style={{ background: "var(--fade-gradient-left)" }}
+            ></div>
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
+              style={{ background: "var(--fade-gradient-right)" }}
+            ></div>
+          </div>
         </div>
-
-        {/* Marquee Container */}
-        <div className="relative w-full overflow-hidden">
-          {/* First Marquee - Left to Right */}
-          <Marquee pauseOnHover repeat={3} className="mb-4 [--duration:50s] [--gap:1.5rem] md:mb-4">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={`first-${index}`} {...testimonial} />
-            ))}
-          </Marquee>
-
-          {/* Second Marquee - Right to Left */}
-          <Marquee pauseOnHover reverse repeat={3} className="[--duration:50s] [--gap:1.5rem]">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={`second-${index}`} {...testimonial} />
-            ))}
-          </Marquee>
-
-          {/* Gradient Fade Overlays - Thinner and more subtle */}
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
-            style={{ background: "var(--fade-gradient-left)" }}
-          ></div>
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
-            style={{ background: "var(--fade-gradient-right)" }}
-          ></div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </Reveal>
   );
 }

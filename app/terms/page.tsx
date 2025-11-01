@@ -1,8 +1,24 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  Ban,
+  Calendar,
+  CheckCircle,
+  Code,
+  CreditCard,
+  FileText,
+  Gavel,
+  Lock,
+  Mail,
+  Scale,
+  Shield,
+  User,
+} from "lucide-react";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
   title: "Terms of Service - Arcline",
@@ -30,300 +46,594 @@ export default function TermsPage() {
               Back to Home
             </span>
           </Link>
-          <h1
-            className="mb-8 text-4xl font-bold md:text-5xl"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-            }}
-          >
-            Terms of Service
-          </h1>
-
-          <div className="text-foreground/80 space-y-8">
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
+          <div className="mb-12">
+            <h1
+              className="mb-4 text-4xl font-bold md:text-5xl"
+              style={{
+                backgroundImage: "var(--text-gradient)",
+                color: "transparent",
+                fontFamily: "var(--font-geist-sans)",
+                fontSize: "clamp(32px, 6vw, 48px)",
+                fontWeight: 600,
+                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
+                lineHeight: "1.15",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+              }}
+            >
+              Terms of Service
+            </h1>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Calendar className="h-4 w-4" />
+              <span
                 style={{
-                  fontFamily: "var(--font-geist-sans)",
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: "14px",
                 }}
               >
                 Last Updated: January 2025
-              </h2>
-              <p>
-                Welcome to Arcline. By accessing and using our service, you accept and agree to be
-                bound by the terms and provisions of this agreement. Please read these terms
-                carefully. If you do not agree to abide by these terms, please do not use this
-                service.
-              </p>
-            </section>
+              </span>
+            </div>
+          </div>
 
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Acceptance of Terms
-              </h2>
-              <p>
-                By creating an account, downloading, installing, or using Arcline's AI Version
-                Control software, you acknowledge that you have read, understood, and agree to be
-                bound by these Terms of Service and our Privacy Policy. These terms constitute a
-                legally binding agreement between you and Arcline.
-              </p>
-            </section>
+          <div className="space-y-6">
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-4 flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                    <FileText className="h-5 w-5 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h2
+                      className="mb-2 text-xl font-semibold text-foreground"
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                      }}
+                    >
+                      Welcome to Arcline
+                    </h2>
+                    <p
+                      className="text-foreground/80"
+                      style={{
+                        fontFamily: "var(--font-geist-mono)",
+                        fontSize: "15px",
+                        lineHeight: "1.6",
+                      }}
+                    >
+                      By using our frontend development services, you agree to these terms. Please
+                      read them carefully.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Description of Service
-              </h2>
-              <p>
-                Arcline provides AI Version Control software that allows users to save, preview, and
-                restore code versions. The service includes local storage of code snapshots,
-                optional cloud backup, and AI-powered search across version history. Arcline works
-                as an extension or integration with various IDEs including but not limited to
-                Cursor, Windsurf, VS Code, Claude Code, and OpenAI Codex.
-              </p>
-            </section>
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                    <CheckCircle className="h-5 w-5 text-pink-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Acceptance of Terms
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  By engaging our services, you agree to these terms and our Privacy Policy. This is
+                  a legally binding agreement between you and Arcline.
+                </p>
+              </CardContent>
+            </Card>
 
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                User Accounts and Eligibility
-              </h2>
-              <div className="space-y-3">
-                <p>To use certain features of Arcline, you must create an account. You agree to:</p>
-                <ul className="list-inside list-disc space-y-2">
-                  <li>Provide accurate, current, and complete information during registration</li>
-                  <li>Maintain and update your information to keep it accurate</li>
-                  <li>Keep your password secure and confidential</li>
-                  <li>Accept responsibility for all activities under your account</li>
-                  <li>Notify us immediately of any unauthorized access</li>
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                    <Code className="h-5 w-5 text-orange-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Description of Service
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Arcline provides professional frontend development services, building modern
+                  websites using Next.js, TypeScript, Tailwind CSS, and shadcn/ui. We create custom
+                  websites including tourism sites, e-commerce platforms, portfolios, and business
+                  websites.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                    <User className="h-5 w-5 text-cyan-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    User Accounts and Eligibility
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80 mb-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  When working with us, you agree to:
+                </p>
+                <ul
+                  className="text-foreground/80 list-inside list-disc space-y-2"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  <li>Provide accurate project requirements and information</li>
+                  <li>Respond to project inquiries in a timely manner</li>
+                  <li>Respect intellectual property rights</li>
                   <li>Be at least 13 years old (or the age of majority in your jurisdiction)</li>
                 </ul>
-              </div>
-            </section>
+              </CardContent>
+            </Card>
 
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                License and Restrictions
-              </h2>
-              <p>
-                Subject to your compliance with these terms, Arcline grants you a limited,
-                non-exclusive, non-transferable, revocable license to use our software. You may not:
-              </p>
-              <ul className="mt-2 list-inside list-disc space-y-2">
-                <li>Modify, copy, or create derivative works of the software</li>
-                <li>Reverse engineer, decompile, or disassemble the software</li>
-                <li>Remove any copyright or proprietary notices</li>
-                <li>Rent, lease, sublicense, or sell the software</li>
-                <li>Use the service for illegal activities or in violation of any laws</li>
-                <li>Interfere with or disrupt the integrity or performance of the service</li>
-                <li>Attempt to gain unauthorized access to the service or related systems</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Intellectual Property and Your Code
-              </h2>
-              <p>
-                All intellectual property rights in Arcline's software and service remain the
-                exclusive property of Arcline. This includes, but is not limited to, copyrights,
-                trademarks, trade secrets, patents, and other intellectual property rights.
-              </p>
-              <p className="mt-3">
-                <strong>Your Code:</strong> You retain all ownership rights to your code. Arcline
-                does not claim any ownership rights in your code content. Your code snapshots are
-                stored according to your preferences and settings.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Payment and Subscriptions
-              </h2>
-              <p>Arcline offers free and paid subscription plans. For paid plans:</p>
-              <ul className="mt-2 list-inside list-disc space-y-2">
-                <li>Subscription fees are billed in advance on a recurring basis</li>
-                <li>Prices are subject to change with 30 days' notice</li>
-                <li>All fees are non-refundable except as required by law</li>
-                <li>You may cancel your subscription at any time</li>
-                <li>Service will continue until the end of the billing period</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Disclaimer of Warranties
-              </h2>
-              <p>
-                Arcline is provided on an "as is" and "as available" basis. To the maximum extent
-                permitted by law, Arcline disclaims all warranties, express or implied, including
-                but not limited to:
-              </p>
-              <ul className="mt-2 list-inside list-disc space-y-2">
-                <li>Implied warranties of merchantability and fitness for a particular purpose</li>
-                <li>Warranties of non-infringement or quiet enjoyment</li>
-                <li>Warranties that the service will be uninterrupted, secure, or error-free</li>
-                <li>Warranties regarding the accuracy or reliability of AI-generated content</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Limitation of Liability
-              </h2>
-              <p>
-                To the maximum extent permitted by law, Arcline shall not be liable for any
-                indirect, incidental, special, consequential, or punitive damages, including but not
-                limited to:
-              </p>
-              <ul className="mt-2 list-inside list-disc space-y-2">
-                <li>Loss of profits, revenue, data, or business opportunities</li>
-                <li>Cost of substitute goods or services</li>
-                <li>Damage to reputation or goodwill</li>
-                <li>Business interruption</li>
-              </ul>
-              <p className="mt-3">
-                In no event shall Arcline's total liability exceed the amount you paid for the
-                service in the twelve (12) months preceding the claim.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Indemnification
-              </h2>
-              <p>
-                You agree to indemnify, defend, and hold harmless Arcline from any claims, damages,
-                losses, liabilities, and expenses (including legal fees) arising out of or related
-                to your use of the service, violation of these terms, or infringement of any rights
-                of another party.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Termination
-              </h2>
-              <p>
-                We may terminate or suspend your account and access to the service immediately,
-                without prior notice, for any reason including:
-              </p>
-              <ul className="mt-2 list-inside list-disc space-y-2">
-                <li>Breach of these Terms of Service</li>
-                <li>Fraudulent or illegal activity</li>
-                <li>Non-payment of fees (for paid plans)</li>
-                <li>Extended periods of inactivity</li>
-              </ul>
-              <p className="mt-3">
-                You may terminate your account at any time by contacting support or using the
-                account deletion feature. Upon termination, we may delete your data in accordance
-                with our Privacy Policy.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Changes to Terms
-              </h2>
-              <p>
-                We reserve the right to modify these Terms of Service at any time. We will notify
-                users of material changes via email or through the service. Your continued use of
-                Arcline after changes become effective constitutes acceptance of the modified terms.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Governing Law and Disputes
-              </h2>
-              <p>
-                These Terms shall be governed by and construed in accordance with the laws of the
-                jurisdiction in which Arcline operates, without regard to conflict of law
-                provisions. Any disputes arising out of or relating to these terms or the service
-                shall be resolved through binding arbitration, except where prohibited by law.
-              </p>
-            </section>
-
-            <section>
-              <h2
-                className="mb-4 text-2xl font-semibold text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                }}
-              >
-                Contact Us
-              </h2>
-              <p>If you have any questions about these Terms of Service, please contact us at:</p>
-              <p className="mt-2">
-                <strong>Email:</strong> legal@arcline.dev
-                <br />
-                <strong>Website:</strong>{" "}
-                <a
-                  href="https://arcline.dev"
-                  className="hover:text-foreground/80 text-foreground underline"
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                    <Lock className="h-5 w-5 text-pink-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    License and Restrictions
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80 mb-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
                 >
-                  arcline.dev
-                </a>
-              </p>
-            </section>
+                  You may not:
+                </p>
+                <ul
+                  className="text-foreground/80 list-inside list-disc space-y-2"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  <li>Use our services for illegal purposes</li>
+                  <li>Resell or redistribute work we create without permission</li>
+                  <li>Remove copyright or attribution notices from delivered work</li>
+                  <li>Request work that infringes on others' intellectual property</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                    <Shield className="h-5 w-5 text-orange-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Intellectual Property and Your Code
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80 mb-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Arcline retains rights to our development tools, processes, and methodologies.
+                </p>
+                <p
+                  className="border-border/50 bg-card/30 text-foreground/90 mt-4 rounded-lg border p-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  <strong className="text-foreground">Your Website:</strong> Upon final payment, you
+                  own the website we build for you, including all code, design, and content created
+                  specifically for your project.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                    <CreditCard className="h-5 w-5 text-cyan-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Payment and Subscriptions
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80 mb-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Payment terms:
+                </p>
+                <ul
+                  className="text-foreground/80 list-inside list-disc space-y-2"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  <li>Project pricing is agreed upon before work begins</li>
+                  <li>Payment is typically split (deposit + milestone/final payments)</li>
+                  <li>Prices may change for future projects with advance notice</li>
+                  <li>Refunds are handled on a case-by-case basis</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                    <AlertTriangle className="h-5 w-5 text-pink-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Disclaimer of Warranties
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Our services are provided "as is." While we strive for quality, we can't guarantee
+                  perfection or uninterrupted service. We're not liable for third-party hosting or
+                  external dependencies.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                    <Scale className="h-5 w-5 text-orange-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Limitation of Liability
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Our liability is limited to the amount you paid for the specific project. We're
+                  not liable for indirect, consequential, or incidental damages arising from the use
+                  of delivered websites.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                    <Shield className="h-5 w-5 text-cyan-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Indemnification
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  You agree to hold Arcline harmless from any claims arising from your use of
+                  delivered websites or violation of these terms.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                    <Ban className="h-5 w-5 text-pink-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Termination
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Either party may terminate a project agreement with notice. We may terminate
+                  immediately for non-payment, illegal activity, or breach of terms. Upon
+                  termination, completed work is delivered as agreed. You can stop working with us
+                  at any time.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                    <FileText className="h-5 w-5 text-orange-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Changes to Terms
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  We may update these terms occasionally. Material changes will be communicated.
+                  Your continued engagement with our services after changes constitutes acceptance.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                    <Gavel className="h-5 w-5 text-cyan-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Governing Law and Disputes
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  These terms are governed by the laws of our jurisdiction. Disputes will be
+                  resolved through good faith negotiation, and if needed, binding arbitration where
+                  permitted by law.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card
+              className="bg-card/50 border-border backdrop-blur-sm"
+              style={{
+                boxShadow: "var(--shadow-md)",
+              }}
+            >
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                    <Mail className="h-5 w-5 text-pink-400" />
+                  </div>
+                  <h2
+                    className="text-2xl font-semibold text-foreground"
+                    style={{
+                      fontFamily: "var(--font-geist-sans)",
+                    }}
+                  >
+                    Contact Us
+                  </h2>
+                </div>
+                <p
+                  className="text-foreground/80 mb-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  If you have any questions about these Terms of Service, please contact us at:
+                </p>
+                <div
+                  className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4"
+                  style={{
+                    fontFamily: "var(--font-geist-mono)",
+                    fontSize: "15px",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  <p>
+                    <strong className="text-foreground">Email:</strong>{" "}
+                    <a
+                      href="mailto:legal@arcline.dev"
+                      className="hover:text-foreground/80 text-foreground underline"
+                    >
+                      legal@arcline.dev
+                    </a>
+                  </p>
+                  <p className="mt-2">
+                    <strong className="text-foreground">Website:</strong>{" "}
+                    <a
+                      href="https://arcline.dev"
+                      className="hover:text-foreground/80 text-foreground underline"
+                    >
+                      arcline.dev
+                    </a>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>

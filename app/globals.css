@@ -327,6 +327,9 @@
     font-weight: 500;
     font-family: var(--font-geist-sans);
   }
+  .theme {
+    --animate-shine: shine var(--duration) infinite linear;
+  }
 }
 
 /* Custom selection styles */
@@ -441,7 +444,7 @@ p[style*="--selection-text-color"]::-moz-selection {
    ========================================
    Pre-built gradient classes for common use cases.
    All use the centralized brand color variables.
-   
+
    Usage:
    - .gradient-primary: Horizontal gradient (90deg) for section backgrounds
    - .gradient-primary-diagonal: Diagonal gradient (135deg) for hero/sections
@@ -515,4 +518,18 @@ p[style*="--selection-text-color"]::-moz-selection {
   border-radius: 16px !important;
   -webkit-border-radius: 16px !important;
   overflow: hidden;
+}
+
+@theme inline {
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;
+    }
+  50% {
+    background-position: 100% 100%;
+    }
+  to {
+    background-position: 0% 0%;
+    }
+  }
 }

@@ -240,7 +240,7 @@ export default function InstallModal({ isOpen, onClose }: InstallModalProps) {
                   <div className="space-y-2">
                     <a
                       href={activeOption.deeplink}
-                      className="hover:bg-foreground/90 block w-full rounded-lg bg-foreground px-4 py-3 text-center font-mono text-sm font-semibold tracking-wider text-background transition-colors"
+                      className="block w-full rounded-lg bg-foreground px-4 py-3 text-center font-mono text-sm font-semibold tracking-wider text-background"
                       style={{
                         fontFamily: "var(--font-geist-mono)",
                         letterSpacing: "0.56px",

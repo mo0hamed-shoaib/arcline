@@ -10,9 +10,10 @@ export default function HeroImage() {
           src="/images/design-mode/hero-image.jpg.jpeg"
           alt="Arcline professional frontend development services showcase"
           width={1200}
-          height={800}
+          height={750}
           className="h-auto w-full rounded-[16px]"
           priority
+          fetchPriority="high"
         />
       </div>
     </div>

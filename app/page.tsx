@@ -100,7 +100,7 @@ export default function Home() {
               <div>
                 <div className="mb-4 flex flex-col gap-3 sm:gap-4">
                   <Button
-                    className="hover:bg-foreground/90 flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
+                    className="flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                     onClick={openInstallModal}
                   >
                     <Download className="mr-2 h-4 w-4" /> GET STARTED
@@ -168,7 +168,7 @@ export default function Home() {
               </div>
               <div className="flex flex-row justify-center gap-3 md:gap-4">
                 <Button
-                  className="hover:bg-foreground/90 flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
                   onClick={openInstallModal}
                 >
                   <Download className="mr-2 h-4 w-4" /> GET STARTED

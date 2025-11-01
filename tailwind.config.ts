@@ -87,6 +87,15 @@ const config: Config = {
           "0%": { transform: "translateY(0%)" },
           "100%": { transform: "translateY(-100%)" },
         },
+        "pulse-slow": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.6" },
+        },
+        shine: {
+          "0%": { backgroundPosition: "0% 0%" },
+          "50%": { backgroundPosition: "100% 100%" },
+          "100%": { backgroundPosition: "0% 0%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +104,8 @@ const config: Config = {
         "scroll-right": "scroll-right 60s linear infinite",
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "pulse-slow": "pulse-slow 3s ease-in-out infinite",
+        shine: "shine var(--duration, 14s) infinite linear",
       },
     },
   },
