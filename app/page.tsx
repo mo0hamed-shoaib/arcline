@@ -6,7 +6,6 @@ import { Download } from "lucide-react";
 
 import AgenticAISearchSection from "@/components/agentic-ai-search-section";
 import FAQSection from "@/components/faq-section";
-import FeatureVideo from "@/components/feature-video";
 import Footer from "@/components/footer";
 import HeroImage from "@/components/hero-image";
 import InstallModal from "@/components/install-modal";
@@ -21,8 +20,6 @@ import WhyNotGitSection from "@/components/why-not-git-section";
 const VIDEO_URLS = {
   savePreview:
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/save-review-restore-g3BK0sricXTSPMzxK4iGrmXBUwPt11.mp4",
-  crossIde:
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cross-ides-PZyN9x34tNJsgQrbFkY3UUaatEaePh.mp4",
 };
 
 export default function Home() {
@@ -373,13 +370,6 @@ export default function Home() {
 
         <SaveReviewRestoreSection onOpenInstall={openInstallModal} />
         <AgenticAISearchSection onOpenInstall={openInstallModal} />
-        <FeatureVideoSection
-          title="Cross-Platform Compatibility"
-          description="Works seamlessly across all devices and browsers. Built with responsive design from the ground up."
-          videoSrc="/videos/cross-ides.mp4"
-          fallbackVideoSrc={VIDEO_URLS.crossIde}
-          gradientClass="gradient-yellow-red-diagonal"
-        />
         <WhyNotGitSection onOpenInstall={openInstallModal} />
         <VibeCodingTweetsSection />
         <TestimonialsSection />
@@ -389,68 +379,5 @@ export default function Home() {
 
       <InstallModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
-  );
-}
-
-function FeatureVideoSection({
-  title,
-  description,
-  videoSrc,
-  fallbackVideoSrc,
-  gradientClass,
-}: {
-  title: string;
-  description: string;
-  videoSrc: string;
-  fallbackVideoSrc?: string;
-  gradientClass: string;
-}) {
-  return (
-    <section className="py-12 md:py-16">
-      <div className="mb-6 px-4 text-center md:mb-12">
-        <h2
-          className="mb-4 font-semibold"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgb(245, 245, 245), rgb(245, 245, 245) 29%, rgb(153, 153, 153))",
-            color: "transparent",
-            fontFamily: "var(--font-geist-sans)",
-            fontSize: "clamp(32px, 6vw, 52px)",
-            fontWeight: 600,
-            letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-            lineHeight: "1.15",
-            textAlign: "center",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-          }}
-        >
-          {title}
-        </h2>
-        <p
-          className="mx-auto max-w-2xl"
-          style={{
-            color: "#f5f5f5",
-            fontFamily: "var(--font-geist-mono)",
-            fontSize: "clamp(16px, 3vw, 22px)",
-            lineHeight: "1.3",
-            textAlign: "center",
-          }}
-        >
-          {description}
-        </p>
-      </div>
-
-      <div className="flex justify-center">
-        <div className={`gradient-container ${gradientClass} w-full max-w-[1296px]`}>
-          <div className="absolute inset-0 rounded-[16px] bg-black/35"></div>
-          <div className="noise-texture"></div>
-          <div className="relative z-10 px-4 pb-0 pt-4 sm:px-6 sm:pt-12 md:px-12 md:pt-16">
-            <div className="mx-auto max-w-4xl overflow-hidden rounded-t-lg border border-b-0 border-white/10 shadow-2xl">
-              <FeatureVideo src={videoSrc} alt={title} fallbackSrc={fallbackVideoSrc} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
