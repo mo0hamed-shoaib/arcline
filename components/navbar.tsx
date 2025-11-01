@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import { Download, Menu, X } from "lucide-react";
 
 import InstallModal from "@/components/install-modal";
@@ -72,27 +73,18 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
     >
       <div className="mt-2 w-[calc(100%-24px)] max-w-[1400px]">
         <nav
-          className="flex h-16 items-center justify-between rounded-[16px] bg-black p-2 font-geist text-white"
+          className="font-geist flex h-16 items-center justify-between rounded-[16px] bg-black p-2 text-white"
           style={navStyle}
         >
           <div className="ml-[15px] flex items-center">
-            <svg
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <Image
+              src="/dark_mode_logo/favicon-32x32.png"
+              alt="Arcline Logo"
+              width={32}
+              height={32}
               className="mr-2"
-            >
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                fill="#FFFFFF"
-                stroke="#FFFFFF"
-                strokeWidth="1"
-              />
-              <path d="M2 17L12 22L22 17" stroke="#FFFFFF" strokeWidth="1" />
-              <path d="M2 12L12 17L22 12" stroke="#FFFFFF" strokeWidth="1" />
-            </svg>
+              priority
+            />
             <span
               className="logo-text"
               style={{
@@ -167,11 +159,11 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
         {mobileMenuOpen && (
           <>
             <div
-              className={`fixed inset-0 z-40 bg-black bg-opacity-50 ${mobileMenuClosing ? "animate-out fade-out duration-200" : "animate-in fade-in duration-200"}`}
+              className={`fixed inset-0 z-40 bg-black bg-opacity-50 ${mobileMenuClosing ? "duration-200 animate-out fade-out" : "duration-200 animate-in fade-in"}`}
               onClick={handleCloseMobileMenu}
             />
             <div
-              className={`fixed right-6 top-[76px] z-50 w-[calc(100%-48px)] max-w-[400px] transform rounded-[16px] border border-[#1a1a1a] bg-black shadow-lg ${mobileMenuClosing ? "animate-out fade-out slide-out-to-top-2 duration-200" : "animate-in fade-in slide-in-from-top-2 duration-300"}`}
+              className={`fixed right-6 top-[76px] z-50 w-[calc(100%-48px)] max-w-[400px] transform rounded-[16px] border border-[#1a1a1a] bg-black shadow-lg ${mobileMenuClosing ? "duration-200 animate-out fade-out slide-out-to-top-2" : "duration-300 animate-in fade-in slide-in-from-top-2"}`}
             >
               <div className="flex flex-col gap-4 p-4">
                 <a
