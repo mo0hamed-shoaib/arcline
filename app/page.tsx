@@ -11,7 +11,6 @@ import HeroImage from "@/components/hero-image";
 import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
 import SaveReviewRestoreSection from "@/components/save-review-restore-section";
-import TestimonialsSection from "@/components/testimonials-section";
 import { Button } from "@/components/ui/button";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
 import WhyNotGitSection from "@/components/why-not-git-section";
@@ -372,7 +371,6 @@ export default function Home() {
         <AgenticAISearchSection onOpenInstall={openInstallModal} />
         <WhyNotGitSection onOpenInstall={openInstallModal} />
         <VibeCodingTweetsSection />
-        <TestimonialsSection />
         <FAQSection onOpenInstall={openInstallModal} />
         <Footer />
       </div>
