@@ -2,7 +2,32 @@
 
 import React from "react";
 import { useState } from "react";
-import { Download } from "lucide-react";
+import {
+  Activity,
+  BookOpen,
+  Building,
+  Building2,
+  Calendar,
+  Code,
+  Cpu,
+  Download,
+  FileText,
+  Globe,
+  GraduationCap,
+  Heart,
+  HeartHandshake,
+  Home as HomeIcon,
+  LayoutDashboard,
+  Package,
+  Palette,
+  Rocket,
+  ShoppingCart,
+  Sparkles,
+  Target,
+  User,
+  UtensilsCrossed,
+  Zap,
+} from "lucide-react";
 
 import AgenticAISearchSection from "@/components/agentic-ai-search-section";
 import FAQSection from "@/components/faq-section";
@@ -229,93 +254,145 @@ export default function Home() {
               className="mb-6 [--duration:50s] [--gap:1.5rem] md:mb-6"
             >
               {[
-                "Tourism Websites",
-                "E-commerce Platforms",
-                "Personal Portfolios",
-                "Business Websites",
-                "Landing Pages",
-                "Admin Dashboards",
-                "Blog Platforms",
-                "Booking Systems",
-                "Product Showcases",
-                "Corporate Sites",
-                "Real Estate",
-                "Restaurant Menus",
-                "Event Pages",
-                "SaaS Products",
-                "Education Portals",
-                "Healthcare Sites",
-                "Non-profit Sites",
-                "Art Galleries",
-                "Tech Startups",
-                "Custom Solutions",
-              ].map((service, index) => (
-                <div
-                  key={`service-${index}`}
-                  className="bg-card/50 hover:border-border/50 hover:bg-card/80 group flex h-14 min-w-[180px] items-center justify-center rounded-xl border border-border px-6 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px]"
-                  style={{
-                    boxShadow: "var(--shadow-md)",
-                  }}
-                >
-                  <span
-                    className="font-semibold text-foreground transition-colors duration-300 group-hover:text-foreground"
+                { name: "Tourism Websites", icon: Globe },
+                { name: "E-commerce Platforms", icon: ShoppingCart },
+                { name: "Personal Portfolios", icon: User },
+                { name: "Business Websites", icon: Building2 },
+                { name: "Landing Pages", icon: Rocket },
+                { name: "Admin Dashboards", icon: LayoutDashboard },
+                { name: "Blog Platforms", icon: BookOpen },
+                { name: "Booking Systems", icon: Calendar },
+                { name: "Product Showcases", icon: Package },
+                { name: "Corporate Sites", icon: Building },
+                { name: "Real Estate", icon: HomeIcon },
+                { name: "Restaurant Menus", icon: UtensilsCrossed },
+                { name: "Event Pages", icon: Sparkles },
+                { name: "SaaS Products", icon: Zap },
+                { name: "Education Portals", icon: GraduationCap },
+                { name: "Healthcare Sites", icon: Activity },
+                { name: "Non-profit Sites", icon: HeartHandshake },
+                { name: "Art Galleries", icon: Palette },
+                { name: "Tech Startups", icon: Code },
+                { name: "Custom Solutions", icon: Sparkles },
+              ].map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <div
+                    key={`service-${index}`}
+                    className="bg-card/50 relative isolate flex h-14 min-w-[180px] items-center justify-center gap-2 rounded-xl border border-border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px] md:gap-3 md:px-6"
                     style={{
-                      fontFamily: "var(--font-geist-sans)",
-                      fontSize: "16px",
-                      lineHeight: "1.2",
-                      letterSpacing: "-0.01em",
+                      boxShadow: "var(--shadow-md)",
+                    }}
+                    onMouseEnter={(e) => {
+                      const card = e.currentTarget;
+                      const icon = card.querySelector("svg");
+                      const text = card.querySelector("span");
+                      card.style.borderColor = "rgba(251, 146, 60, 0.4)";
+                      card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+                      card.style.transform = "translateY(-2px)";
+                      card.style.zIndex = "10";
+                      if (icon) icon.style.color = "#fb923c";
+                      if (text) text.style.color = "#fb923c";
+                    }}
+                    onMouseLeave={(e) => {
+                      const card = e.currentTarget;
+                      const icon = card.querySelector("svg");
+                      const text = card.querySelector("span");
+                      card.style.borderColor = "";
+                      card.style.boxShadow = "var(--shadow-md)";
+                      card.style.transform = "";
+                      card.style.zIndex = "";
+                      if (icon) icon.style.color = "";
+                      if (text) text.style.color = "";
                     }}
                   >
-                    {service}
-                  </span>
-                </div>
-              ))}
+                    <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
+                    <span
+                      className="font-semibold text-foreground transition-colors duration-300"
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: "16px",
+                        lineHeight: "1.2",
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {service.name}
+                    </span>
+                  </div>
+                );
+              })}
             </Marquee>
 
             {/* Technologies Marquee - Right to Left */}
             <Marquee pauseOnHover reverse repeat={3} className="[--duration:50s] [--gap:1.5rem]">
               {[
-                "Next.js",
-                "TypeScript",
-                "Tailwind CSS",
-                "shadcn/ui",
-                "Supabase",
-                "Framer Motion",
-                "React",
-                "Responsive Design",
-                "SEO Optimized",
-                "Fast Performance",
-                "Modern UI/UX",
-                "Accessible",
-                "Mobile First",
-                "Clean Code",
-                "Testing",
-                "Version Control",
-                "API Integration",
-                "State Management",
-                "Component Library",
-                "Tailored Solutions",
-              ].map((tech, index) => (
-                <div
-                  key={`tech-${index}`}
-                  className="bg-card/50 hover:border-border/50 hover:bg-card/80 group flex h-14 min-w-[160px] items-center justify-center rounded-xl border border-border px-6 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px]"
-                  style={{
-                    boxShadow: "var(--shadow-md)",
-                  }}
-                >
-                  <span
-                    className="font-semibold text-foreground transition-colors duration-300 group-hover:text-foreground"
+                { name: "Next.js", icon: Zap },
+                { name: "TypeScript", icon: Code },
+                { name: "Tailwind CSS", icon: Palette },
+                { name: "shadcn/ui", icon: Package },
+                { name: "Supabase", icon: Cpu },
+                { name: "Framer Motion", icon: Sparkles },
+                { name: "React", icon: Zap },
+                { name: "Responsive Design", icon: Target },
+                { name: "SEO Optimized", icon: Rocket },
+                { name: "Fast Performance", icon: Zap },
+                { name: "Modern UI/UX", icon: Sparkles },
+                { name: "Accessible", icon: Heart },
+                { name: "Mobile First", icon: Target },
+                { name: "Clean Code", icon: FileText },
+                { name: "Testing", icon: Target },
+                { name: "Version Control", icon: Code },
+                { name: "API Integration", icon: Zap },
+                { name: "State Management", icon: Cpu },
+                { name: "Component Library", icon: Package },
+                { name: "Tailored Solutions", icon: Sparkles },
+              ].map((tech, index) => {
+                const Icon = tech.icon;
+                return (
+                  <div
+                    key={`tech-${index}`}
+                    className="bg-card/50 relative isolate flex h-14 min-w-[160px] items-center justify-center gap-2 rounded-xl border border-border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px] md:gap-3 md:px-6"
                     style={{
-                      fontFamily: "var(--font-geist-sans)",
-                      fontSize: "16px",
-                      lineHeight: "1.2",
-                      letterSpacing: "-0.01em",
+                      boxShadow: "var(--shadow-md)",
+                    }}
+                    onMouseEnter={(e) => {
+                      const card = e.currentTarget;
+                      const icon = card.querySelector("svg");
+                      const text = card.querySelector("span");
+                      card.style.borderColor = "rgba(251, 146, 60, 0.4)";
+                      card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+                      card.style.transform = "translateY(-2px)";
+                      card.style.zIndex = "10";
+                      if (icon) icon.style.color = "#fb923c";
+                      if (text) text.style.color = "#fb923c";
+                    }}
+                    onMouseLeave={(e) => {
+                      const card = e.currentTarget;
+                      const icon = card.querySelector("svg");
+                      const text = card.querySelector("span");
+                      card.style.borderColor = "";
+                      card.style.boxShadow = "var(--shadow-md)";
+                      card.style.transform = "";
+                      card.style.zIndex = "";
+                      if (icon) icon.style.color = "";
+                      if (text) text.style.color = "";
                     }}
                   >
-                    {tech}
-                  </span>
-                </div>
-              ))}
+                    <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
+                    <span
+                      className="font-semibold text-foreground transition-colors duration-300"
+                      style={{
+                        fontFamily: "var(--font-geist-sans)",
+                        fontSize: "16px",
+                        lineHeight: "1.2",
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {tech.name}
+                    </span>
+                  </div>
+                );
+              })}
             </Marquee>
 
             {/* Gradient Fade Overlays - Thinner and more subtle */}
