@@ -35,11 +35,10 @@ export default function Home() {
         <section className="rounded-all-devices relative mb-6 mt-2 flex flex-col rounded-[16px] text-foreground">
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
-            <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
             <div
               className="absolute inset-0 h-full w-full rounded-[16px]"
               style={{
-                backgroundColor: "var(--hero-overlay)",
+                background: "var(--hero-radial-gradient)",
               }}
             />
           </div>
@@ -60,8 +59,7 @@ export default function Home() {
                     maxWidth: "100%",
                     paddingBottom: "0",
                     marginBottom: "0.2em",
-                    color: "#FFFFFF",
-                    textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                    color: "var(--foreground)",
                   }}
                   aria-label="Build Your Vision"
                 >
@@ -77,11 +75,11 @@ export default function Home() {
                       fontWeight: "400",
                       letterSpacing: "normal",
                       maxWidth: "2xl",
-                      color: "#FFFFFF",
+                      color: "var(--foreground)",
                       backgroundColor: "transparent",
                       // These styles ensure proper selection colors
-                      "--selection-text-color": "#FFFFFF",
-                      "--selection-background-color": "#000000",
+                      "--selection-text-color": "var(--background)",
+                      "--selection-background-color": "var(--foreground)",
                     } as React.CSSProperties
                   }
                 >
@@ -134,8 +132,7 @@ export default function Home() {
                   maxWidth: "100%",
                   paddingBottom: "0",
                   marginBottom: "0.2em",
-                  color: "#FFFFFF",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                  color: "var(--foreground)",
                 }}
                 aria-label="Build Your Vision"
               >
@@ -151,11 +148,11 @@ export default function Home() {
                     fontWeight: "400",
                     letterSpacing: "normal",
                     maxWidth: "2xl",
-                    color: "#FFFFFF",
+                    color: "var(--foreground)",
                     backgroundColor: "transparent",
                     // These styles ensure proper selection colors
-                    "--selection-text-color": "#FFFFFF",
-                    "--selection-background-color": "#000000",
+                    "--selection-text-color": "var(--background)",
+                    "--selection-background-color": "var(--foreground)",
                   } as React.CSSProperties
                 }
               >

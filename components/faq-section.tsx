@@ -89,8 +89,53 @@ interface FAQSectionProps {
 export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
   return (
     <Reveal>
-      <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <section className="relative py-12 md:py-16">
+        {/* Grid Background with fade effect - covers both FAQ and CTA */}
+        <div className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden">
+          {/* CSS-based grid pattern - lightweight and performant */}
+          <div
+            className="absolute inset-0 h-full w-full opacity-20"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, currentColor 1px, transparent 1px),
+                linear-gradient(to bottom, currentColor 1px, transparent 1px)
+              `,
+              backgroundSize: "24px 24px",
+              color: "var(--foreground)",
+            }}
+          />
+          {/* Vertical fade overlay - subtle at top, full visibility at bottom */}
+          <div
+            className="absolute inset-0 h-full w-full"
+            style={{
+              background:
+                "linear-gradient(to bottom, var(--background) 0%, var(--background) 40%, transparent 80%)",
+            }}
+          />
+          {/* Left fade overlay */}
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-16"
+            style={{
+              background: "linear-gradient(to right, var(--background), transparent)",
+            }}
+          />
+          {/* Right fade overlay */}
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-16"
+            style={{
+              background: "linear-gradient(to left, var(--background), transparent)",
+            }}
+          />
+          {/* Bottom fade overlay */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
+            style={{
+              background: "linear-gradient(to top, var(--background), transparent)",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
           <h2
             className="mb-12 text-center font-semibold md:mb-16"
             style={{
@@ -154,21 +199,8 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
         </div>
 
         {/* Call to action - Full width like hero section */}
-        <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
+        <div className="relative z-10 mx-auto max-w-[1920px] px-6 md:px-8">
           <section className="rounded-all-devices relative mb-6 mt-12 flex flex-col rounded-[16px] text-foreground md:mt-16">
-            {/* Gradient Background Image */}
-            <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
-              <div className="gradient-primary-diagonal absolute inset-0 h-full w-full rounded-[16px]" />
-              <div
-                className="absolute inset-0 h-full w-full rounded-[16px]"
-                style={{
-                  backgroundColor: "var(--hero-overlay)",
-                }}
-              />
-              {/* Noise texture overlay */}
-              <div className="noise-texture absolute inset-0 rounded-[16px]"></div>
-            </div>
-
             {/* Content */}
             <div className="relative z-10 flex h-full w-full flex-col px-4 pb-8 pt-[38px] text-center sm:px-6 sm:pt-[50px] md:pb-12 md:pt-[70px] lg:px-8">
               {/* Headline - Smaller than hero, sized appropriately for CTA section */}
@@ -183,8 +215,7 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
                   maxWidth: "100%",
                   paddingBottom: "0",
                   marginBottom: "0.2em",
-                  color: "#FFFFFF",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                  color: "var(--foreground)",
                 }}
               >
                 Ready to Get Started?
@@ -201,12 +232,12 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
                     fontWeight: "400",
                     letterSpacing: "normal",
                     maxWidth: "2xl",
-                    color: "#FFFFFF",
+                    color: "var(--foreground)",
                     backgroundColor: "transparent",
                     textAlign: "center",
                     // These styles ensure proper selection colors
-                    "--selection-text-color": "#FFFFFF",
-                    "--selection-background-color": "#000000",
+                    "--selection-text-color": "var(--background)",
+                    "--selection-background-color": "var(--foreground)",
                   } as React.CSSProperties
                 }
               >

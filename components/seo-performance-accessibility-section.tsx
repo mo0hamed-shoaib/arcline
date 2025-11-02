@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Gauge, Search, Shield } from "lucide-react";
 
@@ -7,8 +8,16 @@ import { Reveal } from "@/components/reveal";
 import { IconCircularProgress } from "@/components/ui/icon-circular-progress";
 
 export default function SEOPerformanceAccessibilitySection() {
+  const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
-  const isDark = theme === "dark";
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Use safe defaults during SSR, then update after mount
+  const isDark = mounted && theme === "dark";
 
   const features = [
     {

@@ -80,6 +80,17 @@
     --gradient-orange: #ff5c28;
     --gradient-pink: #ff5c9d;
 
+    /* Hero radial gradient - U-shaped glow (shared by both themes) */
+    --hero-radial-gradient: radial-gradient(
+      ellipse 180% 145% at 50% 100%,
+      rgba(34, 211, 238, 0.85) 0%,
+      rgba(34, 211, 238, 0.7) 15%,
+      rgba(255, 92, 40, 0.75) 30%,
+      rgba(255, 92, 157, 0.55) 45%,
+      var(--background) 55%,
+      var(--background) 100%
+    );
+
     /* ========================================
        SHADOW SYSTEM
        ========================================
@@ -208,7 +219,7 @@
     );
 
     /* Hero overlay for dark mode */
-    --hero-overlay: rgba(0, 0, 0, 0.35);
+    --hero-overlay: rgba(0, 0, 0, 0.1);
 
     /* Text gradient for dark mode */
     --text-gradient: linear-gradient(
@@ -288,7 +299,7 @@
     );
 
     /* Hero overlay for light mode */
-    --hero-overlay: rgba(255, 255, 255, 0.2);
+    --hero-overlay: rgba(255, 255, 255, 0.1);
 
     /* Text gradient for light mode */
     --text-gradient: linear-gradient(
@@ -522,14 +533,14 @@ p[style*="--selection-text-color"]::-moz-selection {
 
 @theme inline {
   @keyframes shine {
-  0% {
-    background-position: 0% 0%;
+    0% {
+      background-position: 0% 0%;
     }
-  50% {
-    background-position: 100% 100%;
+    50% {
+      background-position: 100% 100%;
     }
-  to {
-    background-position: 0% 0%;
+    to {
+      background-position: 0% 0%;
     }
   }
 }
