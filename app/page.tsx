@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import {
   Activity,
   BookOpen,
@@ -40,14 +41,35 @@ import SaveReviewRestoreSection from "@/components/save-review-restore-section";
 import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
+import { ShineBorder } from "@/components/ui/shine-border";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const openInstallModal = () => {
     setIsModalOpen(true);
   };
+
+  // Theme-aware 3D border colors - lighter in dark mode, darker in light mode
+  const isDark = mounted && theme === "dark";
+  const borderColors = isDark
+    ? [
+        "rgba(255, 255, 255, 0.98)", // Very bright white - lighter for dark mode
+        "rgba(200, 200, 200, 0.90)", // Light gray instead of black - lighter overall
+        "rgba(255, 255, 255, 0.95)", // Bright white highlight
+      ]
+    : [
+        "rgba(5, 5, 5, 0.95)", // Very dark - darker for light mode
+        "rgba(20, 20, 20, 0.90)", // Dark shadow - darker overall
+        "rgba(10, 10, 10, 0.95)", // Very dark shadow
+      ];
 
   return (
     <div className="min-h-screen bg-background pt-20 text-foreground">
@@ -57,7 +79,9 @@ export default function Home() {
       {/* Rest of the content remains the same... */}
       <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
         {/* Hero Section */}
-        <section className="rounded-all-devices relative mb-6 mt-2 flex flex-col rounded-[16px] text-foreground">
+        <section className="rounded-all-devices group relative isolate mb-6 mt-2 flex flex-col overflow-hidden rounded-[16px] text-foreground">
+          {/* Shine Border */}
+          <ShineBorder borderWidth={2} duration={8} shineColor={borderColors} />
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
             <div
@@ -133,7 +157,7 @@ export default function Home() {
                     href="https://x.com/jackjack_eth"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:bg-card/80 flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
+                    className="hover-lift flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                   >
                     <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -200,7 +224,7 @@ export default function Home() {
                   href="https://x.com/jackjack_eth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:bg-card/80 flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="hover-lift flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
                 >
                   <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />

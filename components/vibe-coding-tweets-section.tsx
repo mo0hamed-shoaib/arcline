@@ -175,39 +175,39 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 export default function VibeCodingTweetsSection() {
   return (
     <Reveal>
-      <section className="py-12 md:py-16">
+    <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
-          <div className="mb-6 px-4 text-center md:mb-12">
-            <h2
+        <div className="mb-6 px-4 text-center md:mb-12">
+          <h2
               className="mb-4 font-semibold"
-              style={{
+            style={{
                 backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
-              Client Feedback and Testimonials
-            </h2>
-            <p
+              color: "transparent",
+              fontFamily: "var(--font-geist-sans)",
+              fontSize: "clamp(32px, 6vw, 52px)",
+              fontWeight: 600,
+              letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
+              lineHeight: "1.15",
+              textAlign: "center",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            Client Feedback and Testimonials
+          </h2>
+          <p
               className="text-foreground/90 mx-auto mb-8 max-w-2xl"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
+            style={{
+              fontFamily: "var(--font-geist-mono)",
                 fontSize: "clamp(18px, 3vw, 24px)",
-                lineHeight: "1.4",
-                textAlign: "center",
-              }}
-            >
-              See what clients say about working with Arcline.
-            </p>
-          </div>
+              lineHeight: "1.4",
+              textAlign: "center",
+            }}
+          >
+            See what clients say about working with Arcline.
+          </p>
+        </div>
 
           {/* Marquee Container */}
           <div className="relative w-full overflow-hidden">
@@ -238,9 +238,9 @@ export default function VibeCodingTweetsSection() {
               className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
               style={{ background: "var(--fade-gradient-right)" }}
             ></div>
-          </div>
         </div>
-      </section>
+      </div>
+    </section>
     </Reveal>
   );
 }

@@ -37,6 +37,21 @@
   }
 }
 
+@layer utilities {
+  .hover-lift {
+    transition:
+      transform 200ms ease,
+      filter 200ms ease,
+      opacity 200ms ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+    opacity: 0.9;
+  }
+}
+
 @layer base {
   :root {
     --background: oklch(0.99 0 0);
@@ -82,12 +97,12 @@
 
     /* Hero radial gradient - U-shaped glow (shared by both themes) */
     --hero-radial-gradient: radial-gradient(
-      ellipse 180% 145% at 50% 100%,
+      ellipse 180% 126% at 50% 100%,
       rgba(249, 115, 22, 0.85) 0%,
       rgba(251, 146, 60, 0.7) 15%,
       rgba(253, 164, 175, 0.75) 30%,
       rgba(253, 164, 175, 0.55) 45%,
-      var(--background) 55%,
+      var(--background) 70%,
       var(--background) 100%
     );
 

@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Download, Menu, X } from "lucide-react";
 
@@ -82,7 +83,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
           className="font-geist border-border/50 flex h-16 items-center justify-between rounded-[16px] border bg-background p-2 text-foreground"
           style={navStyle}
         >
-          <div className="ml-[15px] flex items-center">
+          <Link href="/" className="hover-lift ml-[15px] flex items-center">
             {mounted && (
               <Image
                 src={
@@ -113,7 +114,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
             >
               Arcline
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-3 md:flex">
