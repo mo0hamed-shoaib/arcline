@@ -35,6 +35,7 @@ import Footer from "@/components/footer";
 import HeroImage from "@/components/hero-image";
 import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
+import PricingSection from "@/components/pricing-section";
 import SaveReviewRestoreSection from "@/components/save-review-restore-section";
 import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
 import { Button } from "@/components/ui/button";
@@ -409,6 +410,7 @@ export default function Home() {
         <SaveReviewRestoreSection onOpenInstall={openInstallModal} />
         <AgenticAISearchSection onOpenInstall={openInstallModal} />
         <SEOPerformanceAccessibilitySection onOpenInstall={openInstallModal} />
+        <PricingSection />
         <VibeCodingTweetsSection />
         <FAQSection onOpenInstall={openInstallModal} />
         <Footer />
