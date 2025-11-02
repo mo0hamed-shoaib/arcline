@@ -93,15 +93,31 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 
   return (
     <div
-      className="bg-card/50 hover:bg-card/80 w-[350px] shrink-0 rounded-[16px] border border-border p-6 backdrop-blur-sm transition-all duration-300"
+      className="bg-card/50 relative isolate w-[350px] shrink-0 rounded-[16px] border border-border p-6 backdrop-blur-sm transition-all duration-300"
       style={{
         boxShadow: "var(--shadow-md)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = "var(--shadow-xl)";
+        const card = e.currentTarget;
+        const name = card.querySelector("[data-name]");
+        const quote = card.querySelector("blockquote p");
+        card.style.borderColor = "rgba(251, 146, 60, 0.4)";
+        card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+        card.style.transform = "translateY(-2px)";
+        card.style.zIndex = "10";
+        if (name) (name as HTMLElement).style.color = "#fb923c";
+        if (quote) (quote as HTMLElement).style.color = "var(--foreground)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "var(--shadow-md)";
+        const card = e.currentTarget;
+        const name = card.querySelector("[data-name]");
+        const quote = card.querySelector("blockquote p");
+        card.style.borderColor = "";
+        card.style.boxShadow = "var(--shadow-md)";
+        card.style.transform = "";
+        card.style.zIndex = "";
+        if (name) (name as HTMLElement).style.color = "";
+        if (quote) (quote as HTMLElement).style.color = "";
       }}
     >
       <div className="mb-4 flex items-center gap-3">
@@ -123,7 +139,8 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
         </div>
         <div className="min-w-0">
           <p
-            className="text-sm font-semibold text-foreground"
+            data-name
+            className="text-sm font-semibold text-foreground transition-colors duration-300"
             style={{
               fontFamily: "var(--font-geist-mono)",
             }}
@@ -142,7 +159,7 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
       </div>
       <blockquote>
         <p
-          className="text-foreground/90 text-sm leading-relaxed"
+          className="text-foreground/90 text-sm leading-relaxed transition-colors duration-300"
           style={{
             fontFamily: "var(--font-geist-mono)",
             lineHeight: "1.6",
@@ -158,39 +175,39 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 export default function VibeCodingTweetsSection() {
   return (
     <Reveal>
-    <section className="py-12 md:py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="py-12 md:py-16">
+        <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
-        <div className="mb-6 px-4 text-center md:mb-12">
-          <h2
+          <div className="mb-6 px-4 text-center md:mb-12">
+            <h2
               className="mb-4 font-semibold"
-            style={{
+              style={{
                 backgroundImage: "var(--text-gradient)",
-              color: "transparent",
-              fontFamily: "var(--font-geist-sans)",
-              fontSize: "clamp(32px, 6vw, 52px)",
-              fontWeight: 600,
-              letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-              lineHeight: "1.15",
-              textAlign: "center",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-            }}
-          >
-            Client Feedback and Testimonials
-          </h2>
-          <p
+                color: "transparent",
+                fontFamily: "var(--font-geist-sans)",
+                fontSize: "clamp(32px, 6vw, 52px)",
+                fontWeight: 600,
+                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
+                lineHeight: "1.15",
+                textAlign: "center",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+              }}
+            >
+              Client Feedback and Testimonials
+            </h2>
+            <p
               className="text-foreground/90 mx-auto mb-8 max-w-2xl"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
+              style={{
+                fontFamily: "var(--font-geist-mono)",
                 fontSize: "clamp(18px, 3vw, 24px)",
-              lineHeight: "1.4",
-              textAlign: "center",
-            }}
-          >
-            See what clients say about working with Arcline.
-          </p>
-        </div>
+                lineHeight: "1.4",
+                textAlign: "center",
+              }}
+            >
+              See what clients say about working with Arcline.
+            </p>
+          </div>
 
           {/* Marquee Container */}
           <div className="relative w-full overflow-hidden">
@@ -221,9 +238,9 @@ export default function VibeCodingTweetsSection() {
               className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
               style={{ background: "var(--fade-gradient-right)" }}
             ></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </Reveal>
   );
 }

@@ -159,20 +159,33 @@ export default function FAQSection({ onOpenInstall }: FAQSectionProps) {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card/50 overflow-hidden rounded-[16px] border border-border backdrop-blur-sm transition-all duration-300"
+                className="bg-card/50 group relative isolate overflow-hidden rounded-[16px] border border-border backdrop-blur-sm transition-all duration-300"
                 style={{
                   boxShadow: "var(--shadow-md)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "var(--shadow-xl)";
+                  const item = e.currentTarget;
+                  const question = item.querySelector("[data-question]");
+                  item.style.borderColor = "rgba(251, 146, 60, 0.4)";
+                  item.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+                  item.style.transform = "translateY(-2px)";
+                  item.style.zIndex = "10";
+                  if (question) (question as HTMLElement).style.color = "#fb923c";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "var(--shadow-md)";
+                  const item = e.currentTarget;
+                  const question = item.querySelector("[data-question]");
+                  item.style.borderColor = "";
+                  item.style.boxShadow = "var(--shadow-md)";
+                  item.style.transform = "";
+                  item.style.zIndex = "";
+                  if (question) (question as HTMLElement).style.color = "";
                 }}
               >
                 <AccordionTrigger className="px-5 py-4 hover:no-underline">
                   <span
-                    className="text-left font-medium text-foreground"
+                    data-question
+                    className="text-left font-medium text-foreground transition-colors duration-300"
                     style={{
                       fontFamily: "var(--font-geist-sans)",
                       fontSize: "18px",

@@ -40,7 +40,6 @@ import SEOPerformanceAccessibilitySection from "@/components/seo-performance-acc
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
-import WhyNotGitSection from "@/components/why-not-git-section";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -409,8 +408,7 @@ export default function Home() {
 
         <SaveReviewRestoreSection onOpenInstall={openInstallModal} />
         <AgenticAISearchSection onOpenInstall={openInstallModal} />
-        <WhyNotGitSection onOpenInstall={openInstallModal} />
-        <SEOPerformanceAccessibilitySection />
+        <SEOPerformanceAccessibilitySection onOpenInstall={openInstallModal} />
         <VibeCodingTweetsSection />
         <FAQSection onOpenInstall={openInstallModal} />
         <Footer />
