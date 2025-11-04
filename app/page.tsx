@@ -82,6 +82,17 @@ export default function Home() {
         <section className="rounded-all-devices group relative isolate mb-6 mt-2 flex flex-col overflow-hidden rounded-[16px] text-foreground">
           {/* Shine Border */}
           <ShineBorder borderWidth={2} duration={8} shineColor={borderColors} />
+          {/* Top Border Overlay - Covers shine at top for seamless background blend */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 z-[2]"
+            style={{
+              height: "60px",
+              background: "var(--background)",
+              borderTopLeftRadius: "16px",
+              borderTopRightRadius: "16px",
+              boxShadow: "0 -2px 0 0 var(--background)",
+            }}
+          />
           {/* Gradient Background Image */}
           <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
             <div
