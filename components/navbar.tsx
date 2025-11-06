@@ -76,9 +76,9 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
 
   return (
     <div
-      className={`fixed ${isBannerVisible ? "top-[44px] sm:top-12" : "top-0"} left-0 right-0 z-50 flex justify-center px-6 transition-all duration-300 md:px-8`}
+      className={`fixed ${isBannerVisible ? "top-[44px] sm:top-12" : "top-0"} left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300 sm:px-6 md:px-8`}
     >
-      <div className="mt-2 w-[calc(100%-24px)] max-w-[1400px]">
+      <div className="mt-2 w-[calc(100%-32px)] max-w-[1400px] sm:w-[calc(100%-24px)]">
         <nav
           className="font-geist border-border/50 flex h-16 items-center justify-between rounded-[16px] border bg-background p-2 text-foreground"
           style={navStyle}
@@ -177,11 +177,11 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
         {mobileMenuOpen && (
           <>
             <div
-              className={`bg-background/80 fixed inset-0 z-40 backdrop-blur-sm ${mobileMenuClosing ? "duration-200 animate-out fade-out" : "duration-200 animate-in fade-in"}`}
+              className={`bg-background/80 fixed inset-0 z-[55] backdrop-blur-sm ${mobileMenuClosing ? "duration-200 animate-out fade-out" : "duration-200 animate-in fade-in"}`}
               onClick={handleCloseMobileMenu}
             />
             <div
-              className={`fixed right-6 top-[76px] z-50 w-[calc(100%-48px)] max-w-[400px] transform rounded-[16px] border border-border bg-card shadow-lg ${mobileMenuClosing ? "duration-200 animate-out fade-out slide-out-to-top-2" : "duration-300 animate-in fade-in slide-in-from-top-2"}`}
+              className={`fixed right-4 top-[72px] z-[60] w-[calc(100%-32px)] max-w-[400px] transform rounded-[16px] border border-border bg-card shadow-lg sm:right-6 sm:w-[calc(100%-48px)] ${mobileMenuClosing ? "duration-200 animate-out fade-out slide-out-to-top-2" : "duration-300 animate-in fade-in slide-in-from-top-2"}`}
             >
               <div className="flex flex-col gap-4 p-4">
                 <a

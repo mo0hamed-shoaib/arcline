@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import React, { useState } from "react";
 import {
   Activity,
   BookOpen,
@@ -33,158 +31,79 @@ import {
 import AgenticAISearchSection from "@/components/agentic-ai-search-section";
 import FAQSection from "@/components/faq-section";
 import Footer from "@/components/footer";
-import HeroImage from "@/components/hero-image";
 import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
+import Prism from "@/components/Prism";
 import SaveReviewRestoreSection from "@/components/save-review-restore-section";
 import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/ui/marquee";
-import { ShineBorder } from "@/components/ui/shine-border";
 import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isMobile = useIsMobile();
 
   const openInstallModal = () => {
     setIsModalOpen(true);
   };
 
-  // Theme-aware 3D border colors - lighter in dark mode, darker in light mode
-  const isDark = mounted && theme === "dark";
-  const borderColors = isDark
-    ? [
-        "rgba(255, 255, 255, 0.98)", // Very bright white - lighter for dark mode
-        "rgba(200, 200, 200, 0.90)", // Light gray instead of black - lighter overall
-        "rgba(255, 255, 255, 0.95)", // Bright white highlight
-      ]
-    : [
-        "rgba(5, 5, 5, 0.95)", // Very dark - darker for light mode
-        "rgba(20, 20, 20, 0.90)", // Dark shadow - darker overall
-        "rgba(10, 10, 10, 0.95)", // Very dark shadow
-      ];
+  // Responsive Prism scale - smaller on mobile for better visibility
+  const prismScale = isMobile ? 2.2 : 3.6;
 
   return (
-    <div className="min-h-screen bg-background pt-20 text-foreground">
+    <div className="min-h-screen bg-background pt-20 text-foreground sm:pt-24">
       {/* Navigation */}
       <Navbar isBannerVisible={false} />
 
-      {/* Rest of the content remains the same... */}
-      <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
-        {/* Hero Section */}
-        <section className="rounded-all-devices group relative isolate mb-6 mt-2 flex flex-col overflow-hidden rounded-[16px] text-foreground">
-          {/* Shine Border */}
-          <ShineBorder borderWidth={2} duration={8} shineColor={borderColors} />
-          {/* Top Border Overlay - Covers shine at top for seamless background blend */}
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 z-[2]"
-            style={{
-              height: "60px",
-              background: "var(--background)",
-              borderTopLeftRadius: "16px",
-              borderTopRightRadius: "16px",
-              boxShadow: "0 -2px 0 0 var(--background)",
-            }}
+      {/* Hero Section - Full Width Immersive */}
+      <section className="group relative isolate mb-6 mt-4 flex min-h-[500px] w-full flex-col overflow-hidden text-foreground sm:mb-8 sm:mt-6 sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+        {/* Prism Background - Full Width */}
+        <div className="absolute inset-0 h-full w-full overflow-hidden">
+          <Prism
+            animationType="rotate"
+            timeScale={0.5}
+            height={3.5}
+            baseWidth={5.5}
+            scale={prismScale}
+            hueShift={0}
+            colorFrequency={1}
+            noise={0.5}
+            glow={1}
+            bloom={1}
+            transparent={true}
           />
-          {/* Gradient Background Image */}
-          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
-            <div
-              className="absolute inset-0 h-full w-full rounded-[16px]"
-              style={{
-                background: "var(--hero-radial-gradient)",
-              }}
-            />
-          </div>
+        </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex h-full w-full flex-col px-4 pb-8 pt-[38px] text-center sm:px-6 sm:pt-[50px] md:pb-12 md:pt-[70px] lg:px-8">
-            {/* Mobile Layout (Stack: Text -> Image -> Buttons) */}
-            <div className="flex flex-col md:hidden">
-              <div className="mb-4">
-                <h1
-                  className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
-                  style={{
-                    fontSize: "clamp(48px, 8vw, 154px)",
-                    lineHeight: "1.1",
-                    letterSpacing: "clamp(-2px, -0.04em, -5.18998px)",
-                    fontFamily: "var(--font-geist-sans)",
-                    height: "auto",
-                    maxWidth: "100%",
-                    paddingBottom: "0",
-                    marginBottom: "0.2em",
-                    color: "var(--foreground)",
-                  }}
-                  aria-label="Build Your Vision"
-                >
-                  Build Your Vision
-                </h1>
-                <p
-                  className="mx-auto mb-3 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
-                  style={
-                    {
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "clamp(14px, 3.5vw, 22px)",
-                      lineHeight: "1.3",
-                      fontWeight: "400",
-                      letterSpacing: "normal",
-                      maxWidth: "2xl",
-                      color: "var(--foreground)",
-                      backgroundColor: "transparent",
-                      // These styles ensure proper selection colors
-                      "--selection-text-color": "var(--background)",
-                      "--selection-background-color": "var(--foreground)",
-                    } as React.CSSProperties
-                  }
-                >
-                  Modern websites with AI-powered development. Tourism, e-commerce, portfolios, and
-                  more.
-                </p>
-              </div>
+        {/* Fade Overlays - All Sides */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24"
+          style={{ background: "var(--fade-gradient-left)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24"
+          style={{ background: "var(--fade-gradient-right)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-16 md:h-24"
+          style={{ background: "var(--fade-gradient-top)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 md:h-24"
+          style={{ background: "var(--fade-gradient-bottom)" }}
+        />
 
-              {/* Image in the middle for mobile */}
-              <div className="mb-6 flex items-center justify-center">
-                <div className="w-full">
-                  <HeroImage />
-                </div>
-              </div>
-
-              {/* Buttons at the bottom for mobile */}
-              <div>
-                <div className="mb-4 flex flex-col gap-3 sm:gap-4">
-                  <Button
-                    className="flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
-                    onClick={openInstallModal}
-                  >
-                    <Download className="mr-2 h-4 w-4" /> GET STARTED
-                  </Button>
-                  <a
-                    href="https://x.com/jackjack_eth"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
-                  >
-                    <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                    CONTACT ME
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Layout (Original) */}
-            <div className="hidden md:flex md:flex-grow md:flex-col">
+        {/* Content Container */}
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col items-center justify-center px-4 pb-12 pt-12 text-center sm:px-6 sm:pt-16 md:pb-16 md:pt-20 lg:px-8 lg:pt-24">
+          {/* Mobile Layout (Stack: Text -> Buttons) */}
+          <div className="flex flex-col md:hidden">
+            <div className="mb-4">
               <h1
                 className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
                 style={{
-                  fontSize: "clamp(36px, 8vw, 154px)",
+                  fontSize: "clamp(48px, 8vw, 154px)",
                   lineHeight: "1.1",
                   letterSpacing: "clamp(-2px, -0.04em, -5.18998px)",
                   fontFamily: "var(--font-geist-sans)",
@@ -193,23 +112,25 @@ export default function Home() {
                   paddingBottom: "0",
                   marginBottom: "0.2em",
                   color: "var(--foreground)",
+                  textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
                 }}
                 aria-label="Build Your Vision"
               >
                 Build Your Vision
               </h1>
               <p
-                className="mx-auto mb-6 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4 sm:mb-8"
+                className="mx-auto mb-3 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
                 style={
                   {
                     fontFamily: "var(--font-geist-mono)",
-                    fontSize: "clamp(16px, 4vw, 24px)",
+                    fontSize: "clamp(14px, 3.5vw, 22px)",
                     lineHeight: "1.3",
                     fontWeight: "400",
                     letterSpacing: "normal",
                     maxWidth: "2xl",
                     color: "var(--foreground)",
                     backgroundColor: "transparent",
+                    textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
                     // These styles ensure proper selection colors
                     "--selection-text-color": "var(--background)",
                     "--selection-background-color": "var(--foreground)",
@@ -219,14 +140,13 @@ export default function Home() {
                 Modern websites with AI-powered development. Tourism, e-commerce, portfolios, and
                 more.
               </p>
-              <div className="relative mb-8 flex w-full items-center justify-center overflow-hidden rounded-md">
-                <div className="mx-auto w-full sm:w-[85%] md:max-w-[1200px]">
-                  <HeroImage />
-                </div>
-              </div>
-              <div className="flex flex-row justify-center gap-3 md:gap-4">
+            </div>
+
+            {/* Buttons at the bottom for mobile */}
+            <div>
+              <div className="mb-4 flex flex-col gap-3 sm:gap-4">
                 <Button
-                  className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                   onClick={openInstallModal}
                 >
                   <Download className="mr-2 h-4 w-4" /> GET STARTED
@@ -235,7 +155,7 @@ export default function Home() {
                   href="https://x.com/jackjack_eth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover-lift flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className="hover-lift flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
                 >
                   <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -245,8 +165,74 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
 
+          {/* Desktop Layout (Original) */}
+          <div className="hidden md:flex md:flex-grow md:flex-col">
+            <h1
+              className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
+              style={{
+                fontSize: "clamp(36px, 8vw, 154px)",
+                lineHeight: "1.1",
+                letterSpacing: "clamp(-2px, -0.04em, -5.18998px)",
+                fontFamily: "var(--font-geist-sans)",
+                height: "auto",
+                maxWidth: "100%",
+                paddingBottom: "0",
+                marginBottom: "0.2em",
+                color: "var(--foreground)",
+                textShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              }}
+              aria-label="Build Your Vision"
+            >
+              Build Your Vision
+            </h1>
+            <p
+              className="mx-auto mb-6 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4 sm:mb-8"
+              style={
+                {
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: "clamp(16px, 4vw, 24px)",
+                  lineHeight: "1.3",
+                  fontWeight: "400",
+                  letterSpacing: "normal",
+                  maxWidth: "2xl",
+                  color: "var(--foreground)",
+                  backgroundColor: "transparent",
+                  textShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
+                  // These styles ensure proper selection colors
+                  "--selection-text-color": "var(--background)",
+                  "--selection-background-color": "var(--foreground)",
+                } as React.CSSProperties
+              }
+            >
+              Modern websites with AI-powered development. Tourism, e-commerce, portfolios, and
+              more.
+            </p>
+            <div className="flex flex-row justify-center gap-3 md:gap-4">
+              <Button
+                className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                onClick={openInstallModal}
+              >
+                <Download className="mr-2 h-4 w-4" /> GET STARTED
+              </Button>
+              <a
+                href="https://x.com/jackjack_eth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover-lift flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+              >
+                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                CONTACT ME
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rest of the content */}
+      <div className="relative mx-auto max-w-[1920px] px-4 sm:px-6 md:px-8">
         <section className="bg-background py-12 md:py-16">
           <div className="mx-auto mb-12 max-w-6xl px-4 text-center sm:px-6">
             <h2
