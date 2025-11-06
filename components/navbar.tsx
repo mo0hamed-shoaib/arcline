@@ -13,7 +13,7 @@ interface NavbarProps {
   isBannerVisible?: boolean;
 }
 
-export default function Navbar({ isBannerVisible = true }: NavbarProps) {
+export default function Navbar({ isBannerVisible }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMenuClosing, setMobileMenuClosing] = useState(false);
@@ -78,7 +78,7 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
     <div
       className={`fixed ${isBannerVisible ? "top-[44px] sm:top-12" : "top-0"} left-0 right-0 z-50 flex justify-center px-4 transition-all duration-300 sm:px-6 md:px-8`}
     >
-      <div className="mt-2 w-[calc(100%-32px)] max-w-[1400px] sm:w-[calc(100%-24px)]">
+      <div className="mt-4 w-[calc(100%-32px)] max-w-[1400px] sm:w-[calc(100%-24px)]">
         <nav
           className="font-geist border-border/50 flex h-16 items-center justify-between rounded-[16px] border bg-background p-2 text-foreground"
           style={navStyle}
@@ -99,21 +99,37 @@ export default function Navbar({ isBannerVisible = true }: NavbarProps) {
               />
             )}
             {!mounted && <div className="mr-3 h-7 w-7" />}
-            <span
-              className="logo-text"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                fontSize: "22px",
-                lineHeight: "1.1",
-                fontWeight: "600",
-                letterSpacing: "-0.02em",
-                color: "var(--foreground)",
-                width: "auto",
-                height: "auto",
-              }}
-            >
-              Arcline
-            </span>
+            <div className="flex flex-col">
+              <span
+                className="logo-text"
+                style={{
+                  fontFamily: "var(--font-geist-mono)",
+                  fontSize: "22px",
+                  lineHeight: "1.1",
+                  fontWeight: "600",
+                  letterSpacing: "-0.02em",
+                  color: "var(--foreground)",
+                  width: "auto",
+                  height: "auto",
+                }}
+              >
+                Arcline
+              </span>
+              <span
+                style={{
+                  fontFamily: '"Matrix", monospace',
+                  fontSize: "9px",
+                  lineHeight: "1.2",
+                  fontWeight: "700",
+                  letterSpacing: "0.05em",
+                  color: "var(--foreground)",
+                  opacity: 0.7,
+                  marginTop: "-2px",
+                }}
+              >
+                By Jimmy
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
