@@ -17,6 +17,7 @@ type PrismProps = {
   bloom?: number;
   suspendWhenOffscreen?: boolean;
   timeScale?: number;
+  onReady?: () => void;
 };
 
 const Prism: React.FC<PrismProps> = ({
@@ -35,6 +36,7 @@ const Prism: React.FC<PrismProps> = ({
   bloom = 1,
   suspendWhenOffscreen = false,
   timeScale = 0.5,
+  onReady,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -287,6 +289,7 @@ const Prism: React.FC<PrismProps> = ({
 
     const NOISE_IS_ZERO = NOISE < 1e-6;
     let raf = 0;
+    let hasRenderedFirstFrame = false;
     const t0 = performance.now();
     const startRAF = () => {
       if (raf) return;
@@ -395,6 +398,18 @@ const Prism: React.FC<PrismProps> = ({
       }
 
       renderer.render({ scene: mesh });
+      
+      // Call onReady after first frame is rendered
+      if (!hasRenderedFirstFrame) {
+        hasRenderedFirstFrame = true;
+        if (onReady) {
+          // Use a small delay to ensure canvas is fully ready
+          requestAnimationFrame(() => {
+            onReady();
+          });
+        }
+      }
+      
       if (continueRAF) {
         raf = requestAnimationFrame(render);
       } else {
@@ -452,6 +467,7 @@ const Prism: React.FC<PrismProps> = ({
     inertia,
     bloom,
     suspendWhenOffscreen,
+    onReady,
   ]);
 
   return <div className="relative h-full w-full" ref={containerRef} />;

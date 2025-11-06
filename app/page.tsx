@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   Activity,
   BookOpen,
@@ -29,12 +29,14 @@ import {
 } from "lucide-react";
 
 import AgenticAISearchSection from "@/components/agentic-ai-search-section";
+import CTASection from "@/components/cta-section";
 import FAQSection from "@/components/faq-section";
 import Footer from "@/components/footer";
 import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
 import Prism from "@/components/Prism";
+import { PrismErrorBoundary } from "@/components/prism-error-boundary";
 import SaveReviewRestoreSection from "@/components/save-review-restore-section";
 import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
 import { Button } from "@/components/ui/button";
@@ -44,6 +46,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPrismReady, setIsPrismReady] = useState(false);
   const isMobile = useIsMobile();
 
   const openInstallModal = () => {
@@ -52,6 +55,11 @@ export default function Home() {
 
   // Responsive Prism scale - smaller on mobile for better visibility
   const prismScale = isMobile ? 2.2 : 3.6;
+
+  // Trigger Prism animation when it's actually ready
+  const handlePrismReady = () => {
+    setIsPrismReady(true);
+  };
 
   return (
     <div className="min-h-screen bg-background pt-20 text-foreground sm:pt-24">
@@ -62,19 +70,41 @@ export default function Home() {
       <section className="group relative isolate mb-6 mt-4 flex min-h-[500px] w-full flex-col overflow-hidden text-foreground sm:mb-8 sm:mt-6 sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
         {/* Prism Background - Full Width */}
         <div className="absolute inset-0 h-full w-full overflow-hidden">
-          <Prism
-            animationType="rotate"
-            timeScale={0.5}
-            height={3.5}
-            baseWidth={5.5}
-            scale={prismScale}
-            hueShift={0}
-            colorFrequency={1}
-            noise={0.5}
-            glow={1}
-            bloom={1}
-            transparent={true}
-          />
+          <PrismErrorBoundary
+            fallback={
+              <div className="via-background/95 to-background/90 h-full w-full bg-gradient-to-br from-background" />
+            }
+          >
+            <Suspense
+              fallback={
+                <div className="via-background/95 to-background/90 h-full w-full bg-gradient-to-br from-background" />
+              }
+            >
+              <div
+                className="h-full w-full"
+                style={{
+                  opacity: isPrismReady ? 1 : 0,
+                  transform: isPrismReady ? "scale(1)" : "scale(0.95)",
+                  transition: "opacity 1.2s ease-out, transform 1.2s ease-out",
+                }}
+              >
+                <Prism
+                  animationType="rotate"
+                  timeScale={0.5}
+                  height={3.5}
+                  baseWidth={5.5}
+                  scale={prismScale}
+                  hueShift={0}
+                  colorFrequency={1}
+                  noise={0.5}
+                  glow={1}
+                  bloom={1}
+                  transparent={true}
+                  onReady={handlePrismReady}
+                />
+              </div>
+            </Suspense>
+          </PrismErrorBoundary>
         </div>
 
         {/* Fade Overlays - All Sides */}
@@ -433,7 +463,8 @@ export default function Home() {
         <SEOPerformanceAccessibilitySection onOpenInstall={openInstallModal} />
         <PricingSection />
         <VibeCodingTweetsSection />
-        <FAQSection onOpenInstall={openInstallModal} />
+        <FAQSection />
+        <CTASection onOpenInstall={openInstallModal} />
         <Footer />
       </div>
 
