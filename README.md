@@ -155,6 +155,16 @@ arcline/
 - Node.js 18+
 - pnpm (recommended) or npm
 
+### Environment Variables
+
+Create a `.env.local` file based on the template below to enable third-party integrations like Cloudinary image delivery:
+
+```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
+```
+
+The Cloudinary helper in `lib/cloudinary.ts` uses this value to build optimized URLs for remote assets.
+
 ### Installation
 
 1. **Install dependencies**
@@ -173,6 +183,74 @@ arcline/
    ```
    http://localhost:3000
    ```
+
+---
+
+## 🖼️ Asset Delivery with Cloudinary
+
+- `lib/cloudinary.ts` exposes a `buildCloudinaryUrl` helper for generating transformation URLs.
+- `components/ui/cloudinary-image.tsx` wraps `next/image` so you can render assets by `publicId`.
+- `next.config.mjs` allows optimized remote images from `https://res.cloudinary.com`.
+
+Example usage:
+
+```tsx
+import { CloudinaryImage } from "@/components/ui/cloudinary-image";
+
+<CloudinaryImage
+  publicId="portfolio/project-hero"
+  alt="Project hero screenshot"
+  width={1280}
+  height={720}
+  priority
+  transformations={{ quality: "auto", format: "auto", crop: "fill", gravity: "auto" }}
+/>;
+```
+
+Upload screenshots to Cloudinary manually or via API, then reference their public IDs in the codebase.
+
+---
+
+## ☁️ Server-Side Cloudinary Usage
+
+Install the Cloudinary SDK (already included via `pnpm add cloudinary`).
+
+Configure credentials in `.env.local`:
+
+```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+```
+
+The helper `lib/cloudinary-server.ts` exports the SDK instance plus convenience functions for uploads:
+
+```ts
+import { uploadToCloudinary, uploadLargeToCloudinary } from "@/lib/cloudinary-server";
+
+await uploadToCloudinary("/path/to/image.jpg", {
+  upload_preset: "portfolio_shots",
+  folder: "arcline/projects",
+});
+
+await uploadLargeToCloudinary("/path/to/video.mp4", { chunk_size: 7_000_000 });
+```
+
+You can also generate transformed URLs on the fly:
+
+```ts
+import { buildCloudinaryUrl } from "@/lib/cloudinary";
+
+const optimizedSrc = buildCloudinaryUrl("portfolio/sample.jpg", {
+  width: 100,
+  height: 150,
+  crop: "fill",
+  quality: "auto",
+  format: "auto",
+});
+```
+
+Refer to the [Cloudinary documentation](https://cloudinary.com/documentation) for advanced presets and transformations.
 
 ---
 

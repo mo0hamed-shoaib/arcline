@@ -2,16 +2,28 @@
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { ProjectsCarousel } from "@/components/projects-carousel";
+import { buildCloudinaryUrl, cloudinaryConfig } from "@/lib/cloudinary";
+
+const placeholderSrc = "/placeholder.svg";
+
+const withCloudinary = cloudinaryConfig.enabled && cloudinaryConfig.cloudName;
 
 const slides = [
   {
     id: "Project 01",
-    title: "Summit Trails Tourism",
+    title: "Mosexperiences",
     description:
-      "An immersive destination site built for a boutique adventure agency. The experience blends cinematic hero sections, itinerary builders, and instant availability search backed by CMS-driven content.",
+      "Immersive tourism experiences showcased with cinematic storytelling, multi-day itinerary planning, and instant inquiry flows designed to convert high-intent travelers.",
     image: {
-      src: "/placeholder.svg",
-      alt: "Preview of Summit Trails Tourism project",
+      src: withCloudinary
+        ? buildCloudinaryUrl("arcline/projects/mosexperiences/cover", {
+            quality: "auto",
+            format: "auto",
+            crop: "fill",
+            gravity: "auto",
+          })
+        : placeholderSrc,
+      alt: "Mosexperiences website preview",
     },
     highlights: [
       "Dynamic itinerary composer with live pricing",
@@ -19,85 +31,99 @@ const slides = [
       "Headless CMS powering multi-language content",
       "Performance budget < 2.5s LCP across markets",
     ],
-    websiteUrl: "https://example.com/summit-trails",
+    websiteUrl: "https://example.com/mosexperiences",
     caseStudy: {
       description:
         "A headless tourism experience that fuses cinematic storytelling with conversion-focused booking flows.",
-      techStack: ["Next.js 16", "Tailwind CSS", "Sanity", "AWS Lambda", "Mapbox"],
+      techStack: ["Next.js", "Tailwind CSS", "Sanity", "Mapbox"],
       problem:
-        "The old site was brochureware—no conversion tracking, limited seasonal updates, and poor mobile funnel performance.",
+        "The previous brochure site lacked conversions, seasonal updates, and performant mobile booking funnels.",
       solution:
-        "Modular content modeling, itinerary personalization, and a lightning-fast booking wizard tuned for 3G conditions.",
+        "Modular content modeling, itinerary personalization, and a fast booking wizard tuned for real-world network conditions.",
       architecture:
-        "Headless CMS feeding ISR pages, dynamic itinerary APIs, and edge cached media streaming via CloudFront.",
+        "Headless CMS feeding ISR pages, dynamic itinerary APIs, and edge-cached media streaming.",
       challenges:
-        "Coordinating content editors across languages while keeping build times under 90 seconds and avoiding layout shifts.",
+        "Coordinating editors across locales while maintaining sub-90-second builds and zero layout shifts.",
       results:
-        "+38% booking conversions in peak season, -54% bounce rate on mobile, and <2s LCP across all key destinations.",
+        "+38% booking conversions in peak season, -54% bounce rate on mobile, and <2s LCP across destinations.",
     },
   },
   {
     id: "Project 02",
-    title: "Volt Commerce Dashboard",
+    title: "Dana Doors",
     description:
-      "A full-stack analytics surface for a retail accelerator. Operators monitor sales funnels, inventory health, and marketing experiments in real time with multiplayer-ready UI and optimistic workflows.",
+      "A premium manufacturing catalog with configurators, lead capture, and spec downloads that help architects source bespoke interior solutions.",
     image: {
-      src: "/placeholder.svg",
-      alt: "Preview of Volt Commerce Dashboard project",
+      src: withCloudinary
+        ? buildCloudinaryUrl("arcline/projects/danadoors/cover", {
+            quality: "auto",
+            format: "auto",
+            crop: "fill",
+            gravity: "auto",
+          })
+        : placeholderSrc,
+      alt: "Dana Doors project screenshot",
     },
     highlights: [
-      "Next.js + TanStack Query data layer",
-      "Embeddable charts with progressive loading",
-      "Role-based routing & audit trails",
-      "End-to-end automation for nightly data sync",
+      "Interactive product configurator with instant previews",
+      "Spec sheets and BIM assets delivered on demand",
+      "CRM-integrated lead capture with routing rules",
+      "SEO-friendly catalog pages with ISR",
     ],
-    websiteUrl: "https://example.com/volt-commerce",
+    websiteUrl: "https://example.com/dana-doors",
     caseStudy: {
       description:
-        "A mission control surface that lets operators monitor commerce funnels, inventory, and campaigns in real time.",
-      techStack: ["Next.js", "tRPC", "Postgres", "ClickHouse", "Tailwind", "Storybook"],
+        "A manufacturing hub that allows architects to configure, compare, and request quotes for bespoke interior products.",
+      techStack: ["Next.js", "tRPC", "Postgres", "Tailwind"],
       problem:
-        "Analysts were juggling five BI tools with no shared state, causing slow decision cycles and conflicting KPIs.",
+        "Manual quote requests and static brochures slowed down sales cycles and hid key product differentiators.",
       solution:
-        "Unified analytics with optimistic UI patterns, realtime websocket feeds, and opinionated workflows for each operator role.",
+        "Configurable product flows, asset downloads, and a CRM-integrated lead workflow that routes to regional reps instantly.",
       architecture:
-        "Event-driven pipeline streaming into ClickHouse, hydrated via tRPC + TanStack Query, with background workers for rollups.",
+        "Headless CMS for product metadata with server actions pushing qualified leads into the CRM in real time.",
       challenges:
-        "Maintaining sub-second reloads on 50+ charts while supporting export to CSV/PDF and maintaining accessibility.",
+        "Ensuring heavy imagery stayed performant while rendering technical specs and downloads across regions.",
       results:
-        "Decision latency dropped from 2 days to 4 hours, onboarding time cut by 60%, and support tickets reduced by 45%.",
+        "Quote response time dropped by 65% and sample requests tripled within the first quarter post-launch.",
     },
   },
   {
     id: "Project 03",
-    title: "Aperture Creative Studio",
+    title: "Rootly",
     description:
-      "A brand showcase for a creative collective featuring case-study reels, collaborative moodboards, and a custom proposal generator that assembles decks on the fly.",
+      "A modern SaaS marketing site with deep product storytelling, interactive feature tours, and conversion-focused CTAs for DevOps teams.",
     image: {
-      src: "/placeholder.svg",
-      alt: "Preview of Aperture Creative Studio project",
+      src: withCloudinary
+        ? buildCloudinaryUrl("arcline/projects/rootly/cover", {
+            quality: "auto",
+            format: "auto",
+            crop: "fill",
+            gravity: "auto",
+          })
+        : placeholderSrc,
+      alt: "Rootly marketing site preview",
     },
     highlights: [
-      "Composable case study builder with Embla galleries",
-      "Workshop booking integrated with Calendly API",
-      "Design tokens synced with Figma using Tokens Studio",
-      "CI pipeline running visual regression snapshots",
+      "Interactive product tour with auto-playing demos",
+      "Role-based personas driving tailored messaging",
+      "High-intent CTA system with experiment tracking",
+      "HubSpot + Segment integration for attribution",
     ],
-    websiteUrl: "https://example.com/aperture-studio",
+    websiteUrl: "https://example.com/rootly",
     caseStudy: {
       description:
-        "A creative collective’s showcase built to pitch new work, sell workshops, and surface collaborative moodboards.",
-      techStack: ["Next.js", "MDX", "Supabase", "Radix UI", "Framer Motion"],
+        "A SaaS marketing presence that converts DevOps teams through interactive demos and high-intent content.",
+      techStack: ["Next.js", "Supabase", "Radix UI", "Framer Motion"],
       problem:
-        "Pitch decks were manually assembled, leading to inconsistent branding and slow turnaround for new project proposals.",
+        "Static site couldn’t demonstrate the product or attribute marketing campaigns effectively.",
       solution:
-        "Automated case study generator that assembles dynamic MDX decks, embeddable reels, and workshop offers on-demand.",
+        "Interactive stories, timed demos, and analytics instrumentation connected to the growth stack.",
       architecture:
-        "Server actions composing MDX content, Supabase for asset metadata, and queue workers rendering proposal PDFs.",
+        "ISR-powered marketing pages fed by MDX, with server actions syncing leads into HubSpot and analytics into Segment.",
       challenges:
-        "Ensuring rich-media case studies remained SEO-friendly while streaming and animating large assets across devices.",
+        "Balancing rich animation with accessibility and performance budgets across devices.",
       results:
-        "Proposal delivery time shrank from 4 days to same-day, with a 31% lift in workshop bookings within first quarter.",
+        "Demo requests increased by 42% and time-on-page rose 35% within the first month.",
     },
   },
 ] as const;
