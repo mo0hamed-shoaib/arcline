@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import React from "react";
 import {
   Activity,
   BookOpen,
@@ -10,7 +9,6 @@ import {
   Calendar,
   Code,
   Cpu,
-  Download,
   FileText,
   Globe,
   GraduationCap,
@@ -29,119 +27,115 @@ import {
   Zap,
 } from "lucide-react";
 
-import AgenticAISearchSection from "@/components/agentic-ai-search-section";
+import AnimatedContent from "@/components/AnimatedContent";
+import ClientTestimonialsSection from "@/components/client-testimonials-section";
 import CTASection from "@/components/cta-section";
+import CustomStackInsightsSection from "@/components/custom-stack-insights-section";
 import FAQSection from "@/components/faq-section";
 import Footer from "@/components/footer";
-import HeroImage from "@/components/hero-image";
-import InstallModal from "@/components/install-modal";
 import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
-import SaveReviewRestoreSection from "@/components/save-review-restore-section";
+import ProjectsInMotionSection from "@/components/projects-in-motion-section";
 import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
-import { Button } from "@/components/ui/button";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { Marquee } from "@/components/ui/marquee";
-import { ShineBorder } from "@/components/ui/shine-border";
-import VibeCodingTweetsSection from "@/components/vibe-coding-tweets-section";
+import { buttonVariants, commonStyles, spacing, typography } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const openInstallModal = () => {
-    setIsModalOpen(true);
-  };
-
-  // Theme-aware 3D border colors - lighter in dark mode, darker in light mode
-  const isDark = mounted && theme === "dark";
-  const borderColors = isDark
-    ? [
-        "rgba(255, 255, 255, 0.98)", // Very bright white - lighter for dark mode
-        "rgba(200, 200, 200, 0.90)", // Light gray instead of black - lighter overall
-        "rgba(255, 255, 255, 0.95)", // Bright white highlight
-      ]
-    : [
-        "rgba(5, 5, 5, 0.95)", // Very dark - darker for light mode
-        "rgba(20, 20, 20, 0.90)", // Dark shadow - darker overall
-        "rgba(10, 10, 10, 0.95)", // Very dark shadow
-      ];
-
   return (
-    <div className="min-h-screen bg-background pt-20 text-foreground sm:pt-24">
+    <div className="bg-background text-foreground min-h-screen pt-20 sm:pt-24">
       {/* Navigation */}
-      <Navbar isBannerVisible={false} />
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}>
+        <AnimatedContent
+          direction="vertical"
+          distance={50}
+          threshold={0}
+          duration={0.8}
+          ease="power3.out"
+          animateOpacity
+          initialOpacity={0}
+        >
+          <Navbar isBannerVisible={false} />
+        </AnimatedContent>
+      </div>
 
       {/* Rest of the content */}
-      <div className="relative mx-auto max-w-[1920px] px-6 md:px-8">
+      <main className="mx-auto flex w-full max-w-[1320px] flex-col px-6 md:px-8">
         {/* Hero Section */}
-        <section className="rounded-all-devices group relative isolate mb-6 mt-2 flex flex-col overflow-hidden rounded-[16px] text-foreground">
-          {/* Shine Border */}
-          <ShineBorder borderWidth={2} duration={8} shineColor={borderColors} />
-
-          {/* Top Border Overlay - Covers shine at top for seamless background blend */}
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 z-[2]"
-            style={{
-              height: "60px",
-              background: "var(--background)",
-              borderTopLeftRadius: "16px",
-              borderTopRightRadius: "16px",
-              boxShadow: "0 -2px 0 0 var(--background)",
-            }}
-          />
-
-          {/* Gradient Background Image */}
-          <div className="absolute inset-0 h-full w-full overflow-hidden rounded-[16px]">
-            <div
-              className="absolute inset-0 h-full w-full rounded-[16px]"
-              style={{
-                background: "var(--hero-radial-gradient)",
-              }}
+        <section
+          className={cn(
+            "relative isolate flex flex-col items-center justify-center overflow-hidden rounded-(--radius-surface) rounded-all-devices text-foreground group",
+            "min-h-[clamp(560px,calc(100vh-80px),720px)]",
+            "mb-6 mt-2"
+          )}
+        >
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+            <BackgroundGradientAnimation
+              containerClassName="h-full w-full"
+              interactive={false}
+              backgroundGradient="linear-gradient(130deg, rgba(249, 115, 22, 0.85) 0%, rgba(251, 146, 60, 0.7) 15%, rgba(253, 164, 175, 0.75) 30%, rgba(253, 164, 175, 0.55) 45%)"
+              gradientBackgroundStart="rgba(249, 115, 22, 0.85)"
+              gradientBackgroundEnd="rgba(253, 164, 175, 0.55)"
+              firstColor="249, 115, 22"
+              secondColor="251, 146, 60"
+              thirdColor="253, 164, 175"
+              fourthColor="253, 164, 175"
+              fifthColor="255, 237, 213"
+              pointerColor="253, 164, 175"
+              blendingValue="screen"
+              size="95%"
             />
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex h-full w-full flex-col px-4 pb-8 pt-[38px] text-center sm:px-6 sm:pt-[50px] md:pb-12 md:pt-[70px] lg:px-8">
-            {/* Mobile Layout (Stack: Text -> Image -> Buttons) */}
-            <div className="flex flex-col md:hidden">
-              <div className="mb-4">
+          <div
+            className={cn(
+              "relative z-10 flex w-full flex-col items-center text-center",
+              "gap-6 sm:gap-8",
+              spacing.hero.mobile.paddingX,
+              spacing.hero.desktop.paddingX,
+              spacing.hero.mobile.paddingTop,
+              spacing.hero.desktop.paddingTop,
+              spacing.hero.mobile.paddingBottom,
+              spacing.hero.desktop.paddingBottom
+            )}
+          >
+            <AnimatedContent
+              direction="vertical"
+              distance={50}
+              threshold={0}
+              duration={0.8}
+              ease="power3.out"
+            >
+              <div className="mx-auto max-w-4xl">
                 <h1
-                  className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
+                  className="heading-with-selection mb-3 select-text overflow-visible font-semibold"
                   style={{
-                    fontSize: "clamp(48px, 8vw, 154px)",
-                    lineHeight: "1.1",
-                    letterSpacing: "clamp(-2px, -0.04em, -5.18998px)",
-                    fontFamily: "var(--font-geist-sans)",
-                    height: "auto",
-                    maxWidth: "100%",
-                    paddingBottom: "0",
-                    marginBottom: "0.2em",
-                    color: "var(--foreground)",
+                    ...typography.heading.hero.desktop,
+                    ...commonStyles.heading,
+                    fontFamily: typography.fontSans,
                   }}
                   aria-label="Build Your Vision"
                 >
                   Build Your Vision
                 </h1>
+              </div>
+            </AnimatedContent>
+            <AnimatedContent
+              direction="vertical"
+              distance={50}
+              delay={0.2}
+              threshold={0}
+              duration={0.8}
+              ease="power3.out"
+            >
+              <div className="mx-auto max-w-3xl">
                 <p
-                  className="mx-auto mb-3 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4"
+                  className="select-text"
                   style={
                     {
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "clamp(14px, 3.5vw, 22px)",
-                      lineHeight: "1.3",
-                      fontWeight: "400",
-                      letterSpacing: "normal",
-                      maxWidth: "2xl",
-                      color: "var(--foreground)",
-                      backgroundColor: "transparent",
-                      // These styles ensure proper selection colors
-                      "--selection-text-color": "var(--background)",
-                      "--selection-background-color": "var(--foreground)",
+                      ...typography.body.hero.desktop,
+                      ...commonStyles.body,
                     } as React.CSSProperties
                   }
                 >
@@ -149,93 +143,21 @@ export default function Home() {
                   more.
                 </p>
               </div>
-              {/* Image in the middle for mobile */}
-              <div className="mb-6 flex items-center justify-center">
-                <div className="w-full">
-                  <HeroImage />
-                </div>
-              </div>
-              {/* Buttons at the bottom for mobile */}
-              <div>
-                <div className="mb-4 flex flex-col gap-3 sm:gap-4">
-                  <Button
-                    className="flex h-[50px] w-full items-center justify-center rounded-lg bg-foreground px-4 font-mono text-xs font-semibold tracking-wider text-background shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
-                    onClick={openInstallModal}
-                  >
-                    <Download className="mr-2 h-4 w-4" /> GET STARTED
-                  </Button>
-                  <a
-                    href="https://x.com/jackjack_eth"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover-lift flex h-[50px] w-full items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-xs font-semibold tracking-wider text-foreground shadow-lg sm:h-[60px] sm:px-6 sm:text-sm md:text-base"
-                  >
-                    <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                    CONTACT ME
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop Layout (Original) */}
-            <div className="hidden md:flex md:flex-grow md:flex-col">
-              <h1
-                className="heading-with-selection mb-2 select-text overflow-visible font-semibold duration-1000 animate-in fade-in slide-in-from-bottom-4"
-                style={{
-                  fontSize: "clamp(36px, 8vw, 154px)",
-                  lineHeight: "1.1",
-                  letterSpacing: "clamp(-2px, -0.04em, -5.18998px)",
-                  fontFamily: "var(--font-geist-sans)",
-                  height: "auto",
-                  maxWidth: "100%",
-                  paddingBottom: "0",
-                  marginBottom: "0.2em",
-                  color: "var(--foreground)",
-                }}
-                aria-label="Build Your Vision"
-              >
-                Build Your Vision
-              </h1>
-              <p
-                className="mx-auto mb-6 h-auto select-text delay-200 duration-1000 animate-in fade-in slide-in-from-bottom-4 sm:mb-8"
-                style={
-                  {
-                    fontFamily: "var(--font-geist-mono)",
-                    fontSize: "clamp(16px, 4vw, 24px)",
-                    lineHeight: "1.3",
-                    fontWeight: "400",
-                    letterSpacing: "normal",
-                    maxWidth: "2xl",
-                    color: "var(--foreground)",
-                    backgroundColor: "transparent",
-                    // These styles ensure proper selection colors
-                    "--selection-text-color": "var(--background)",
-                    "--selection-background-color": "var(--foreground)",
-                  } as React.CSSProperties
-                }
-              >
-                Modern websites with AI-powered development. Tourism, e-commerce, portfolios, and
-                more.
-              </p>
-              <div className="relative mb-8 flex w-full items-center justify-center overflow-hidden rounded-md">
-                <div className="mx-auto w-full sm:w-[85%] md:max-w-[1200px]">
-                  <HeroImage />
-                </div>
-              </div>
-              <div className="flex flex-row justify-center gap-3 md:gap-4">
-                <Button
-                  className="flex h-[50px] min-w-[180px] items-center justify-center rounded-lg bg-foreground px-4 font-mono text-sm font-semibold tracking-wider text-background shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
-                  onClick={openInstallModal}
-                >
-                  <Download className="mr-2 h-4 w-4" /> GET STARTED
-                </Button>
+            </AnimatedContent>
+            <AnimatedContent
+              direction="vertical"
+              distance={50}
+              delay={0.4}
+              threshold={0}
+              duration={0.8}
+              ease="power3.out"
+            >
+              <div className="flex w-full max-w-sm flex-col items-center gap-3">
                 <a
                   href="https://x.com/jackjack_eth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover-lift flex h-[50px] min-w-[180px] items-center justify-center rounded-lg border border-border bg-card px-4 font-mono text-sm font-semibold tracking-wider text-foreground shadow-lg md:h-[60px] md:min-w-[220px] md:px-6 md:text-base lg:px-8"
+                  className={cn(buttonVariants.secondary.className, "md:w-auto")}
                 >
                   <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -243,216 +165,222 @@ export default function Home() {
                   CONTACT ME
                 </a>
               </div>
+            </AnimatedContent>
+          </div>
+        </section>
+
+        <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
+          <section className="bg-background py-12 md:py-16">
+            <div className="mx-auto mb-12 max-w-[1296px] px-4 text-center sm:px-6">
+              <h2
+                className="mb-4 font-semibold"
+                style={{
+                  backgroundImage: "var(--text-gradient)",
+                  color: "transparent",
+                  ...typography.heading.section,
+                  fontFamily: typography.fontSans,
+                  fontWeight: 600,
+                  textAlign: "center",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                }}
+              >
+                Services Tailored to You
+              </h2>
+              <p
+                className="text-foreground/90 mx-auto mb-8 max-w-2xl"
+                style={{
+                  ...typography.body.section,
+                  fontFamily: typography.fontMono,
+                  textAlign: "center",
+                }}
+              >
+                From personal portfolios to complex e-commerce platforms. Built with modern tools
+                and AI-powered development.
+              </p>
             </div>
-          </div>
-        </section>
 
-        <section className="bg-background py-12 md:py-16">
-          <div className="mx-auto mb-12 max-w-6xl px-4 text-center sm:px-6">
-            <h2
-              className="mb-4 font-semibold"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
-              Services Tailored to You
-            </h2>
-            <p
-              className="text-foreground/90 mx-auto mb-8 max-w-2xl"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                fontSize: "clamp(18px, 3vw, 24px)",
-                lineHeight: "1.4",
-                textAlign: "center",
-              }}
-            >
-              From personal portfolios to complex e-commerce platforms. Built with modern tools and
-              AI-powered development.
-            </p>
-          </div>
+            {/* Marquee Container */}
+            <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
+              <div className="relative w-full overflow-hidden">
+                {/* Services Marquee - Left to Right */}
+                <Marquee
+                  pauseOnHover
+                  repeat={3}
+                  className="mb-6 [--duration:50s] [--gap:1.5rem] md:mb-6"
+                >
+                  {[
+                    { name: "Tourism Websites", icon: Globe },
+                    { name: "E-commerce Platforms", icon: ShoppingCart },
+                    { name: "Personal Portfolios", icon: User },
+                    { name: "Business Websites", icon: Building2 },
+                    { name: "Landing Pages", icon: Rocket },
+                    { name: "Admin Dashboards", icon: LayoutDashboard },
+                    { name: "Blog Platforms", icon: BookOpen },
+                    { name: "Booking Systems", icon: Calendar },
+                    { name: "Product Showcases", icon: Package },
+                    { name: "Corporate Sites", icon: Building },
+                    { name: "Real Estate", icon: HomeIcon },
+                    { name: "Restaurant Menus", icon: UtensilsCrossed },
+                    { name: "Event Pages", icon: Sparkles },
+                    { name: "SaaS Products", icon: Zap },
+                    { name: "Education Portals", icon: GraduationCap },
+                    { name: "Healthcare Sites", icon: Activity },
+                    { name: "Non-profit Sites", icon: HeartHandshake },
+                    { name: "Art Galleries", icon: Palette },
+                    { name: "Tech Startups", icon: Code },
+                    { name: "Custom Solutions", icon: Sparkles },
+                  ].map((service, index) => {
+                    const Icon = service.icon;
+                    return (
+                      <div
+                        key={`service-${index}`}
+                        className="bg-card/50 border-border rounded-(--radius-surface) relative isolate flex h-14 min-w-[180px] items-center justify-center gap-2 border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px] md:gap-3 md:px-6"
+                        style={{
+                          boxShadow: "var(--shadow-md)",
+                        }}
+                        onMouseEnter={(e) => {
+                          const card = e.currentTarget;
+                          const icon = card.querySelector("svg");
+                          const text = card.querySelector("span");
+                          card.style.borderColor = "var(--accent-orange-40)";
+                          card.style.boxShadow =
+                            "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
+                          card.style.transform = "translateY(-2px)";
+                          card.style.zIndex = "10";
+                          if (icon) icon.style.color = "var(--accent-orange)";
+                          if (text) text.style.color = "var(--accent-orange)";
+                        }}
+                        onMouseLeave={(e) => {
+                          const card = e.currentTarget;
+                          const icon = card.querySelector("svg");
+                          const text = card.querySelector("span");
+                          card.style.borderColor = "";
+                          card.style.boxShadow = "var(--shadow-md)";
+                          card.style.transform = "";
+                          card.style.zIndex = "";
+                          if (icon) icon.style.color = "";
+                          if (text) text.style.color = "";
+                        }}
+                      >
+                        <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
+                        <span
+                          className="text-foreground font-semibold transition-colors duration-300"
+                          style={{
+                            fontFamily: "var(--font-geist-sans)",
+                            fontSize: "16px",
+                            lineHeight: "1.2",
+                            letterSpacing: "-0.01em",
+                          }}
+                        >
+                          {service.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
 
-          {/* Marquee Container */}
-          <div className="relative w-full overflow-hidden">
-            {/* Services Marquee - Left to Right */}
-            <Marquee
-              pauseOnHover
-              repeat={3}
-              className="mb-6 [--duration:50s] [--gap:1.5rem] md:mb-6"
-            >
-              {[
-                { name: "Tourism Websites", icon: Globe },
-                { name: "E-commerce Platforms", icon: ShoppingCart },
-                { name: "Personal Portfolios", icon: User },
-                { name: "Business Websites", icon: Building2 },
-                { name: "Landing Pages", icon: Rocket },
-                { name: "Admin Dashboards", icon: LayoutDashboard },
-                { name: "Blog Platforms", icon: BookOpen },
-                { name: "Booking Systems", icon: Calendar },
-                { name: "Product Showcases", icon: Package },
-                { name: "Corporate Sites", icon: Building },
-                { name: "Real Estate", icon: HomeIcon },
-                { name: "Restaurant Menus", icon: UtensilsCrossed },
-                { name: "Event Pages", icon: Sparkles },
-                { name: "SaaS Products", icon: Zap },
-                { name: "Education Portals", icon: GraduationCap },
-                { name: "Healthcare Sites", icon: Activity },
-                { name: "Non-profit Sites", icon: HeartHandshake },
-                { name: "Art Galleries", icon: Palette },
-                { name: "Tech Startups", icon: Code },
-                { name: "Custom Solutions", icon: Sparkles },
-              ].map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <div
-                    key={`service-${index}`}
-                    className="bg-card/50 relative isolate flex h-14 min-w-[180px] items-center justify-center gap-2 rounded-xl border border-border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px] md:gap-3 md:px-6"
-                    style={{
-                      boxShadow: "var(--shadow-md)",
-                    }}
-                    onMouseEnter={(e) => {
-                      const card = e.currentTarget;
-                      const icon = card.querySelector("svg");
-                      const text = card.querySelector("span");
-                      card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-                      card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
-                      card.style.transform = "translateY(-2px)";
-                      card.style.zIndex = "10";
-                      if (icon) icon.style.color = "#fb923c";
-                      if (text) text.style.color = "#fb923c";
-                    }}
-                    onMouseLeave={(e) => {
-                      const card = e.currentTarget;
-                      const icon = card.querySelector("svg");
-                      const text = card.querySelector("span");
-                      card.style.borderColor = "";
-                      card.style.boxShadow = "var(--shadow-md)";
-                      card.style.transform = "";
-                      card.style.zIndex = "";
-                      if (icon) icon.style.color = "";
-                      if (text) text.style.color = "";
-                    }}
-                  >
-                    <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
-                    <span
-                      className="font-semibold text-foreground transition-colors duration-300"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "16px",
-                        lineHeight: "1.2",
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {service.name}
-                    </span>
-                  </div>
-                );
-              })}
-            </Marquee>
+                {/* Technologies Marquee - Right to Left */}
+                <Marquee
+                  pauseOnHover
+                  reverse
+                  repeat={3}
+                  className="[--duration:50s] [--gap:1.5rem]"
+                >
+                  {[
+                    { name: "Next.js", icon: Zap },
+                    { name: "TypeScript", icon: Code },
+                    { name: "Tailwind CSS", icon: Palette },
+                    { name: "shadcn/ui", icon: Package },
+                    { name: "Supabase", icon: Cpu },
+                    { name: "Framer Motion", icon: Sparkles },
+                    { name: "React", icon: Zap },
+                    { name: "Responsive Design", icon: Target },
+                    { name: "SEO Optimized", icon: Rocket },
+                    { name: "Fast Performance", icon: Zap },
+                    { name: "Modern UI/UX", icon: Sparkles },
+                    { name: "Accessible", icon: Heart },
+                    { name: "Mobile First", icon: Target },
+                    { name: "Clean Code", icon: FileText },
+                    { name: "Testing", icon: Target },
+                    { name: "Version Control", icon: Code },
+                    { name: "API Integration", icon: Zap },
+                    { name: "State Management", icon: Cpu },
+                    { name: "Component Library", icon: Package },
+                    { name: "Tailored Solutions", icon: Sparkles },
+                  ].map((tech, index) => {
+                    const Icon = tech.icon;
+                    return (
+                      <div
+                        key={`tech-${index}`}
+                        className="bg-card/50 border-border rounded-(--radius-surface) relative isolate flex h-14 min-w-[160px] items-center justify-center gap-2 border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px] md:gap-3 md:px-6"
+                        style={{
+                          boxShadow: "var(--shadow-md)",
+                        }}
+                        onMouseEnter={(e) => {
+                          const card = e.currentTarget;
+                          const icon = card.querySelector("svg");
+                          const text = card.querySelector("span");
+                          card.style.borderColor = "var(--accent-orange-40)";
+                          card.style.boxShadow =
+                            "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
+                          card.style.transform = "translateY(-2px)";
+                          card.style.zIndex = "10";
+                          if (icon) icon.style.color = "var(--accent-orange)";
+                          if (text) text.style.color = "var(--accent-orange)";
+                        }}
+                        onMouseLeave={(e) => {
+                          const card = e.currentTarget;
+                          const icon = card.querySelector("svg");
+                          const text = card.querySelector("span");
+                          card.style.borderColor = "";
+                          card.style.boxShadow = "var(--shadow-md)";
+                          card.style.transform = "";
+                          card.style.zIndex = "";
+                          if (icon) icon.style.color = "";
+                          if (text) text.style.color = "";
+                        }}
+                      >
+                        <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
+                        <span
+                          className="text-foreground font-semibold transition-colors duration-300"
+                          style={{
+                            fontFamily: "var(--font-geist-sans)",
+                            fontSize: "16px",
+                            lineHeight: "1.2",
+                            letterSpacing: "-0.01em",
+                          }}
+                        >
+                          {tech.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
 
-            {/* Technologies Marquee - Right to Left */}
-            <Marquee pauseOnHover reverse repeat={3} className="[--duration:50s] [--gap:1.5rem]">
-              {[
-                { name: "Next.js", icon: Zap },
-                { name: "TypeScript", icon: Code },
-                { name: "Tailwind CSS", icon: Palette },
-                { name: "shadcn/ui", icon: Package },
-                { name: "Supabase", icon: Cpu },
-                { name: "Framer Motion", icon: Sparkles },
-                { name: "React", icon: Zap },
-                { name: "Responsive Design", icon: Target },
-                { name: "SEO Optimized", icon: Rocket },
-                { name: "Fast Performance", icon: Zap },
-                { name: "Modern UI/UX", icon: Sparkles },
-                { name: "Accessible", icon: Heart },
-                { name: "Mobile First", icon: Target },
-                { name: "Clean Code", icon: FileText },
-                { name: "Testing", icon: Target },
-                { name: "Version Control", icon: Code },
-                { name: "API Integration", icon: Zap },
-                { name: "State Management", icon: Cpu },
-                { name: "Component Library", icon: Package },
-                { name: "Tailored Solutions", icon: Sparkles },
-              ].map((tech, index) => {
-                const Icon = tech.icon;
-                return (
-                  <div
-                    key={`tech-${index}`}
-                    className="bg-card/50 relative isolate flex h-14 min-w-[160px] items-center justify-center gap-2 rounded-xl border border-border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px] md:gap-3 md:px-6"
-                    style={{
-                      boxShadow: "var(--shadow-md)",
-                    }}
-                    onMouseEnter={(e) => {
-                      const card = e.currentTarget;
-                      const icon = card.querySelector("svg");
-                      const text = card.querySelector("span");
-                      card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-                      card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
-                      card.style.transform = "translateY(-2px)";
-                      card.style.zIndex = "10";
-                      if (icon) icon.style.color = "#fb923c";
-                      if (text) text.style.color = "#fb923c";
-                    }}
-                    onMouseLeave={(e) => {
-                      const card = e.currentTarget;
-                      const icon = card.querySelector("svg");
-                      const text = card.querySelector("span");
-                      card.style.borderColor = "";
-                      card.style.boxShadow = "var(--shadow-md)";
-                      card.style.transform = "";
-                      card.style.zIndex = "";
-                      if (icon) icon.style.color = "";
-                      if (text) text.style.color = "";
-                    }}
-                  >
-                    <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
-                    <span
-                      className="font-semibold text-foreground transition-colors duration-300"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "16px",
-                        lineHeight: "1.2",
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {tech.name}
-                    </span>
-                  </div>
-                );
-              })}
-            </Marquee>
+                {/* Gradient Fade Overlays - Thinner and more subtle */}
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
+                  style={{ background: "var(--fade-gradient-left)" }}
+                ></div>
+                <div
+                  className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
+                  style={{ background: "var(--fade-gradient-right)" }}
+                ></div>
+              </div>
+            </div>
+          </section>
+        </AnimatedContent>
 
-            {/* Gradient Fade Overlays - Thinner and more subtle */}
-            <div
-              className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
-              style={{ background: "var(--fade-gradient-left)" }}
-            ></div>
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
-              style={{ background: "var(--fade-gradient-right)" }}
-            ></div>
-          </div>
-        </section>
-
-        <SaveReviewRestoreSection onOpenInstall={openInstallModal} />
-        <AgenticAISearchSection onOpenInstall={openInstallModal} />
-        <SEOPerformanceAccessibilitySection onOpenInstall={openInstallModal} />
+        <ProjectsInMotionSection />
+        <CustomStackInsightsSection />
+        <SEOPerformanceAccessibilitySection />
         <PricingSection />
-        <VibeCodingTweetsSection />
+        <ClientTestimonialsSection />
         <FAQSection />
-        <CTASection onOpenInstall={openInstallModal} />
+        <CTASection />
         <Footer />
-      </div>
-
-      <InstallModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      </main>
     </div>
   );
 }

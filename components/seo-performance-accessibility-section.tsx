@@ -2,29 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import {
-  Download,
-  Gauge,
-  Lightbulb,
-  Save,
-  Search,
-  SeparatorHorizontal,
-  Shield,
-  Users,
-} from "lucide-react";
+import { Gauge, Lightbulb, Save, Search, SeparatorHorizontal, Shield, Users } from "lucide-react";
 
-import { Reveal } from "@/components/reveal";
-import { Button } from "@/components/ui/button";
+import AnimatedContent from "@/components/AnimatedContent";
 import { IconCircularProgress } from "@/components/ui/icon-circular-progress";
 import { ShineBorder } from "@/components/ui/shine-border";
 
-interface SEOPerformanceAccessibilitySectionProps {
-  onOpenInstall?: () => void;
-}
-
-export default function SEOPerformanceAccessibilitySection({
-  onOpenInstall,
-}: SEOPerformanceAccessibilitySectionProps) {
+export default function SEOPerformanceAccessibilitySection() {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
@@ -79,8 +63,8 @@ export default function SEOPerformanceAccessibilitySection({
         "Efficient caching strategies",
         "Resource preloading and optimization",
       ],
-      gaugePrimaryColor: isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.9)",
-      gaugeSecondaryColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+      gaugePrimaryColor: "var(--gauge-primary)",
+      gaugeSecondaryColor: "var(--gauge-secondary)",
     },
     {
       icon: Shield,
@@ -99,8 +83,8 @@ export default function SEOPerformanceAccessibilitySection({
         "Keyboard navigation support",
         "Screen reader optimization",
       ],
-      gaugePrimaryColor: isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.9)",
-      gaugeSecondaryColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+      gaugePrimaryColor: "var(--gauge-primary)",
+      gaugeSecondaryColor: "var(--gauge-secondary)",
     },
     {
       icon: Search,
@@ -119,8 +103,8 @@ export default function SEOPerformanceAccessibilitySection({
         "Comprehensive metadata optimization",
         "Sitemap and robots.txt configuration",
       ],
-      gaugePrimaryColor: isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.9)",
-      gaugeSecondaryColor: isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+      gaugePrimaryColor: "var(--gauge-primary)",
+      gaugeSecondaryColor: "var(--gauge-secondary)",
     },
   ];
 
@@ -130,7 +114,7 @@ export default function SEOPerformanceAccessibilitySection({
 
     return (
       <div
-        className="bg-card/50 group relative isolate overflow-hidden rounded-[16px] p-4 backdrop-blur-sm transition-all duration-300 md:p-6"
+        className="bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] p-4 backdrop-blur-sm transition-all duration-300 md:p-6"
         style={{
           boxShadow: "var(--shadow-md)",
         }}
@@ -138,10 +122,10 @@ export default function SEOPerformanceAccessibilitySection({
           const card = e.currentTarget;
           const title = card.querySelector("[data-title]");
           setIsHovered(true);
-          card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+          card.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
           card.style.transform = "translateY(-2px)";
           card.style.zIndex = "10";
-          if (title) (title as HTMLElement).style.color = "#fb923c";
+          if (title) (title as HTMLElement).style.color = "var(--accent-orange)";
         }}
         onMouseLeave={(e) => {
           const card = e.currentTarget;
@@ -156,7 +140,7 @@ export default function SEOPerformanceAccessibilitySection({
         <ShineBorder
           borderWidth={1}
           duration={14}
-          shineColor={isHovered ? "rgba(251, 146, 60, 0.6)" : "rgba(255, 255, 255, 0.5)"}
+          shineColor={isHovered ? "var(--accent-orange-60)" : "rgba(255, 255, 255, 0.5)"}
         />
         {/* Content */}
         <div className="relative z-10 flex flex-col">
@@ -213,7 +197,7 @@ export default function SEOPerformanceAccessibilitySection({
               {feature.metrics.map((metric, metricIndex) => (
                 <div
                   key={metricIndex}
-                  className="border-border/30 bg-card/30 flex flex-col items-center justify-center gap-1 rounded-lg border px-2 py-2 text-center md:px-3 md:py-2.5"
+                  className="border-border/30 bg-card/30 flex flex-col items-center justify-center gap-1 rounded-[var(--radius-surface)] border px-2 py-2 text-center md:px-3 md:py-2.5"
                   title={metric.description}
                 >
                   <span
@@ -251,7 +235,7 @@ export default function SEOPerformanceAccessibilitySection({
               {feature.howWeAchieve.slice(0, 3).map((item, itemIndex) => (
                 <li
                   key={itemIndex}
-                  className="border-border/30 bg-card/30 flex items-start gap-2 rounded-lg border px-3 py-2 md:px-4 md:py-2.5"
+                  className="border-border/30 bg-card/30 flex items-start gap-2 rounded-[var(--radius-surface)] border px-3 py-2 md:px-4 md:py-2.5"
                 >
                   <span
                     className="text-foreground/70 shrink-0 pt-0.5 text-sm"
@@ -278,7 +262,7 @@ export default function SEOPerformanceAccessibilitySection({
   }
 
   return (
-    <Reveal>
+    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
@@ -320,7 +304,7 @@ export default function SEOPerformanceAccessibilitySection({
               return (
                 <div
                   key={`highlight-${index}`}
-                  className="bg-card/30 border-border/30 group relative isolate flex items-center gap-2 rounded-lg border px-3 py-2.5 transition-all duration-300 md:gap-3 md:px-4 md:py-3"
+                  className="bg-card/30 border-border/30 group relative isolate flex items-center gap-2 rounded-[var(--radius-surface)] border px-3 py-2.5 transition-all duration-300 md:gap-3 md:px-4 md:py-3"
                   style={{
                     boxShadow: "var(--shadow-sm)",
                   }}
@@ -330,12 +314,12 @@ export default function SEOPerformanceAccessibilitySection({
                     const title = card.querySelector(
                       "[data-highlight-title]"
                     ) as HTMLElement | null;
-                    card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-                    card.style.boxShadow = "var(--shadow-md), 0 0 15px rgba(251, 146, 60, 0.12)";
+                    card.style.borderColor = "var(--accent-orange-40)";
+                    card.style.boxShadow = "var(--shadow-md), 0 0 15px var(--accent-orange-15)";
                     card.style.transform = "translateY(-2px)";
                     card.style.zIndex = "10";
-                    if (icon) icon.style.color = "#fb923c";
-                    if (title) title.style.color = "#fb923c";
+                    if (icon) icon.style.color = "var(--accent-orange)";
+                    if (title) title.style.color = "var(--accent-orange)";
                   }}
                   onMouseLeave={(e) => {
                     const card = e.currentTarget;
@@ -386,25 +370,8 @@ export default function SEOPerformanceAccessibilitySection({
             ))}
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center">
-            {onOpenInstall && (
-              <Button
-                onClick={onOpenInstall}
-                className="rounded-lg bg-foreground px-4 py-3 font-mono text-sm font-semibold tracking-wider text-background"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  letterSpacing: "0.56px",
-                  height: "48px",
-                }}
-              >
-                <Download className="mr-2 h-4 w-4 stroke-[2.5px]" />
-                INSTALL NOW
-              </Button>
-            )}
-          </div>
         </div>
       </section>
-    </Reveal>
+    </AnimatedContent>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Reveal } from "@/components/reveal";
+import AnimatedContent from "@/components/AnimatedContent";
 import { Marquee } from "@/components/ui/marquee";
 
 interface Testimonial {
@@ -93,7 +93,7 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 
   return (
     <div
-      className="bg-card/50 relative isolate w-[280px] shrink-0 rounded-[16px] border border-border p-4 backdrop-blur-sm transition-all duration-300 md:w-[350px] md:p-6"
+      className="bg-card/50 relative isolate w-[280px] shrink-0 rounded-[var(--radius-surface)] border border-border p-4 backdrop-blur-sm transition-all duration-300 md:w-[350px] md:p-6"
       style={{
         boxShadow: "var(--shadow-md)",
       }}
@@ -101,11 +101,11 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
         const card = e.currentTarget;
         const name = card.querySelector("[data-name]");
         const quote = card.querySelector("blockquote p");
-        card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-        card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+        card.style.borderColor = "var(--accent-orange-40)";
+        card.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
         card.style.transform = "translateY(-2px)";
         card.style.zIndex = "10";
-        if (name) (name as HTMLElement).style.color = "#fb923c";
+        if (name) (name as HTMLElement).style.color = "var(--accent-orange)";
         if (quote) (quote as HTMLElement).style.color = "var(--foreground)";
       }}
       onMouseLeave={(e) => {
@@ -172,9 +172,9 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
   );
 }
 
-export default function VibeCodingTweetsSection() {
+export default function ClientTestimonialsSection() {
   return (
-    <Reveal>
+    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
@@ -246,6 +246,6 @@ export default function VibeCodingTweetsSection() {
           </div>
         </div>
       </section>
-    </Reveal>
+    </AnimatedContent>
   );
 }

@@ -3,7 +3,6 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://arcline.dev/sitemap.xml
-Sitemap: https://arcline.dev/video-sitemap.xml
 
 # LLMs.txt for AI understanding
 # https://llmstxt.org/

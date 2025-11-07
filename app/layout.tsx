@@ -5,8 +5,8 @@ import { GeistSans } from "geist/font/sans";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
-import "./styles/tw-animate.css";
 import "./globals.css";
+import "./styles/tw-animate.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://arcline.dev"),
@@ -39,11 +39,10 @@ export const metadata: Metadata = {
       "Modern websites built with AI-powered development. Tourism sites, e-commerce, portfolios and more. Fast, responsive and production-ready.",
     images: [
       {
-        url: "https://arcline.dev/images/og-new.jpeg",
+        url: "https://arcline.dev/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Arcline - Professional Frontend Development Services",
-        type: "image/jpeg",
       },
     ],
   },
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
     title: "Arcline - Professional Frontend Development Services",
     description:
       "Modern websites built with AI-powered development. Tourism sites, e-commerce, portfolios and more. Let's build something great together.",
-    images: ["https://arcline.dev/images/og-new.jpeg"],
+    images: ["https://arcline.dev/opengraph-image"],
     creator: "@jackjack_eth",
     site: "@arcline_dev",
   },
@@ -62,18 +61,8 @@ export const metadata: Metadata = {
   category: "Services",
   classification: "Web Development",
   icons: {
-    icon: [
-      { url: "/dark_mode_logo/favicon.ico", sizes: "any" },
-      { url: "/dark_mode_logo/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/dark_mode_logo/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/dark_mode_logo/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/dark_mode_logo/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: {
-      url: "/dark_mode_logo/apple-touch-icon.png",
-      sizes: "180x180",
-      type: "image/png",
-    },
+    icon: [{ url: "/arcline-icon.png", type: "image/png" }],
+    apple: [{ url: "/arcline-icon.png", type: "image/png" }],
     other: [{ rel: "manifest", url: "/site.webmanifest" }],
   },
   generator: "Next.js",
@@ -179,67 +168,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   },
                 },
               ],
-            }),
-          }}
-        />
-
-        {/* Video Schema JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              name: "Arcline Frontend Development Services Demo",
-              description:
-                "See examples of professional websites built with modern tools and AI-powered development. Tourism sites, e-commerce platforms and more.",
-              thumbnailUrl: "https://arcline.dev/images/save-thumbnail.jpeg",
-              uploadDate: "2024-12-01",
-              duration: "PT45S",
-              contentUrl:
-                "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/yoyo-save-2-DUbUp5aKE9GtNY9Diok2eG6SW2qHCX.mp4",
-              embedUrl: "https://arcline.dev",
-              publisher: {
-                "@type": "Organization",
-                name: "Arcline",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://arcline.dev/dark_mode_logo/android-chrome-512x512.png",
-                },
-              },
-              keywords:
-                "frontend development, Next.js, TypeScript, web development, responsive design",
-              category: "Services",
-            }),
-          }}
-        />
-
-        {/* Additional Video Schema for AI Search Demo */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              name: "Modern Web Development Tools Showcase",
-              description:
-                "Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui and Supabase. See the modern tech stack in action.",
-              thumbnailUrl: "https://arcline.dev/images/preview-thumbnail.jpeg",
-              uploadDate: "2024-12-01",
-              duration: "PT60S",
-              contentUrl:
-                "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/favorites-FFCUeeEFzfxDBIhgGACi7YGpYQZbnU.mp4",
-              embedUrl: "https://arcline.dev",
-              publisher: {
-                "@type": "Organization",
-                name: "Arcline",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://arcline.dev/dark_mode_logo/android-chrome-512x512.png",
-                },
-              },
-              keywords: "Next.js, TypeScript, Tailwind CSS, shadcn/ui, modern web development",
-              category: "Technology",
             }),
           }}
         />

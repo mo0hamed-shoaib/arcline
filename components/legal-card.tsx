@@ -14,11 +14,11 @@ export function LegalCard({ children, className }: LegalCardProps) {
     const card = e.currentTarget;
     const icon = card.querySelector("svg");
     const heading = card.querySelector("h2");
-    card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-    card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+    card.style.borderColor = "var(--accent-orange-40)";
+    card.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
     card.style.transform = "translateY(-2px)";
-    if (icon) (icon as SVGElement).style.color = "#fb923c";
-    if (heading) (heading as HTMLElement).style.color = "#fb923c";
+    if (icon) (icon as SVGElement).style.color = "var(--accent-orange)";
+    if (heading) (heading as HTMLElement).style.color = "var(--accent-orange)";
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {

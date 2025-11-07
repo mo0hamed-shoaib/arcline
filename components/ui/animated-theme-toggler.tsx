@@ -21,15 +21,31 @@ export const AnimatedThemeToggler = ({
   ...props
 }: AnimatedThemeTogglerProps) => {
   const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const { theme, setTheme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const iconButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Prevent hydration mismatch
+  // Initialize with safe default, will be updated immediately on mount
+  const [isDark, setIsDark] = useState(false);
+
+  // Prevent hydration mismatch - set mounted and theme immediately on client
   useEffect(() => {
     setMounted(true);
+    // Read theme from localStorage immediately (faster than waiting for useTheme)
+    const storedTheme = localStorage.getItem("arcline-theme");
+    if (storedTheme === "dark" || storedTheme === "light") {
+      setIsDark(storedTheme === "dark");
+    } else {
+      // Fallback to checking DOM class
+      setIsDark(document.documentElement.classList.contains("dark"));
+    }
   }, []);
+
+  // Sync isDark with theme changes from next-themes (once theme is resolved)
+  useEffect(() => {
+    if (!mounted || !theme) return;
+    setIsDark(theme === "dark");
+  }, [theme, mounted]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -93,20 +109,21 @@ export const AnimatedThemeToggler = ({
     [duration, theme, setTheme, mounted, onCloseMobileMenu, variant]
   );
 
-  if (!mounted) {
-    return <div className="h-10 w-10" />;
-  }
-
   // Icon-only variant for desktop
   if (variant === "icon") {
     return (
       <button
         ref={iconButtonRef}
-        onClick={() => changeTheme(theme === "light" ? "dark" : "light")}
+        onClick={() => {
+          if (mounted) {
+            changeTheme(theme === "light" ? "dark" : "light");
+          }
+        }}
         className={cn("flex items-center justify-center", className)}
         aria-label="Toggle theme"
+        suppressHydrationWarning
       >
-        {isDark ? (
+        {mounted && isDark ? (
           <Sun className="h-5 w-5 text-foreground" />
         ) : (
           <Moon className="h-5 w-5 text-foreground" />
@@ -124,12 +141,17 @@ export const AnimatedThemeToggler = ({
         className
       )}
       {...props}
+      suppressHydrationWarning
     >
       <button
-        onClick={() => changeTheme("light")}
+        onClick={() => {
+          if (mounted) {
+            changeTheme("light");
+          }
+        }}
         className={cn(
           "flex flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
-          theme === "light"
+          mounted && (theme === "light" || (!theme && !isDark))
             ? "bg-foreground text-background"
             : "bg-transparent text-foreground hover:bg-accent/50"
         )}
@@ -140,10 +162,14 @@ export const AnimatedThemeToggler = ({
       </button>
       <div className="w-px bg-border" />
       <button
-        onClick={() => changeTheme("dark")}
+        onClick={() => {
+          if (mounted) {
+            changeTheme("dark");
+          }
+        }}
         className={cn(
           "flex flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
-          theme === "dark"
+          mounted && (theme === "dark" || (!theme && isDark))
             ? "bg-foreground text-background"
             : "bg-transparent text-foreground hover:bg-accent/50"
         )}

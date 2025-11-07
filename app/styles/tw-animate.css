@@ -127,19 +127,10 @@
   --percentage-translate-full: 1;
   --animate-in: enter var(--tw-animation-duration, var(--tw-duration, 0.15s)) var(--tw-ease, ease)
     var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1)
-    var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, none);
+    var(--tw-animation-direction, normal) backwards;
   --animate-out: exit var(--tw-animation-duration, var(--tw-duration, 0.15s)) var(--tw-ease, ease)
     var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1)
     var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, none);
-  @keyframes enter {
-    from {
-      opacity: var(--tw-enter-opacity, 1);
-      transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0)
-        scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1))
-        rotate(var(--tw-enter-rotate, 0));
-      filter: blur(var(--tw-enter-blur, 0));
-    }
-  }
   @keyframes exit {
     to {
       opacity: var(--tw-exit-opacity, 1);
@@ -237,6 +228,35 @@
     }
   }
 }
+@utility animate-in {
+  animation: var(--animate-in);
+  animation-fill-mode: backwards;
+  /* Start in initial state - will be overridden by animation */
+  opacity: var(--tw-enter-opacity, 1);
+  transform: translate3d(
+    var(--tw-enter-translate-x, 0),
+    var(--tw-enter-translate-y, 0),
+    0
+  );
+}
+
+@utility animate-out {
+  animation: var(--animate-out);
+  animation-fill-mode: forwards;
+}
+
+@utility animate-accordion-down {
+  animation: var(--animate-accordion-down);
+}
+
+@utility animate-accordion-up {
+  animation: var(--animate-accordion-up);
+}
+
+@utility animate-shine {
+  animation: var(--animate-shine);
+}
+
 @utility animation-duration-* {
   --tw-animation-duration: calc(--value(number) * 1ms);
   --tw-animation-duration: --value(--animation-duration-*, [duration], "initial", [*]);
@@ -286,6 +306,8 @@
 }
 @utility fade-in {
   --tw-enter-opacity: 0;
+  /* Start hidden so animation can reveal */
+  opacity: 0;
 }
 @utility fade-in-* {
   --tw-enter-opacity: calc(--value(number) / 100);

@@ -2,7 +2,7 @@
 
 import { Check, Sparkles, X } from "lucide-react";
 
-import { Reveal } from "@/components/reveal";
+import AnimatedContent from "@/components/AnimatedContent";
 import { ShineBorder } from "@/components/ui/shine-border";
 
 const allFeatures = [
@@ -91,7 +91,7 @@ const pricingTiers = [
 
 export default function PricingSection() {
   return (
-    <Reveal>
+    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
@@ -131,14 +131,15 @@ export default function PricingSection() {
             {pricingTiers.map((tier, index) => (
               <div
                 key={index}
-                className={`bg-card/50 group relative isolate overflow-hidden rounded-[16px] backdrop-blur-sm transition-all duration-300 ${
+                className={`bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] backdrop-blur-sm transition-all duration-300 ${
                   tier.popular
-                    ? "border-2 border-[#fb923c]/60 p-6 md:-mt-4 md:mb-4 md:p-8"
+                    ? "border-2 p-6 md:-mt-4 md:mb-4 md:p-8"
                     : "border border-border p-6 md:p-8"
                 }`}
                 style={{
+                  borderColor: tier.popular ? "var(--accent-orange-60)" : undefined,
                   boxShadow: tier.popular
-                    ? "var(--shadow-lg), 0 0 30px rgba(251, 146, 60, 0.2)"
+                    ? `var(--shadow-lg), 0 0 30px var(--accent-orange-20)`
                     : "var(--shadow-md)",
                 }}
                 onMouseEnter={(e) => {
@@ -146,24 +147,24 @@ export default function PricingSection() {
                   const title = card.querySelector("[data-pricing-title]");
                   const price = card.querySelector("[data-pricing-price]");
                   if (tier.popular) {
-                    card.style.borderColor = "rgba(251, 146, 60, 0.8)";
-                    card.style.boxShadow = "var(--shadow-xl), 0 0 40px rgba(251, 146, 60, 0.3)";
+                    card.style.borderColor = "var(--accent-orange-80)";
+                    card.style.boxShadow = `var(--shadow-xl), 0 0 40px var(--accent-orange-30)`;
                   } else {
-                    card.style.borderColor = "rgba(251, 146, 60, 0.4)";
-                    card.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+                    card.style.borderColor = "var(--accent-orange-40)";
+                    card.style.boxShadow = `var(--shadow-lg), 0 0 20px var(--accent-orange-15)`;
                   }
                   card.style.transform = "translateY(-2px)";
                   card.style.zIndex = "10";
-                  if (title) (title as HTMLElement).style.color = "#fb923c";
-                  if (price) (price as HTMLElement).style.color = "#fb923c";
+                  if (title) (title as HTMLElement).style.color = "var(--accent-orange)";
+                  if (price) (price as HTMLElement).style.color = "var(--accent-orange)";
                 }}
                 onMouseLeave={(e) => {
                   const card = e.currentTarget;
                   const title = card.querySelector("[data-pricing-title]");
                   const price = card.querySelector("[data-pricing-price]");
                   if (tier.popular) {
-                    card.style.borderColor = "rgba(251, 146, 60, 0.6)";
-                    card.style.boxShadow = "var(--shadow-lg), 0 0 30px rgba(251, 146, 60, 0.2)";
+                    card.style.borderColor = "var(--accent-orange-60)";
+                    card.style.boxShadow = `var(--shadow-lg), 0 0 30px var(--accent-orange-20)`;
                   } else {
                     card.style.borderColor = "";
                     card.style.boxShadow = "var(--shadow-md)";
@@ -177,17 +178,19 @@ export default function PricingSection() {
                 <ShineBorder
                   borderWidth={tier.popular ? 2 : 1}
                   duration={14}
-                  shineColor={tier.popular ? "rgba(251, 146, 60, 0.6)" : "rgba(255, 255, 255, 0.5)"}
+                  shineColor={tier.popular ? "var(--accent-orange-60)" : "rgba(255, 255, 255, 0.5)"}
                 />
                 <div className="relative z-10">
                   {/* Popular Badge */}
                   {tier.popular && (
                     <div className="mb-4 flex items-center justify-center">
                       <span
-                        className="inline-flex items-center gap-1.5 rounded-full border border-[#fb923c]/40 bg-[#fb923c]/20 px-3 py-1 text-xs font-semibold"
+                        className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold"
                         style={{
                           fontFamily: "var(--font-geist-mono)",
-                          color: "#fb923c",
+                          color: "var(--accent-orange)",
+                          borderColor: "var(--accent-orange-40)",
+                          backgroundColor: "var(--accent-orange-20)",
                         }}
                       >
                         <Sparkles className="h-3 w-3" />
@@ -303,6 +306,6 @@ export default function PricingSection() {
           </div>
         </div>
       </section>
-    </Reveal>
+    </AnimatedContent>
   );
 }

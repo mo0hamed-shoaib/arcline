@@ -1,6 +1,35 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Tailwind CSS v4 Theme Configuration */
+@theme {
+  /* Color definitions - these create utilities like border-border, bg-background, etc. */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Border radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
 
 /* Matrix Font */
 @font-face {
@@ -91,7 +120,9 @@
     --input: oklch(0.94 0 0);
     --ring: oklch(0 0 0);
 
-    --radius: 0.5rem;
+    --radius-interactive: 0.5rem;
+    --radius-surface: 0.5rem;
+    --radius: var(--radius-interactive);
 
     /* ========================================
        GRADIENT SYSTEM - Brand Colors
@@ -103,6 +134,31 @@
     --gradient-cyan: #22d3ee;
     --gradient-orange: #ff5c28;
     --gradient-pink: #ff5c9d;
+
+    /* Accent color with opacity variants */
+    --accent-orange: rgb(251, 146, 60);
+    --accent-orange-15: rgba(251, 146, 60, 0.15);
+    --accent-orange-20: rgba(251, 146, 60, 0.2);
+    --accent-orange-30: rgba(251, 146, 60, 0.3);
+    --accent-orange-40: rgba(251, 146, 60, 0.4);
+    --accent-orange-60: rgba(251, 146, 60, 0.6);
+    --accent-orange-80: rgba(251, 146, 60, 0.8);
+
+    /* Grid colors - theme-aware */
+    --grid-color-light: rgba(0, 0, 0, 0.3);
+    --grid-color-dark: rgba(255, 255, 255, 0.3);
+    --grid-color: var(--grid-color-light);
+
+    /* Gauge colors - theme-aware */
+    --gauge-primary-light: rgba(0, 0, 0, 0.9);
+    --gauge-primary-dark: rgba(255, 255, 255, 0.9);
+    --gauge-secondary-light: rgba(0, 0, 0, 0.1);
+    --gauge-secondary-dark: rgba(255, 255, 255, 0.1);
+
+    /* Scrollbar colors - light mode */
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgb(0, 0, 0);
+    --scrollbar-thumb-hover: rgb(0, 0, 0);
 
     /* Hero radial gradient - U-shaped glow (shared by both themes) */
     --hero-radial-gradient: radial-gradient(
@@ -139,6 +195,10 @@
     --text-shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.8);
     --text-shadow-md: 0 2px 4px rgba(255, 255, 255, 0.9);
     --text-shadow-lg: 0 4px 8px rgba(255, 255, 255, 1);
+
+    /* Content text shadows - subtle for readability */
+    --text-shadow-content-sm: 0 1px 4px rgba(0, 0, 0, 0.1);
+    --text-shadow-content-md: 0 2px 8px rgba(0, 0, 0, 0.1);
 
     /* ========================================
        OVERLAY SYSTEM
@@ -225,6 +285,22 @@
     --text-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.6);
     --text-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.7);
 
+    /* Content text shadows - subtle for readability */
+    --text-shadow-content-sm: 0 1px 4px rgba(0, 0, 0, 0.1);
+    --text-shadow-content-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    /* Grid colors - dark mode */
+    --grid-color: var(--grid-color-dark);
+
+    /* Gauge colors - dark mode */
+    --gauge-primary: var(--gauge-primary-dark);
+    --gauge-secondary: var(--gauge-secondary-dark);
+
+    /* Scrollbar colors - dark mode */
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgb(255, 255, 255);
+    --scrollbar-thumb-hover: rgb(255, 255, 255);
+
     /* Overlays for dark mode */
     --overlay-light: rgba(255, 255, 255, 0.1);
     --overlay-dark: rgba(0, 0, 0, 0.7);
@@ -305,6 +381,17 @@
     --text-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.6);
     --text-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.7);
 
+    /* Content text shadows - subtle for readability */
+    --text-shadow-content-sm: 0 1px 4px rgba(0, 0, 0, 0.1);
+    --text-shadow-content-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    /* Grid colors - light mode */
+    --grid-color: var(--grid-color-light);
+
+    /* Gauge colors - light mode */
+    --gauge-primary: var(--gauge-primary-light);
+    --gauge-secondary: var(--gauge-secondary-light);
+
     /* Overlays for light mode */
     --overlay-light: rgba(255, 255, 255, 0.7);
     --overlay-dark: rgba(0, 0, 0, 0.2);
@@ -335,12 +422,41 @@
   }
 
   * {
-    @apply border-border;
+    border-color: var(--border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-geist-mono);
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb,
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover,
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
   }
 
   h1 {
@@ -364,6 +480,18 @@
   }
   .theme {
     --animate-shine: shine var(--duration) infinite linear;
+  }
+
+  .rounded-md {
+    border-radius: var(--radius-interactive);
+  }
+
+  .rounded-lg,
+  .rounded-xl,
+  .rounded-2xl,
+  .rounded-3xl,
+  .rounded-4xl {
+    border-radius: var(--radius-surface);
   }
 }
 
@@ -398,17 +526,6 @@ p[style*="--selection-text-color"]::-moz-selection {
 .logo-text::-moz-selection {
   color: var(--foreground);
   background-color: var(--background);
-}
-
-.noise-texture {
-  position: absolute;
-  inset: 0;
-  background-image: url("/images/noise.webp");
-  background-repeat: repeat;
-  background-size: 150px 150px;
-  mix-blend-mode: multiply;
-  opacity: 0.15;
-  pointer-events: none;
 }
 
 /* Gradient Container Base */
@@ -555,6 +672,73 @@ p[style*="--selection-text-color"]::-moz-selection {
   overflow: hidden;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Accordion keyframes - moved outside @theme for better compatibility */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(
+      --radix-accordion-content-height,
+      var(
+        --bits-accordion-content-height,
+        var(
+          --reka-accordion-content-height,
+          var(--kb-accordion-content-height, var(--ngp-accordion-content-height, auto))
+        )
+      )
+    );
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(
+      --radix-accordion-content-height,
+      var(
+        --bits-accordion-content-height,
+        var(
+          --reka-accordion-content-height,
+          var(--kb-accordion-content-height, var(--ngp-accordion-content-height, auto))
+        )
+      )
+    );
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Accordion animations - Direct CSS for Radix UI AccordionContent */
+/* Radix UI sets data-state on the Content element */
+[data-radix-accordion-content][data-state="open"],
+[data-state="open"][class*="text-sm"][class*="overflow-hidden"] {
+  animation: accordion-down 0.2s ease-out;
+}
+
+[data-radix-accordion-content][data-state="closed"],
+[data-state="closed"][class*="text-sm"][class*="overflow-hidden"] {
+  animation: accordion-up 0.2s ease-out;
+}
+
 @theme inline {
   @keyframes shine {
     0% {
@@ -566,5 +750,70 @@ p[style*="--selection-text-color"]::-moz-selection {
     to {
       background-position: 0% 0%;
     }
+  }
+
+  --animate-marquee: marquee var(--duration, 40s) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+  --animate-shine: shine var(--duration) infinite linear;
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+
+  @keyframes moveHorizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+  }
+
+  @keyframes moveInCircle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moveVertical {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

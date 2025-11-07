@@ -4,6 +4,8 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   transpilePackages: ["geist"],
+  // Turbopack config (empty - using default behavior)
+  turbopack: {},
   // Disable Next.js devtools in production
   ...(process.env.NODE_ENV === "production" && {
     webpack: (config, { isServer }) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Reveal } from "@/components/reveal";
+import AnimatedContent from "@/components/AnimatedContent";
 import {
   Accordion,
   AccordionContent,
@@ -81,7 +81,7 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <Reveal>
+    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="relative py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2
@@ -107,18 +107,18 @@ export default function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card/50 group relative isolate overflow-hidden rounded-[16px] border border-border backdrop-blur-sm transition-all duration-300"
+                className="bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] border border-border backdrop-blur-sm transition-all duration-300"
                 style={{
                   boxShadow: "var(--shadow-md)",
                 }}
                 onMouseEnter={(e) => {
                   const item = e.currentTarget;
                   const question = item.querySelector("[data-question]");
-                  item.style.borderColor = "rgba(251, 146, 60, 0.4)";
-                  item.style.boxShadow = "var(--shadow-lg), 0 0 20px rgba(251, 146, 60, 0.15)";
+                  item.style.borderColor = "var(--accent-orange-40)";
+                  item.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
                   item.style.transform = "translateY(-2px)";
                   item.style.zIndex = "10";
-                  if (question) (question as HTMLElement).style.color = "#fb923c";
+                  if (question) (question as HTMLElement).style.color = "var(--accent-orange)";
                 }}
                 onMouseLeave={(e) => {
                   const item = e.currentTarget;
@@ -159,6 +159,6 @@ export default function FAQSection() {
           </Accordion>
         </div>
       </section>
-    </Reveal>
+    </AnimatedContent>
   );
 }

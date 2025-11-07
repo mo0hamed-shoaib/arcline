@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
+  // Tailwind CSS v4 uses CSS-first configuration
+  // Most configuration is now done in CSS using @theme directive
+  // This file is kept for compatibility with tools that expect a config file
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -9,106 +11,8 @@ const config: Config = {
     "./src/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)"],
-        mono: ["var(--font-geist-mono)"],
-      },
-      colors: {
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
-        },
-        secondary: {
-          DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)",
-        },
-        destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
-        },
-        muted: {
-          DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)",
-        },
-        accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
-        },
-        popover: {
-          DEFAULT: "var(--popover)",
-          foreground: "var(--popover-foreground)",
-        },
-        card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "scroll-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        "scroll-right": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0)" },
-        },
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
-        },
-        "marquee-vertical": {
-          "0%": { transform: "translateY(0%)" },
-          "100%": { transform: "translateY(-100%)" },
-        },
-        "pulse-slow": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.6" },
-        },
-        shine: {
-          "0%": { backgroundPosition: "0% 0%" },
-          "50%": { backgroundPosition: "100% 100%" },
-          "100%": { backgroundPosition: "0% 0%" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "scroll-left": "scroll-left 60s linear infinite",
-        "scroll-right": "scroll-right 60s linear infinite",
-        marquee: "marquee var(--duration) linear infinite",
-        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
-        "pulse-slow": "pulse-slow 3s ease-in-out infinite",
-        shine: "shine var(--duration, 14s) infinite linear",
-      },
-    },
-  },
+  // Note: Theme configuration has moved to CSS (@theme in globals.css)
+  // Plugins and other config can still be defined here
   plugins: [require("tailwindcss-animate")],
 };
 
