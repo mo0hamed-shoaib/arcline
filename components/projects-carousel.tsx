@@ -108,35 +108,35 @@ export function ProjectsCarousel({
   return (
     <>
       <section className="relative">
-        <div className="rounded-(--radius-surface) border-border/60 bg-linear-to-br from-card/90 via-card to-card/80 ring-border/40 overflow-hidden border shadow-lg ring-1 backdrop-blur-sm">
+        <div className="rounded-(--radius-surface) border-border/60 bg-linear-to-br from-card/90 via-card to-card/80 ring-border/40 overflow-hidden border shadow-md ring-1 backdrop-blur-sm">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex touch-pan-y touch-pinch-zoom">
               {slides.map((slide) => (
                 <article
                   key={slide.id}
-                  className="rounded-(--radius-surface) border-border/60 bg-card/80 ring-border/40 flex min-w-0 flex-[0_0_100%] flex-col overflow-hidden border shadow-lg ring-1"
+                  className="rounded-(--radius-surface) border-border/60 bg-card/80 ring-border/35 flex min-w-0 flex-[0_0_100%] flex-col overflow-hidden border shadow-md ring-1"
                 >
-                  <div className="aspect-4/3 rounded-t-(--radius-surface) relative overflow-hidden sm:aspect-video">
+                  <div className="relative aspect-[6/5] overflow-hidden rounded-t-(--radius-surface) sm:aspect-[16/9]">
                     <Image
                       src={slide.image.src}
                       alt={slide.image.alt}
                       fill
-                      sizes="(min-width: 768px) 65vw, 100vw"
+                      sizes="(min-width: 1024px) 60vw, (min-width: 640px) 80vw, 100vw"
                       className="object-cover"
                       priority
                     />
                   </div>
 
-                  <div className="w/full border-border/40 bg-background/70 flex flex-col gap-6 border-t px-6 py-6 sm:px-8 sm:py-7">
+                  <div className="w/full border-border/40 bg-background/70 flex flex-col gap-4 border-t px-5 py-4 sm:px-6 sm:py-5">
                     <div>
                       <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
                         {slide.id}
                       </span>
-                      <h3 className="text-foreground mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+                      <h3 className="text-foreground mt-2 text-[1.45rem] font-semibold tracking-tight md:text-[1.7rem]">
                         {slide.title}
                       </h3>
                       <p
-                        className="text-muted-foreground mt-3 text-base leading-7"
+                        className="text-muted-foreground mt-3 text-[0.9rem] leading-6"
                         style={{
                           display: "-webkit-box",
                           WebkitLineClamp: 3,
@@ -153,7 +153,7 @@ export function ProjectsCarousel({
                           size="sm"
                           onClick={() => setActiveCaseStudy(slide)}
                           className={cn(
-                            "cursor-pointer px-2 py-1 text-xs font-semibold text-foreground hover:bg-transparent hover:text-accent-foreground"
+                            "cursor-pointer px-1.5 py-1 text-[0.65rem] font-semibold text-foreground hover:bg-transparent hover:text-accent-foreground"
                           )}
                           style={{
                             fontFamily: "var(--font-geist-mono)",
@@ -166,23 +166,23 @@ export function ProjectsCarousel({
                       )}
                     </div>
 
-                    <ul className="grid gap-3 sm:grid-cols-2">
+                    <ul className="grid gap-2.5 sm:grid-cols-2">
                       {slide.highlights.map((item) => (
                         <li
                           key={item}
-                          className="border-border/60 bg-card/40 text-foreground/90 rounded-(--radius-interactive) border px-4 py-3 text-sm font-medium shadow-sm shadow-black/5"
+                          className="border-border/60 bg-card/40 text-foreground/90 rounded-(--radius-interactive) border px-3 py-2 text-[0.85rem] font-medium shadow-sm shadow-black/5"
                         >
                           {item}
                         </li>
                       ))}
                     </ul>
 
-                    <div className="flex flex-wrap items-center justify-center gap-3 pt-2 sm:justify-start">
+                    <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:justify-start">
                       {slide.websiteUrl && (
                         <Button
                           asChild
-                          size="lg"
-                          className="rounded-(--radius-interactive) cursor-pointer px-5"
+                          size="sm"
+                          className="rounded-(--radius-interactive) cursor-pointer px-4 py-2"
                         >
                           <Link href={slide.websiteUrl} target="_blank" rel="noopener noreferrer">
                             VIEW WEBSITE
@@ -197,13 +197,13 @@ export function ProjectsCarousel({
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-4 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => handleNav("prev")}
               className={cn(
-                "border-border/70 bg-card/60 text-foreground hover:bg-accent/60 inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                "border-border/70 bg-card/60 text-foreground hover:bg-accent/60 inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               )}
               aria-label="Previous slide"
             >
@@ -213,7 +213,7 @@ export function ProjectsCarousel({
               type="button"
               onClick={() => handleNav("next")}
               className={cn(
-                "border-border/70 bg-card/60 text-foreground hover:bg-accent/60 inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                "border-border/70 bg-card/60 text-foreground hover:bg-accent/60 inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               )}
               aria-label="Next slide"
             >
@@ -228,7 +228,7 @@ export function ProjectsCarousel({
                 type="button"
                 onClick={() => handleDot(index)}
                 className={cn(
-                  "h-2.5 w-2.5 rounded-full transition-all duration-200",
+                  "h-2 w-2 rounded-full transition-all duration-200",
                   index === selectedIndex
                     ? "bg-foreground shadow-[0_0_0_6px_rgba(15,23,42,0.12)]"
                     : "bg-foreground/30 hover:bg-foreground/60"

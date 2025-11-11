@@ -178,9 +178,9 @@ export default function ClientTestimonialsSection() {
       <section className="py-12 md:py-16">
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
-          <div className="mb-6 px-4 text-center md:mb-12">
+          <div className="mb-12 text-center md:mb-16">
             <h2
-              className="mb-4 font-semibold"
+              className="mb-6 font-semibold"
               style={{
                 backgroundImage: "var(--text-gradient)",
                 color: "transparent",
@@ -197,15 +197,13 @@ export default function ClientTestimonialsSection() {
               Client Feedback and Testimonials
             </h2>
             <p
-              className="text-foreground/90 mx-auto mb-8 max-w-2xl"
+              className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
               style={{
                 fontFamily: "var(--font-geist-mono)",
-                fontSize: "clamp(18px, 3vw, 24px)",
-                lineHeight: "1.4",
                 textAlign: "center",
               }}
             >
-              See what clients say about working with Arcline.
+              Partner stories on collaboration, velocity, and measurable wins.
             </p>
           </div>
 

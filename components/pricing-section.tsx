@@ -114,15 +114,13 @@ export default function PricingSection() {
               Pricing
             </h2>
             <p
-              className="text-foreground/90 mx-auto mb-8 max-w-2xl"
+              className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
               style={{
                 fontFamily: "var(--font-geist-mono)",
-                fontSize: "clamp(18px, 3vw, 24px)",
-                lineHeight: "1.4",
                 textAlign: "center",
               }}
             >
-              Project-based pricing tailored to your needs.
+              Tailored project tiers for launches, relaunches, and refreshes.
             </p>
           </div>
 

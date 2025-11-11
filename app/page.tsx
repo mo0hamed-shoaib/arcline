@@ -36,11 +36,10 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
 import ProjectsInMotionSection from "@/components/projects-in-motion-section";
-import SEOPerformanceAccessibilitySection from "@/components/seo-performance-accessibility-section";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { Marquee } from "@/components/ui/marquee";
 import { buttonVariants, commonStyles, spacing, typography } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
+import { GrainGradient } from "@paper-design/shaders-react";
 
 export default function Home() {
   return (
@@ -51,10 +50,11 @@ export default function Home() {
           direction="vertical"
           distance={50}
           threshold={0}
-          duration={0.8}
-          ease="power3.out"
+          duration={0.9}
+          ease="expo.out"
           animateOpacity
           initialOpacity={0}
+          scale={0.98}
         >
           <Navbar isBannerVisible={false} />
         </AnimatedContent>
@@ -71,20 +71,17 @@ export default function Home() {
           )}
         >
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-            <BackgroundGradientAnimation
-              containerClassName="h-full w-full"
-              interactive={false}
-              backgroundGradient="linear-gradient(130deg, rgba(249, 115, 22, 0.85) 0%, rgba(251, 146, 60, 0.7) 15%, rgba(253, 164, 175, 0.75) 30%, rgba(253, 164, 175, 0.55) 45%)"
-              gradientBackgroundStart="rgba(249, 115, 22, 0.85)"
-              gradientBackgroundEnd="rgba(253, 164, 175, 0.55)"
-              firstColor="249, 115, 22"
-              secondColor="251, 146, 60"
-              thirdColor="253, 164, 175"
-              fourthColor="253, 164, 175"
-              fifthColor="255, 237, 213"
-              pointerColor="253, 164, 175"
-              blendingValue="screen"
-              size="95%"
+            <GrainGradient
+              width="100%"
+              height="100%"
+              fit="cover"
+              colors={["#f97316", "#fb923c", "#fda4af", "#ffedd5"]}
+              colorBack="#0f172a"
+              softness={0.6}
+              intensity={0.45}
+              noise={0.28}
+              shape="corners"
+              speed={0.6}
             />
           </div>
 
@@ -104,16 +101,22 @@ export default function Home() {
               direction="vertical"
               distance={50}
               threshold={0}
-              duration={0.8}
-              ease="power3.out"
+              duration={1.1}
+              ease="expo.out"
+              scale={0.96}
+              tilt={8}
+              blurRadius={16}
             >
               <div className="mx-auto max-w-4xl">
                 <h1
-                  className="heading-with-selection mb-3 select-text overflow-visible font-semibold"
+                  className="heading-with-selection mb-4 select-text overflow-visible font-semibold text-white"
                   style={{
                     ...typography.heading.hero.desktop,
                     ...commonStyles.heading,
                     fontFamily: typography.fontSans,
+                    fontSize: "clamp(3.4rem, 7.5vw, 5.4rem)",
+                    lineHeight: 1.05,
+                    color: "#ffffff",
                   }}
                   aria-label="Build Your Vision"
                 >
@@ -126,21 +129,26 @@ export default function Home() {
               distance={50}
               delay={0.2}
               threshold={0}
-              duration={0.8}
-              ease="power3.out"
+              duration={1.15}
+              ease="expo.out"
+              scale={0.965}
+              tilt={6}
+              blurRadius={12}
             >
               <div className="mx-auto max-w-3xl">
                 <p
-                  className="select-text"
-                  style={
-                    {
-                      ...typography.body.hero.desktop,
-                      ...commonStyles.body,
-                    } as React.CSSProperties
-                  }
+                  className="select-text text-white"
+                  style={{
+                    ...typography.body.hero.desktop,
+                    ...commonStyles.body,
+                    fontSize: "clamp(0.95rem, 2.4vw, 1.2rem)",
+                    maxWidth: "38rem",
+                    color: "#ffffff",
+                  }}
                 >
-                  Modern websites with AI-powered development. Tourism, e-commerce, portfolios, and
-                  more.
+                  At Arcline, we craft standout modern websites—fast, responsive, and
+                  unforgettable—so your brand feels premium, converts more customers, and stays
+                  ahead with AI-powered development.
                 </p>
               </div>
             </AnimatedContent>
@@ -149,8 +157,11 @@ export default function Home() {
               distance={50}
               delay={0.4}
               threshold={0}
-              duration={0.8}
-              ease="power3.out"
+              duration={1.2}
+              ease="expo.out"
+              scale={0.97}
+              tilt={4}
+              blurRadius={10}
             >
               <div className="flex w-full max-w-sm flex-col items-center gap-3">
                 <a
@@ -188,15 +199,13 @@ export default function Home() {
                 Services Tailored to You
               </h2>
               <p
-                className="text-foreground/90 mx-auto mb-8 max-w-2xl"
+                className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
                 style={{
-                  ...typography.body.section,
                   fontFamily: typography.fontMono,
                   textAlign: "center",
                 }}
               >
-                From personal portfolios to complex e-commerce platforms. Built with modern tools
-                and AI-powered development.
+                Launch-ready builds across tourism, SaaS, and commerce.
               </p>
             </div>
 
@@ -374,7 +383,6 @@ export default function Home() {
 
         <ProjectsInMotionSection />
         <CustomStackInsightsSection />
-        <SEOPerformanceAccessibilitySection />
         <PricingSection />
         <ClientTestimonialsSection />
         <FAQSection />

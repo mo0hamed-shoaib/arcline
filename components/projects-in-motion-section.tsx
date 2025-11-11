@@ -131,16 +131,16 @@ const slides = [
 export default function ProjectsInMotionSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-      <section className="py-12 md:py-16">
-        <div className="mx-auto w-full max-w-[1296px] px-4">
-          <div className="mb-8 text-center md:mb-12">
+      <section className="py-10 md:py-14">
+        <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
+          <div className="mb-6 text-center md:mb-10">
             <h2
               className="mb-4 font-semibold"
               style={{
                 backgroundImage: "var(--text-gradient)",
                 color: "transparent",
                 fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
+                fontSize: "clamp(30px, 5.5vw, 48px)",
                 fontWeight: 600,
                 letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
                 lineHeight: "1.15",
@@ -152,17 +152,18 @@ export default function ProjectsInMotionSection() {
               Projects in Motion
             </h2>
             <p
-              className="text-muted-foreground mx-auto max-w-2xl text-base leading-7 sm:text-lg"
+              className="text-muted-foreground mx-auto max-w-none text-sm leading-tight sm:text-base"
               style={{
                 fontFamily: "var(--font-geist-mono)",
               }}
             >
-              A rotating look at launch-ready builds—from tourism platforms to analytics suites—showing how strategy,
-              design, and engineering ship together.
+              Launch snapshots from tourism, manufacturing, and SaaS workstreams.
             </p>
           </div>
 
-          <ProjectsCarousel slides={slides} />
+          <div className="mx-auto w-full max-w-[1100px] px-1 sm:px-2">
+            <ProjectsCarousel slides={slides} />
+          </div>
         </div>
       </section>
     </AnimatedContent>

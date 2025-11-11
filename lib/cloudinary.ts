@@ -37,10 +37,17 @@ const buildTransformationString = (options?: CloudinaryTransformationOptions) =>
 
 const sanitizePublicId = (publicId: string) => publicId.replace(/^\/+/, "");
 
+const formatVersionSegment = (version?: string | number) => {
+  if (version === undefined || version === null) return undefined;
+  const value = version.toString();
+  return value.startsWith("v") ? value : `v${value}`;
+};
+
 export const buildCloudinaryUrl = (
   publicId: string,
   options?: CloudinaryTransformationOptions,
-  deliveryType: string = DEFAULT_DELIVERY_TYPE
+  deliveryType: string = DEFAULT_DELIVERY_TYPE,
+  version?: string | number
 ) => {
   const safePublicId = sanitizePublicId(publicId);
   if (!useCloudinary || !cloudName) {
@@ -59,6 +66,11 @@ export const buildCloudinaryUrl = (
     segments.push(transformation);
   }
 
+  const versionSegment = formatVersionSegment(version);
+  if (versionSegment) {
+    segments.push(versionSegment);
+  }
+
   segments.push(safePublicId);
 
   return segments.join("/");
@@ -69,4 +81,3 @@ export const cloudinaryConfig = {
   enabled: useCloudinary,
   deliveryType: DEFAULT_DELIVERY_TYPE,
 };
-

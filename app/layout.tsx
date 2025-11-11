@@ -83,9 +83,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
-
+        <link
+          rel="preload"
+          href="/fonts/MatrixtypeBold-yYyB5.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+          fetchPriority="high"
+        />
         {/* Software Application JSON-LD */}
         <script
           type="application/ld+json"
