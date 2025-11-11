@@ -81,6 +81,7 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
                 height={28}
                 className="mr-3"
                 priority
+                fetchPriority="high"
               />
             )}
             {!mounted && <div className="mr-3 h-7 w-7" />}

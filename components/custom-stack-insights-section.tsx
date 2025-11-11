@@ -26,28 +26,31 @@ const PERFORMANCE_PUBLIC_ID = "arcline/ui/bento/performance";
 const TECH_STACK_PUBLIC_ID = "arcline/ui/bento/tech-stack-language";
 const TECH_STACK_LIGHT_PUBLIC_ID = "arcline/ui/bento/tech-stack-language-light";
 
+const FEATURE_IMAGE_TRANSFORM = { width: 1280, dpr: "auto" as const };
+const COMPARE_IMAGE_TRANSFORM = { width: 1400, dpr: "auto" as const };
+
 const mobileFirstImageSrc = withCloudinary
-  ? getCloudinaryImageUrl(MOBILE_FIRST_PUBLIC_ID, MOBILE_FIRST_VERSION)
+  ? getCloudinaryImageUrl(MOBILE_FIRST_PUBLIC_ID, MOBILE_FIRST_VERSION, FEATURE_IMAGE_TRANSFORM)
   : "/images/mobile-first-design.jpg";
 
 const colorThemeLightSrc = withCloudinary
-  ? getCloudinaryImageUrl(COLOR_THEME_LIGHT_ID, COLOR_THEME_LIGHT_VERSION)
+  ? getCloudinaryImageUrl(COLOR_THEME_LIGHT_ID, COLOR_THEME_LIGHT_VERSION, COMPARE_IMAGE_TRANSFORM)
   : "/images/color-theme-light.jpg";
 
 const colorThemeDarkSrc = withCloudinary
-  ? getCloudinaryImageUrl(COLOR_THEME_DARK_ID, COLOR_THEME_DARK_VERSION)
+  ? getCloudinaryImageUrl(COLOR_THEME_DARK_ID, COLOR_THEME_DARK_VERSION, COMPARE_IMAGE_TRANSFORM)
   : "/images/color-theme-dark.jpg";
 
 const performanceImageSrc = withCloudinary
-  ? getCloudinaryImageUrl(PERFORMANCE_PUBLIC_ID, PERFORMANCE_VERSION)
+  ? getCloudinaryImageUrl(PERFORMANCE_PUBLIC_ID, PERFORMANCE_VERSION, FEATURE_IMAGE_TRANSFORM)
   : "/images/performance.jpg";
 
 const techStackImageSrc = withCloudinary
-  ? getCloudinaryImageUrl(TECH_STACK_PUBLIC_ID, TECH_STACK_LANGUAGE_VERSION)
+  ? getCloudinaryImageUrl(TECH_STACK_PUBLIC_ID, TECH_STACK_LANGUAGE_VERSION, FEATURE_IMAGE_TRANSFORM)
   : "/images/tech-stack-language.jpg";
 
 const techStackLightImageSrc = withCloudinary
-  ? getCloudinaryImageUrl(TECH_STACK_LIGHT_PUBLIC_ID, TECH_STACK_LANGUAGE_LIGHT_VERSION)
+  ? getCloudinaryImageUrl(TECH_STACK_LIGHT_PUBLIC_ID, TECH_STACK_LANGUAGE_LIGHT_VERSION, FEATURE_IMAGE_TRANSFORM)
   : "/images/tech-stack-language-light.jpg";
 
 type FeatureBandMedia =
@@ -75,6 +78,7 @@ type FeatureBandConfig = {
   bullets: readonly string[];
   media: FeatureBandMedia;
   mediaPosition?: "left" | "right";
+  priorityMedia?: boolean;
 };
 
 const featureBands: FeatureBandConfig[] = [
@@ -95,6 +99,7 @@ const featureBands: FeatureBandConfig[] = [
       alt: "Mobile-first design example",
     },
     mediaPosition: "left",
+    priorityMedia: true,
   },
   {
     id: "color-theme",
@@ -152,7 +157,7 @@ const featureBands: FeatureBandConfig[] = [
   },
 ];
 
-const FeatureMedia = ({ media }: { media: FeatureBandMedia }) => {
+const FeatureMedia = ({ media, priority }: { media: FeatureBandMedia; priority?: boolean }) => {
   if (media.type === "compare") {
     return (
       <Compare
@@ -165,6 +170,7 @@ const FeatureMedia = ({ media }: { media: FeatureBandMedia }) => {
         autoplayDuration={5000}
         slideMode="hover"
         showHandlebar={false}
+        loading={priority ? "eager" : "lazy"}
       />
     );
   }
@@ -176,16 +182,18 @@ const FeatureMedia = ({ media }: { media: FeatureBandMedia }) => {
           src={media.darkSrc}
           alt={media.alt}
           fill
-          priority
-          sizes="(min-width: 768px) 50vw, 100vw"
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 90vw"
           className={cn("hidden object-cover", "dark:block")}
         />
         <Image
           src={media.lightSrc}
           alt={media.alt}
           fill
-          priority
-          sizes="(min-width: 768px) 50vw, 100vw"
+          priority={priority}
+          loading={priority ? "eager" : "lazy"}
+          sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 90vw"
           className={cn("block object-cover", "dark:hidden")}
         />
       </>
@@ -197,8 +205,9 @@ const FeatureMedia = ({ media }: { media: FeatureBandMedia }) => {
       src={media.src}
       alt={media.alt}
       fill
-      priority
-      sizes="(min-width: 768px) 50vw, 100vw"
+      priority={priority}
+      loading={priority ? "eager" : "lazy"}
+      sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 90vw"
       className="object-cover"
     />
   );
@@ -210,6 +219,7 @@ const FeatureBand = ({
   bullets,
   media,
   mediaPosition = "left",
+  priorityMedia,
 }: FeatureBandConfig) => {
   const mediaOrder = mediaPosition === "left" ? "order-1 md:order-1" : "order-1 md:order-2";
   const textOrder = mediaPosition === "left" ? "order-2 md:order-2" : "order-2 md:order-1";
@@ -217,7 +227,7 @@ const FeatureBand = ({
   return (
     <section className="grid gap-8 md:grid-cols-2 md:items-center">
       <div className={cn("relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)", mediaOrder)}>
-        <FeatureMedia media={media} />
+        <FeatureMedia media={media} priority={priorityMedia} />
       </div>
 
       <div className={cn("flex flex-col gap-5 text-foreground", textOrder)}>
@@ -258,7 +268,7 @@ export default function CustomStackInsightsSection() {
               ease="power3.out"
               delay={index * 0.1}
             >
-              <FeatureBand {...band} />
+              <FeatureBand {...band} priorityMedia={band.priorityMedia ?? index === 0} />
             </AnimatedContent>
           ))}
         </div>

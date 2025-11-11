@@ -15,9 +15,16 @@ import {
   Shield,
 } from "lucide-react";
 
-import Footer from "@/components/footer";
 import { LegalCard } from "@/components/legal-card";
+import {
+  LegalHeading,
+  LegalList,
+  LegalMuted,
+  LegalParagraph,
+  LegalSubheading,
+} from "@/components/legal-typography";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function CookiesPage() {
   return (
@@ -28,232 +35,99 @@ export default function CookiesPage() {
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="mono-body mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            <span
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-              }}
-            >
-              Back to Home
-            </span>
+            Back to Home
           </Link>
           <div className="mb-12">
-            <h1
-              className="mb-4 text-4xl font-bold md:text-5xl"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 48px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
-              Cookie Policy
-            </h1>
+            <h1 className="section-head mb-4">Cookie Policy</h1>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Calendar className="h-4 w-4" />
-              <span
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "14px",
-                }}
-              >
-                Last Updated: January 2025
-              </span>
+              <span className="mono-body text-xs md:text-sm">Last Updated: January 2025</span>
             </div>
           </div>
 
           <div className="space-y-6">
             <LegalCard>
               <div className="mb-4 flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Info className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
                 <div>
-                  <h2
-                    className="mb-2 text-xl font-semibold text-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                    }}
-                  >
+                  <LegalHeading className="mb-2 text-xl transition-colors duration-300">
                     About This Policy
-                  </h2>
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
+                  </LegalHeading>
+                  <LegalParagraph>
                     This policy explains how we use cookies on our website. Read alongside our
                     Privacy Policy.
-                  </p>
+                  </LegalParagraph>
                 </div>
               </div>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Cookie className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  What Are Cookies?
-                </h2>
+                <LegalHeading>What Are Cookies?</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 Cookies are small text files stored on your device when you visit websites. They
                 help websites work properly and remember your preferences. Cookies can be
                 "persistent" (stay until deleted) or "session" (deleted when you close your
                 browser).
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <BarChart3 className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Types of Cookies We Use
-                </h2>
+                <LegalHeading>Types of Cookies We Use</LegalHeading>
               </div>
               <div className="space-y-6">
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Essential Cookies
-                  </h3>
-                  <p
-                    className="text-foreground/80 mb-2"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
+                  <LegalSubheading className="mb-2">Essential Cookies</LegalSubheading>
+                  <LegalParagraph className="mb-2">
                     Required for the website to function. Enable navigation, security, and
                     preference storage. Cannot be disabled.
-                  </p>
-                  <p
-                    className="text-sm text-muted-foreground"
-                    style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
-                  >
-                    Examples: authentication, session management, security
-                  </p>
+                  </LegalParagraph>
+                  <LegalMuted>Examples: authentication, session management, security</LegalMuted>
                 </div>
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Performance Cookies
-                  </h3>
-                  <p
-                    className="text-foreground/80 mb-2"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
+                  <LegalSubheading className="mb-2">Performance Cookies</LegalSubheading>
+                  <LegalParagraph className="mb-2">
                     Help us understand site performance and visitor behavior. All data is aggregated
                     and anonymous.
-                  </p>
-                  <p
-                    className="text-sm text-muted-foreground"
-                    style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
-                  >
-                    Examples: Vercel Analytics, error tracking
-                  </p>
+                  </LegalParagraph>
+                  <LegalMuted>Examples: Vercel Analytics, error tracking</LegalMuted>
                 </div>
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Functional Cookies
-                  </h3>
-                  <p
-                    className="text-foreground/80 mb-2"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
+                  <LegalSubheading className="mb-2">Functional Cookies</LegalSubheading>
+                  <LegalParagraph className="mb-2">
                     Enable enhanced features like theme preferences and UI customization. Some
                     features may not work if disabled.
-                  </p>
-                  <p
-                    className="text-sm text-muted-foreground"
-                    style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
-                  >
-                    Examples: theme selection, UI preferences
-                  </p>
+                  </LegalParagraph>
+                  <LegalMuted>Examples: theme selection, UI preferences</LegalMuted>
                 </div>
               </div>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <ExternalLink className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Third-Party Cookies
-                </h2>
+                <LegalHeading>Third-Party Cookies</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph className="mb-4">
                 We use trusted third-party services that may set cookies:
-              </p>
-              <ul
-                className="text-foreground/80 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              </LegalParagraph>
+              <LegalList className="list-inside list-disc space-y-2">
                 <li>
                   <strong className="text-foreground">Analytics:</strong> Vercel Analytics for
                   understanding website usage
@@ -262,98 +136,52 @@ export default function CookiesPage() {
                   <strong className="text-foreground">Hosting:</strong> Vercel (our hosting
                   provider) may set cookies for performance
                 </li>
-              </ul>
+              </LegalList>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Database className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Local Storage and Similar Technologies
-                </h2>
+                <LegalHeading>Local Storage and Similar Technologies</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 We also use browser storage (localStorage, sessionStorage) to save preferences like
                 theme settings. You can clear this through your browser settings, though some
                 features may not work.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Settings className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Managing Your Cookies
-                </h2>
+                <LegalHeading>Managing Your Cookies</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph className="mb-4">
                 You can manage cookies through your browser settings:
-              </p>
-              <ul
-                className="text-foreground/80 mb-4 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              </LegalParagraph>
+              <LegalList className="mb-4 list-inside list-disc space-y-2">
                 <li>Block or delete cookies in browser privacy settings</li>
                 <li>Clear browsing data to remove stored cookies</li>
                 <li>Use private/incognito mode to prevent cookie storage</li>
-              </ul>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              </LegalList>
+              <LegalParagraph className="mb-4">
                 Note: Disabling cookies may break some website features like theme preferences.
-              </p>
+              </LegalParagraph>
               <div className="border-border/50 bg-card/30 rounded-lg border p-4">
-                <p
-                  className="mb-3 font-semibold text-foreground"
-                  style={{ fontFamily: "var(--font-geist-sans)", fontSize: "16px" }}
-                >
+                <LegalParagraph className="mb-3 font-semibold text-foreground">
                   Browser-Specific Instructions:
-                </p>
+                </LegalParagraph>
                 <ul className="space-y-2 text-sm">
                   <li>
                     <a
                       href="https://support.google.com/chrome/answer/95647"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-foreground/80 inline-flex items-center gap-1 text-foreground underline"
-                      style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
+                      className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm inline-flex items-center gap-1"
                     >
                       Google Chrome <ExternalLink className="h-3 w-3" />
                     </a>
@@ -363,8 +191,7 @@ export default function CookiesPage() {
                       href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-foreground/80 inline-flex items-center gap-1 text-foreground underline"
-                      style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
+                      className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm inline-flex items-center gap-1"
                     >
                       Mozilla Firefox <ExternalLink className="h-3 w-3" />
                     </a>
@@ -374,8 +201,7 @@ export default function CookiesPage() {
                       href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-foreground/80 inline-flex items-center gap-1 text-foreground underline"
-                      style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
+                      className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm inline-flex items-center gap-1"
                     >
                       Safari <ExternalLink className="h-3 w-3" />
                     </a>
@@ -385,8 +211,7 @@ export default function CookiesPage() {
                       href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-foreground/80 inline-flex items-center gap-1 text-foreground underline"
-                      style={{ fontFamily: "var(--font-geist-mono)", fontSize: "14px" }}
+                      className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm inline-flex items-center gap-1"
                     >
                       Microsoft Edge <ExternalLink className="h-3 w-3" />
                     </a>
@@ -397,110 +222,61 @@ export default function CookiesPage() {
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Shield className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Do Not Track Signals
-                </h2>
+                <LegalHeading>Do Not Track Signals</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 If your browser sends a "Do Not Track" signal, we respect it and limit tracking
                 where possible. However, there's no universal standard for DNT, so some analytics
                 may still function.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <FileText className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Updates to This Policy
-                </h2>
+                <LegalHeading>Updates to This Policy</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 We may update this policy to reflect changes in how we use cookies. Material changes
                 will be posted here with an updated date.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Mail className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Contact Us
-                </h2>
+                <LegalHeading>Contact Us</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph className="mb-4">
                 For more information about our use of cookies and your options, please contact us
                 at:
-              </p>
-              <div
-                className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
-                <p>
+              </LegalParagraph>
+              <div className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4">
+                <LegalParagraph className="mono-body text-foreground/90">
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
                     href="mailto:privacy@arcline.dev"
-                    className="hover:text-foreground/80 text-foreground underline"
+                    className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm"
                   >
                     privacy@arcline.dev
                   </a>
-                </p>
-                <p className="mt-2">
+                </LegalParagraph>
+                <LegalParagraph className="mono-body mt-2 text-foreground/90">
                   <strong className="text-foreground">Website:</strong>{" "}
                   <a
                     href="https://arcline.dev"
-                    className="hover:text-foreground/80 text-foreground underline"
+                    className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm"
                   >
                     arcline.dev
                   </a>
-                </p>
+                </LegalParagraph>
               </div>
             </LegalCard>
           </div>

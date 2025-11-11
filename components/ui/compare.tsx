@@ -16,6 +16,7 @@ interface CompareProps {
   showHandlebar?: boolean;
   autoplay?: boolean;
   autoplayDuration?: number;
+  loading?: "eager" | "lazy";
 }
 export const Compare = ({
   firstImage = "",
@@ -28,6 +29,7 @@ export const Compare = ({
   showHandlebar = true,
   autoplay = false,
   autoplayDuration = 5000,
+  loading = "lazy",
 }: CompareProps) => {
   const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
   const [isDragging, setIsDragging] = useState(false);
@@ -214,6 +216,8 @@ export const Compare = ({
                   firstImageClassName
                 )}
                 draggable={false}
+                loading={loading}
+                decoding="async"
               />
             </motion.div>
           ) : null}
@@ -230,6 +234,8 @@ export const Compare = ({
             alt="second image"
             src={secondImage}
             draggable={false}
+            loading={loading}
+            decoding="async"
           />
         ) : null}
       </AnimatePresence>

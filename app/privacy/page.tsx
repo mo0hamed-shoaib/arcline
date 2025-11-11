@@ -13,9 +13,16 @@ import {
   Users,
 } from "lucide-react";
 
-import Footer from "@/components/footer";
 import { LegalCard } from "@/components/legal-card";
+import {
+  LegalHeading,
+  LegalList,
+  LegalMuted,
+  LegalParagraph,
+  LegalSubheading,
+} from "@/components/legal-typography";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function PrivacyPage() {
   return (
@@ -26,43 +33,19 @@ export default function PrivacyPage() {
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="mono-body mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            <span
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-              }}
-            >
-              Back to Home
-            </span>
+            Back to Home
           </Link>
           <div className="mb-12">
-            <h1
-              className="mb-4 text-4xl font-bold md:text-5xl"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 48px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
+            <h1 className="section-head mb-4">
               Privacy Policy
             </h1>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Calendar className="h-4 w-4" />
-              <span
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "14px",
-                }}
-              >
+              <span className="mono-body text-xs md:text-sm">
                 Last Updated: January 2025
               </span>
             </div>
@@ -71,327 +54,151 @@ export default function PrivacyPage() {
           <div className="space-y-6">
             <LegalCard>
               <div className="mb-4 flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Shield className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
                 <div>
-                  <h2
-                    className="mb-2 text-xl font-semibold text-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                    }}
-                  >
-                    Our Commitment
-                  </h2>
-                  <p
-                    className="text-foreground/80"
-                    style={{ fontFamily: "var(--font-geist-mono)", fontSize: "15px" }}
-                  >
-                    We protect your privacy. This policy explains how we handle your information
-                    when you use our frontend development services. Your project data is yours and
-                    kept confidential.
-                  </p>
+                  <LegalHeading className="mb-2 text-xl">Our Commitment</LegalHeading>
+                  <LegalParagraph>
+                    We protect your privacy. This policy explains how we handle your information when you use our
+                    frontend development services. Your project data is yours and kept confidential.
+                  </LegalParagraph>
                 </div>
               </div>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Database className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Information We Collect
-                </h2>
+                <LegalHeading>Information We Collect</LegalHeading>
               </div>
               <div className="space-y-4">
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Contact Information
-                  </h3>
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
-                    We collect your email and name when you contact us about a project, used only
-                    for communication and project delivery.
-                  </p>
+                  <LegalSubheading className="mb-2">Contact Information</LegalSubheading>
+                  <LegalParagraph>
+                    We collect your email and name when you contact us about a project, used only for communication and
+                    project delivery.
+                  </LegalParagraph>
                 </div>
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Project Data
-                  </h3>
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
-                    Your project files and requirements are kept confidential. We only access what
-                    is needed to build your website and never share your project with others.
-                  </p>
+                  <LegalSubheading className="mb-2">Project Data</LegalSubheading>
+                  <LegalParagraph>
+                    Your project files and requirements are kept confidential. We only access what is needed to build
+                    your website and never share your project with others.
+                  </LegalParagraph>
                 </div>
                 <div>
-                  <h3
-                    className="mb-2 font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-geist-sans)", fontSize: "18px" }}
-                  >
-                    Website Analytics
-                  </h3>
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
-                    We use anonymized analytics to improve our website. No personal information is
-                    collected through these tools.
-                  </p>
+                  <LegalSubheading className="mb-2">Website Analytics</LegalSubheading>
+                  <LegalParagraph>
+                    We use anonymized analytics to improve our website. No personal information is collected through
+                    these tools.
+                  </LegalParagraph>
                 </div>
               </div>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <FileText className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  How We Use Your Information
-                </h2>
+                <LegalHeading>How We Use Your Information</LegalHeading>
               </div>
-              <ul
-                className="text-foreground/80 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              <LegalList className="list-disc">
                 <li>Communicate with you about your project</li>
                 <li>Build and deliver your website</li>
                 <li>Provide ongoing support and updates</li>
                 <li>Improve our development services</li>
-              </ul>
-              <p
-                className="border-border/50 bg-card/30 text-foreground/90 mt-4 rounded-lg border p-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              </LegalList>
+              <LegalParagraph className="border-border/50 bg-card/30 text-foreground/90 mt-4 rounded-lg border p-4 md:text-[15px]">
                 <strong className="text-foreground">Important:</strong> We never sell your data, use
                 it for advertising, or share your project information. Your data is yours.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Lock className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Data Security
-                </h2>
+                <LegalHeading>Data Security</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                We use encryption (TLS) for data in transit and secure hosting. We only keep data
-                necessary for your project and delete it when no longer needed. While we take
-                security seriously, no online system is 100% secure.
-              </p>
+              <LegalParagraph>
+                We use encryption (TLS) for data in transit and secure hosting. We only keep data necessary for your
+                project and delete it when no longer needed. While we take security seriously, no online system is 100%
+                secure.
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Server className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Third-Party Services
-                </h2>
+                <LegalHeading>Third-Party Services</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                We use trusted services like Vercel (hosting), Stripe (payments), and Supabase
-                (backend) to deliver your website. These providers have their own privacy policies
-                and we only share minimal data needed for service delivery.
-              </p>
+              <LegalParagraph>
+                We use trusted services like Vercel (hosting), Stripe (payments), and Supabase (backend) to deliver your
+                website. These providers have their own privacy policies and we only share minimal data needed for
+                service delivery.
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Users className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Your Rights
-                </h2>
+                <LegalHeading>Your Rights</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                You have the right to access, correct, or delete your personal data. You can also
-                request a copy of your data or object to certain processing activities.
-              </p>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                To exercise these rights, contact us at privacy@arcline.dev. We'll respond within 30
-                days.
-              </p>
+              <LegalParagraph className="mb-4">
+                You have the right to access, correct, or delete your personal data. You can also request a copy of your
+                data or object to certain processing activities.
+              </LegalParagraph>
+              <LegalParagraph>
+                To exercise these rights, contact us at privacy@arcline.dev. We'll respond within 30 days.
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Shield className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Children's Privacy
-                </h2>
+                <LegalHeading>Children&apos;s Privacy</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                Our services are not intended for users under 13. We don't knowingly collect
-                information from children.
-              </p>
+              <LegalParagraph>
+                Our services are not intended for users under 13. We don't knowingly collect information from children.
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <FileText className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Changes to This Policy
-                </h2>
+                <LegalHeading>Changes to This Policy</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                We may update this policy occasionally. Material changes will be posted here with an
-                updated date. Continued use of our services after changes constitutes acceptance.
-              </p>
+              <LegalParagraph>
+                We may update this policy occasionally. Material changes will be posted here with an updated date.
+                Continued use of our services after changes constitutes acceptance.
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Mail className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Contact Us
-                </h2>
+                <LegalHeading>Contact Us</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                If you have questions about this Privacy Policy or our privacy practices, please
-                contact us at:
-              </p>
-              <div
-                className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
-                <p>
+              <LegalParagraph className="mb-4">
+                If you have questions about this Privacy Policy or our privacy practices, please contact us at:
+              </LegalParagraph>
+              <div className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4">
+                <LegalParagraph className="mono-body text-foreground/90">
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
                     href="mailto:privacy@arcline.dev"
@@ -399,8 +206,8 @@ export default function PrivacyPage() {
                   >
                     privacy@arcline.dev
                   </a>
-                </p>
-                <p className="mt-2">
+                </LegalParagraph>
+                <LegalParagraph className="mono-body mt-2 text-foreground/90">
                   <strong className="text-foreground">Website:</strong>{" "}
                   <a
                     href="https://arcline.dev"
@@ -408,7 +215,7 @@ export default function PrivacyPage() {
                   >
                     arcline.dev
                   </a>
-                </p>
+                </LegalParagraph>
               </div>
             </LegalCard>
           </div>

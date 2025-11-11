@@ -18,9 +18,16 @@ import {
   User,
 } from "lucide-react";
 
-import Footer from "@/components/footer";
 import { LegalCard } from "@/components/legal-card";
+import {
+  LegalHeading,
+  LegalList,
+  LegalMuted,
+  LegalParagraph,
+  LegalSubheading,
+} from "@/components/legal-typography";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export default function TermsPage() {
   return (
@@ -31,505 +38,242 @@ export default function TermsPage() {
         <div className="mx-auto max-w-4xl px-6 md:px-8">
           <Link
             href="/"
-            className="mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+            className="mono-body mb-8 mt-8 inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Go back to home page"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            <span
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-              }}
-            >
-              Back to Home
-            </span>
+            Back to Home
           </Link>
           <div className="mb-12">
-            <h1
-              className="mb-4 text-4xl font-bold md:text-5xl"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 48px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
-              Terms of Service
-            </h1>
+            <h1 className="section-head mb-4">Terms of Service</h1>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Calendar className="h-4 w-4" />
-              <span
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "14px",
-                }}
-              >
-                Last Updated: January 2025
-              </span>
+              <span className="mono-body text-xs md:text-sm">Last Updated: January 2025</span>
             </div>
           </div>
 
           <div className="space-y-6">
             <LegalCard>
               <div className="mb-4 flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <FileText className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
                 <div>
-                  <h2
-                    className="mb-2 text-xl font-semibold text-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                    }}
-                  >
+                  <LegalHeading className="mb-2 text-xl transition-colors duration-300">
                     Welcome to Arcline
-                  </h2>
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.6",
-                    }}
-                  >
+                  </LegalHeading>
+                  <LegalParagraph>
                     By using our frontend development services, you agree to these terms. Please
                     read them carefully.
-                  </p>
+                  </LegalParagraph>
                 </div>
               </div>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <CheckCircle className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Acceptance of Terms
-                </h2>
+                <LegalHeading>Acceptance of Terms</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 By engaging our services, you agree to these terms and our Privacy Policy. This is a
                 legally binding agreement between you and Arcline.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Code className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Description of Service
-                </h2>
+                <LegalHeading>Description of Service</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 Arcline provides professional frontend development services, building modern
                 websites using Next.js, TypeScript, Tailwind CSS, and shadcn/ui. We create custom
                 websites including tourism sites, e-commerce platforms, portfolios, and business
                 websites.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <User className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  User Accounts and Eligibility
-                </h2>
+                <LegalHeading>User Accounts and Eligibility</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                When working with us, you agree to:
-              </p>
-              <ul
-                className="text-foreground/80 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              <LegalParagraph className="mb-4">When working with us, you agree to:</LegalParagraph>
+              <LegalList className="list-inside list-disc space-y-2">
                 <li>Provide accurate project requirements and information</li>
                 <li>Respond to project inquiries in a timely manner</li>
                 <li>Respect intellectual property rights</li>
                 <li>Be at least 13 years old (or the age of majority in your jurisdiction)</li>
-              </ul>
+              </LegalList>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Lock className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  License and Restrictions
-                </h2>
+                <LegalHeading>License and Restrictions</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                You may not:
-              </p>
-              <ul
-                className="text-foreground/80 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              <LegalParagraph className="mb-4">You may not:</LegalParagraph>
+              <LegalList className="list-inside list-disc space-y-2">
                 <li>Use our services for illegal purposes</li>
                 <li>Resell or redistribute work we create without permission</li>
                 <li>Remove copyright or attribution notices from delivered work</li>
                 <li>Request work that infringes on others' intellectual property</li>
-              </ul>
+              </LegalList>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Shield className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Intellectual Property and Your Code
-                </h2>
+                <LegalHeading>Intellectual Property and Your Code</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph className="mb-4">
                 Arcline retains rights to our development tools, processes, and methodologies.
-              </p>
-              <p
-                className="border-border/50 bg-card/30 text-foreground/90 mt-4 rounded-lg border p-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              </LegalParagraph>
+              <LegalParagraph className="border-border/50 bg-card/30 text-foreground/90 mt-4 rounded-lg border p-4">
                 <strong className="text-foreground">Your Website:</strong> Upon final payment, you
                 own the website we build for you, including all code, design, and content created
                 specifically for your project.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <CreditCard className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Payment and Subscriptions
-                </h2>
+                <LegalHeading>Payment and Subscriptions</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
-                Payment terms:
-              </p>
-              <ul
-                className="text-foreground/80 list-inside list-disc space-y-2"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
+              <LegalParagraph className="mb-4">Payment terms:</LegalParagraph>
+              <LegalList className="list-inside list-disc space-y-2">
                 <li>Project pricing is agreed upon before work begins</li>
                 <li>Payment is typically split (deposit + milestone/final payments)</li>
                 <li>Prices may change for future projects with advance notice</li>
                 <li>Refunds are handled on a case-by-case basis</li>
-              </ul>
+              </LegalList>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <AlertTriangle className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Disclaimer of Warranties
-                </h2>
+                <LegalHeading>Disclaimer of Warranties</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 Our services are provided "as is." While we strive for quality, we can't guarantee
                 perfection or uninterrupted service. We're not liable for third-party hosting or
                 external dependencies.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <Scale className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Limitation of Liability
-                </h2>
+                <LegalHeading>Limitation of Liability</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 Our liability is limited to the amount you paid for the specific project. We're not
                 liable for indirect, consequential, or incidental damages arising from the use of
                 delivered websites.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Shield className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Indemnification
-                </h2>
+                <LegalHeading>Indemnification</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 You agree to hold Arcline harmless from any claims arising from your use of
                 delivered websites or violation of these terms.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Ban className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Termination
-                </h2>
+                <LegalHeading>Termination</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 Either party may terminate a project agreement with notice. We may terminate
                 immediately for non-payment, illegal activity, or breach of terms. Upon termination,
                 completed work is delivered as agreed. You can stop working with us at any time.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-orange-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-orange-500/20 to-orange-600/20">
                   <FileText className="h-5 w-5 text-orange-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Changes to Terms
-                </h2>
+                <LegalHeading>Changes to Terms</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 We may update these terms occasionally. Material changes will be communicated. Your
                 continued engagement with our services after changes constitutes acceptance.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-600/20">
                   <Gavel className="h-5 w-5 text-cyan-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Governing Law and Disputes
-                </h2>
+                <LegalHeading>Governing Law and Disputes</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph>
                 These terms are governed by the laws of our jurisdiction. Disputes will be resolved
                 through good faith negotiation, and if needed, binding arbitration where permitted
                 by law.
-              </p>
+              </LegalParagraph>
             </LegalCard>
 
             <LegalCard>
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/20 to-pink-600/20">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-pink-500/20 to-pink-600/20">
                   <Mail className="h-5 w-5 text-pink-400 transition-colors duration-300" />
                 </div>
-                <h2
-                  className="text-2xl font-semibold text-foreground transition-colors duration-300"
-                  style={{
-                    fontFamily: "var(--font-geist-sans)",
-                  }}
-                >
-                  Contact Us
-                </h2>
+                <LegalHeading>Contact Us</LegalHeading>
               </div>
-              <p
-                className="text-foreground/80 mb-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.6",
-                }}
-              >
+              <LegalParagraph className="mb-4">
                 If you have any questions about these Terms of Service, please contact us at:
-              </p>
-              <div
-                className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                }}
-              >
-                <p>
+              </LegalParagraph>
+              <div className="border-border/50 bg-card/30 text-foreground/90 rounded-lg border p-4">
+                <LegalParagraph className="mono-body text-foreground/90">
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
                     href="mailto:legal@arcline.dev"
-                    className="hover:text-foreground/80 text-foreground underline"
+                    className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm"
                   >
                     legal@arcline.dev
                   </a>
-                </p>
-                <p className="mt-2">
+                </LegalParagraph>
+                <LegalParagraph className="mono-body mt-2 text-foreground/90">
                   <strong className="text-foreground">Website:</strong>{" "}
                   <a
                     href="https://arcline.dev"
-                    className="hover:text-foreground/80 text-foreground underline"
+                    className="mono-body text-xs text-foreground underline transition-colors hover:text-foreground/80 md:text-sm"
                   >
                     arcline.dev
                   </a>
-                </p>
+                </LegalParagraph>
               </div>
             </LegalCard>
           </div>

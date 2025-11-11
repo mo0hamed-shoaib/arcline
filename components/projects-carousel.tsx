@@ -64,6 +64,7 @@ type DotProps = {
 type SlideCardProps = {
   slide: Slide;
   onReadMore: (slide: Slide) => void;
+  priorityImage?: boolean;
 };
 
 type CaseStudyDialogProps = {
@@ -102,7 +103,7 @@ const CarouselDots = ({ count, selectedIndex, onSelect }: DotProps) => (
   </div>
 );
 
-const SlideCard = ({ slide, onReadMore }: SlideCardProps) => (
+const SlideCard = ({ slide, onReadMore, priorityImage = false }: SlideCardProps) => (
   <article className="rounded-(--radius-surface) border-border/60 bg-card/80 ring-border/35 flex min-w-0 flex-[0_0_100%] flex-col overflow-hidden border shadow-md ring-1">
     <div className="relative aspect-[6/5] overflow-hidden rounded-t-(--radius-surface) sm:aspect-[16/9]">
       <Image
@@ -111,7 +112,8 @@ const SlideCard = ({ slide, onReadMore }: SlideCardProps) => (
         fill
         sizes="(min-width: 1024px) 60vw, (min-width: 640px) 80vw, 100vw"
         className="object-cover"
-        priority
+        priority={priorityImage}
+        loading={priorityImage ? "eager" : "lazy"}
       />
     </div>
 
@@ -303,8 +305,13 @@ export function ProjectsCarousel({ slides, options = { loop: true, align: "start
         <div className="rounded-(--radius-surface) border-border/60 bg-linear-to-br from-card/90 via-card to-card/80 ring-border/40 overflow-hidden border shadow-md ring-1 backdrop-blur-sm">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex touch-pan-y touch-pinch-zoom">
-              {slides.map((slide) => (
-                <SlideCard key={slide.id} slide={slide} onReadMore={openCaseStudy} />
+              {slides.map((slide, index) => (
+                <SlideCard
+                  key={slide.id}
+                  slide={slide}
+                  onReadMore={openCaseStudy}
+                  priorityImage={index === 0}
+                />
               ))}
             </div>
           </div>

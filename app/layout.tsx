@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { MotionConfig } from "motion/react";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
           fetchPriority="high"
         />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         {/* Software Application JSON-LD */}
         <script
           type="application/ld+json"
@@ -178,15 +180,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-          storageKey="arcline-theme"
+        <MotionConfig
+          reducedMotion="user"
+          transition={{
+            duration: 0.9,
+            ease: [0.25, 0.8, 0.25, 1],
+          }}
         >
-          {children}
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+            storageKey="arcline-theme"
+          >
+            {children}
+          </ThemeProvider>
+        </MotionConfig>
       </body>
     </html>
   );
