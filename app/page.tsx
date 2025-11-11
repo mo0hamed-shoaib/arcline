@@ -37,7 +37,8 @@ import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
 import ProjectsInMotionSection from "@/components/projects-in-motion-section";
 import { Marquee } from "@/components/ui/marquee";
-import { buttonVariants, commonStyles, spacing, typography } from "@/lib/design-tokens";
+import { Button } from "@/components/ui/button";
+import { buttonVariants, spacing, typography } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { GrainGradient } from "@paper-design/shaders-react";
 
@@ -108,18 +109,7 @@ export default function Home() {
               blurRadius={16}
             >
               <div className="mx-auto max-w-4xl">
-                <h1
-                  className="heading-with-selection mb-4 select-text overflow-visible font-semibold text-white"
-                  style={{
-                    ...typography.heading.hero.desktop,
-                    ...commonStyles.heading,
-                    fontFamily: typography.fontSans,
-                    fontSize: "clamp(3.4rem, 7.5vw, 5.4rem)",
-                    lineHeight: 1.05,
-                    color: "#ffffff",
-                  }}
-                  aria-label="Build Your Vision"
-                >
+                <h1 className="hero-heading heading-with-selection mb-4 select-text" aria-label="Build Your Vision">
                   Build Your Vision
                 </h1>
               </div>
@@ -136,19 +126,9 @@ export default function Home() {
               blurRadius={12}
             >
               <div className="mx-auto max-w-3xl">
-                <p
-                  className="select-text text-white"
-                  style={{
-                    ...typography.body.hero.desktop,
-                    ...commonStyles.body,
-                    fontSize: "clamp(0.95rem, 2.4vw, 1.2rem)",
-                    maxWidth: "38rem",
-                    color: "#ffffff",
-                  }}
-                >
-                  At Arcline, we craft standout modern websites—fast, responsive, and
-                  unforgettable—so your brand feels premium, converts more customers, and stays
-                  ahead with AI-powered development.
+                <p className="hero-subhead select-text">
+                  At Arcline, we craft standout modern websites—fast, responsive, and unforgettable—so your brand feels
+                  premium, converts more customers, and stays ahead with AI-powered development.
                 </p>
               </div>
             </AnimatedContent>
@@ -164,17 +144,19 @@ export default function Home() {
               blurRadius={10}
             >
               <div className="flex w-full max-w-sm flex-col items-center gap-3">
-                <a
-                  href="https://x.com/jackjack_eth"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(buttonVariants.secondary.className, "md:w-auto")}
+                <Button
+                  asChild
+                  size="lg"
+                  variant="secondary"
+                  className="md:w-auto"
                 >
-                  <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                  CONTACT ME
-                </a>
+                  <a href="https://x.com/jackjack_eth" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    Contact Me
+                  </a>
+                </Button>
               </div>
             </AnimatedContent>
           </div>
@@ -199,11 +181,7 @@ export default function Home() {
                 Services Tailored to You
               </h2>
               <p
-                className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
-                style={{
-                  fontFamily: typography.fontMono,
-                  textAlign: "center",
-                }}
+                className="section-subhead mb-8"
               >
                 Launch-ready builds across tourism, SaaS, and commerce.
               </p>

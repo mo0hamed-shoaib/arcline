@@ -35,7 +35,7 @@ const buildTransformationString = (options?: CloudinaryTransformationOptions) =>
   return parts.join(",");
 };
 
-const sanitizePublicId = (publicId: string) => publicId.replace(/^\/+/, "");
+const sanitizePublicId = (publicId: string) => publicId.replace(/^\/+/ , "");
 
 const formatVersionSegment = (version?: string | number) => {
   if (version === undefined || version === null) return undefined;
@@ -80,4 +80,23 @@ export const cloudinaryConfig = {
   cloudName,
   enabled: useCloudinary,
   deliveryType: DEFAULT_DELIVERY_TYPE,
+};
+
+export const defaultImageTransformation: CloudinaryTransformationOptions = {
+  crop: "fill",
+  gravity: "auto",
+  quality: "auto",
+  format: "auto",
+};
+
+export const getCloudinaryImageUrl = (
+  publicId: string,
+  version?: string | number,
+  overrides?: CloudinaryTransformationOptions,
+  deliveryType: string = DEFAULT_DELIVERY_TYPE
+) => {
+  const base = { ...defaultImageTransformation };
+  const transformations = overrides ? { ...base, ...overrides } : base;
+
+  return buildCloudinaryUrl(publicId, transformations, deliveryType, version);
 };

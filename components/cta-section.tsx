@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedContent from "@/components/AnimatedContent";
+import { Button } from "@/components/ui/button";
 import { buttonVariants, typography, commonStyles } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { GrainGradient } from "@paper-design/shaders-react";
@@ -28,18 +29,7 @@ export default function CTASection() {
         {/* Content Container */}
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[960px] flex-col items-center justify-center gap-6 px-4 py-12 text-center sm:px-6 sm:py-14 md:gap-8 md:py-16">
           <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-            <h2
-              className="heading-with-selection select-text overflow-visible font-semibold text-white"
-              style={{
-                ...typography.heading.cta,
-                ...commonStyles.heading,
-                fontFamily: typography.fontSans,
-                textShadow: "var(--text-shadow-content-md)",
-                fontSize: "clamp(2.5rem, 6vw, 3.75rem)",
-                lineHeight: 1.08,
-                color: "#ffffff",
-              }}
-            >
+            <h2 className="hero-heading heading-with-selection select-text text-white">
               Ready to Get Started?
             </h2>
           </AnimatedContent>
@@ -52,14 +42,9 @@ export default function CTASection() {
             ease="power3.out"
           >
             <p
-              className="mx-auto h-auto select-text text-white"
+              className="hero-subhead mx-auto select-text"
               style={{
-                ...typography.body.cta,
-                ...commonStyles.body,
-                maxWidth: "36rem",
                 textShadow: "var(--text-shadow-content-sm)",
-                fontSize: "clamp(0.95rem, 2.3vw, 1.15rem)",
-                color: "#ffffff",
               }}
             >
               Tell us about your project, and we’ll blend thoughtful design with AI-powered builds
@@ -75,17 +60,14 @@ export default function CTASection() {
             ease="power3.out"
           >
             <div className="flex w-full max-w-sm flex-col items-center gap-3">
-              <a
-                href="https://x.com/jackjack_eth"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(buttonVariants.secondary.className, "md:w-auto")}
-              >
-                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-                CONTACT ME
-              </a>
+              <Button asChild size="lg" variant="secondary" className="md:w-auto">
+                <a href="https://x.com/jackjack_eth" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  Contact Me
+                </a>
+              </Button>
             </div>
           </AnimatedContent>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 import AnimatedContent from "@/components/AnimatedContent";
 import { Marquee } from "@/components/ui/marquee";
 
@@ -93,32 +95,14 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 
   return (
     <div
-      className="bg-card/50 relative isolate w-[280px] shrink-0 rounded-[var(--radius-surface)] border border-border p-4 backdrop-blur-sm transition-all duration-300 md:w-[350px] md:p-6"
-      style={{
-        boxShadow: "var(--shadow-md)",
-      }}
-      onMouseEnter={(e) => {
-        const card = e.currentTarget;
-        const name = card.querySelector("[data-name]");
-        const quote = card.querySelector("blockquote p");
-        card.style.borderColor = "var(--accent-orange-40)";
-        card.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
-        card.style.transform = "translateY(-2px)";
-        card.style.zIndex = "10";
-        if (name) (name as HTMLElement).style.color = "var(--accent-orange)";
-        if (quote) (quote as HTMLElement).style.color = "var(--foreground)";
-      }}
-      onMouseLeave={(e) => {
-        const card = e.currentTarget;
-        const name = card.querySelector("[data-name]");
-        const quote = card.querySelector("blockquote p");
-        card.style.borderColor = "";
-        card.style.boxShadow = "var(--shadow-md)";
-        card.style.transform = "";
-        card.style.zIndex = "";
-        if (name) (name as HTMLElement).style.color = "";
-        if (quote) (quote as HTMLElement).style.color = "";
-      }}
+      className="testimonial-card bg-card/50 relative isolate w-[280px] shrink-0 rounded-[var(--radius-surface)] border p-4 backdrop-blur-sm md:w-[350px] md:p-6"
+      style={
+        {
+          "--card-border-hover": "var(--accent-orange-40)",
+          "--card-shadow-hover": "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
+          "--card-shadow": "var(--shadow-md)",
+        } as CSSProperties
+      }
     >
       <div className="mb-4 flex items-center gap-3">
         <div
@@ -127,44 +111,24 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
             backgroundColor: avatarColor,
           }}
         >
-          <span
-            className="text-xs font-semibold md:text-sm"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-              color: "#FFFFFF",
-            }}
-          >
+          <span className="mono-body text-xs font-semibold text-white md:text-sm">
             {avatar}
           </span>
         </div>
         <div className="min-w-0">
           <p
             data-name
-            className="text-xs font-semibold text-foreground transition-colors duration-300 md:text-sm"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-            }}
+            className="mono-body text-xs font-semibold text-foreground transition-colors duration-300 md:text-sm"
           >
             {name}
           </p>
-          <p
-            className="text-[10px] text-muted-foreground md:text-xs"
-            style={{
-              fontFamily: "var(--font-geist-mono)",
-            }}
-          >
+          <p className="mono-body text-[10px] text-muted-foreground leading-tight md:text-xs">
             {role} • {company}
           </p>
         </div>
       </div>
       <blockquote>
-        <p
-          className="text-foreground/90 text-xs leading-relaxed transition-colors duration-300 md:text-sm"
-          style={{
-            fontFamily: "var(--font-geist-mono)",
-            lineHeight: "1.6",
-          }}
-        >
+        <p className="mono-body text-foreground/90 text-xs leading-relaxed transition-colors duration-300 md:text-sm">
           "{testimonial}"
         </p>
       </blockquote>
@@ -179,30 +143,10 @@ export default function ClientTestimonialsSection() {
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
           <div className="mb-12 text-center md:mb-16">
-            <h2
-              className="mb-6 font-semibold"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
+            <h2 className="section-head mb-6">
               Client Feedback and Testimonials
             </h2>
-            <p
-              className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                textAlign: "center",
-              }}
-            >
+            <p className="section-subhead mb-8">
               Partner stories on collaboration, velocity, and measurable wins.
             </p>
           </div>

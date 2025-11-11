@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
+
 import AnimatedContent from "@/components/AnimatedContent";
-import { CloudinaryImage } from "@/components/ui/cloudinary-image";
 import { Compare } from "@/components/ui/compare";
-import { buildCloudinaryUrl, cloudinaryConfig } from "@/lib/cloudinary";
+import { cloudinaryConfig, getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { cn } from "@/lib/utils";
 
 const MOBILE_FIRST_VERSION = process.env.NEXT_PUBLIC_CLOUDINARY_BENTO_MOBILE_FIRST_VERSION;
@@ -26,275 +27,240 @@ const TECH_STACK_PUBLIC_ID = "arcline/ui/bento/tech-stack-language";
 const TECH_STACK_LIGHT_PUBLIC_ID = "arcline/ui/bento/tech-stack-language-light";
 
 const mobileFirstImageSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      MOBILE_FIRST_PUBLIC_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      MOBILE_FIRST_VERSION
-    )
+  ? getCloudinaryImageUrl(MOBILE_FIRST_PUBLIC_ID, MOBILE_FIRST_VERSION)
   : "/images/mobile-first-design.jpg";
 
 const colorThemeLightSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      COLOR_THEME_LIGHT_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      COLOR_THEME_LIGHT_VERSION
-    )
+  ? getCloudinaryImageUrl(COLOR_THEME_LIGHT_ID, COLOR_THEME_LIGHT_VERSION)
   : "/images/color-theme-light.jpg";
 
 const colorThemeDarkSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      COLOR_THEME_DARK_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      COLOR_THEME_DARK_VERSION
-    )
+  ? getCloudinaryImageUrl(COLOR_THEME_DARK_ID, COLOR_THEME_DARK_VERSION)
   : "/images/color-theme-dark.jpg";
 
 const performanceImageSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      PERFORMANCE_PUBLIC_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      PERFORMANCE_VERSION
-    )
+  ? getCloudinaryImageUrl(PERFORMANCE_PUBLIC_ID, PERFORMANCE_VERSION)
   : "/images/performance.jpg";
 
 const techStackImageSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      TECH_STACK_PUBLIC_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      TECH_STACK_LANGUAGE_VERSION
-    )
+  ? getCloudinaryImageUrl(TECH_STACK_PUBLIC_ID, TECH_STACK_LANGUAGE_VERSION)
   : "/images/tech-stack-language.jpg";
 
 const techStackLightImageSrc = withCloudinary
-  ? buildCloudinaryUrl(
-      TECH_STACK_LIGHT_PUBLIC_ID,
-      {
-        crop: "fill",
-        gravity: "auto",
-        quality: "auto",
-        format: "auto",
-      },
-      undefined,
-      TECH_STACK_LANGUAGE_LIGHT_VERSION
-    )
+  ? getCloudinaryImageUrl(TECH_STACK_LIGHT_PUBLIC_ID, TECH_STACK_LANGUAGE_LIGHT_VERSION)
   : "/images/tech-stack-language-light.jpg";
+
+type FeatureBandMedia =
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+    }
+  | {
+      type: "compare";
+      firstImage: string;
+      secondImage: string;
+    }
+  | {
+      type: "dual";
+      darkSrc: string;
+      lightSrc: string;
+      alt: string;
+    };
+
+type FeatureBandConfig = {
+  id: string;
+  title: string;
+  description: string;
+  bullets: readonly string[];
+  media: FeatureBandMedia;
+  mediaPosition?: "left" | "right";
+};
+
+const featureBands: FeatureBandConfig[] = [
+  {
+    id: "mobile-first",
+    title: "Mobile-First Design",
+    description:
+      "Every interface we build starts with the smallest screen in mind. Responsive layouts, adaptive typography, and touch-friendly interactions ensure your experience feels fast and polished from pocket to desktop.",
+    bullets: [
+      "Tailored breakpoints and fluid spacing",
+      "Optimized imagery for every viewport",
+      "Performance-first rendering strategy",
+      "Touch-ready interactions and gestures",
+    ],
+    media: {
+      type: "image",
+      src: mobileFirstImageSrc,
+      alt: "Mobile-first design example",
+    },
+    mediaPosition: "left",
+  },
+  {
+    id: "color-theme",
+    title: "Color & Theme Options",
+    description:
+      "We craft harmonious palettes and precise theme states—light, dark, and everything in between—so your brand looks cohesive no matter the mode.",
+    bullets: [
+      "Balanced contrast ratios for accessibility",
+      "Adaptive gradients and surface treatments",
+      "Smooth transitions between modes",
+    ],
+    media: {
+      type: "compare",
+      firstImage: colorThemeLightSrc,
+      secondImage: colorThemeDarkSrc,
+    },
+    mediaPosition: "right",
+  },
+  {
+    id: "performance",
+    title: "SEO, Accessibility & Best Practices",
+    description:
+      "We obsess over performance budgets, semantic structure, and resilient patterns so your product ranks higher, reads better, and works for everyone—no matter the context.",
+    bullets: [
+      "Lighthouse 90+ score targeting",
+      "WCAG-compliant color contrast and semantics",
+      "Structured data and meta hygiene baked in",
+      "Performance budgets monitored throughout build",
+    ],
+    media: {
+      type: "image",
+      src: performanceImageSrc,
+      alt: "Performance and accessibility metrics",
+    },
+    mediaPosition: "left",
+  },
+  {
+    id: "tech-stack",
+    title: "Tech Stack & Multilingual Support",
+    description:
+      "From frameworks to deployment workflows and language tooling, we assemble a stack that scales—and speak to every audience you serve.",
+    bullets: [
+      "Next.js, TypeScript, Tailwind, and serverless-ready APIs",
+      "CMS and translation workflows for localized content",
+      "Deployed on performant edge networks",
+      "Automated testing and CI/CD pipelines baked in",
+    ],
+    media: {
+      type: "dual",
+      darkSrc: techStackImageSrc,
+      lightSrc: techStackLightImageSrc,
+      alt: "Tech stack and language support",
+    },
+    mediaPosition: "right",
+  },
+];
+
+const FeatureMedia = ({ media }: { media: FeatureBandMedia }) => {
+  if (media.type === "compare") {
+    return (
+      <Compare
+        firstImage={media.firstImage}
+        secondImage={media.secondImage}
+        className="absolute inset-0 h-full! w-full!"
+        firstImageClassName="rounded-(--radius-surface) object-cover"
+        secondImageClassname="rounded-(--radius-surface) object-cover"
+        autoplay
+        autoplayDuration={5000}
+        slideMode="hover"
+        showHandlebar={false}
+      />
+    );
+  }
+
+  if (media.type === "dual") {
+    return (
+      <>
+        <Image
+          src={media.darkSrc}
+          alt={media.alt}
+          fill
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className={cn("hidden object-cover", "dark:block")}
+        />
+        <Image
+          src={media.lightSrc}
+          alt={media.alt}
+          fill
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className={cn("block object-cover", "dark:hidden")}
+        />
+      </>
+    );
+  }
+
+  return (
+    <Image
+      src={media.src}
+      alt={media.alt}
+      fill
+      priority
+      sizes="(min-width: 768px) 50vw, 100vw"
+      className="object-cover"
+    />
+  );
+};
+
+const FeatureBand = ({
+  title,
+  description,
+  bullets,
+  media,
+  mediaPosition = "left",
+}: FeatureBandConfig) => {
+  const mediaOrder = mediaPosition === "left" ? "order-1 md:order-1" : "order-1 md:order-2";
+  const textOrder = mediaPosition === "left" ? "order-2 md:order-2" : "order-2 md:order-1";
+
+  return (
+    <section className="grid gap-8 md:grid-cols-2 md:items-center">
+      <div className={cn("relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)", mediaOrder)}>
+        <FeatureMedia media={media} />
+      </div>
+
+      <div className={cn("flex flex-col gap-5 text-foreground", textOrder)}>
+        <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h3>
+        <p className="mono-body text-base leading-relaxed text-foreground/80 sm:text-lg">{description}</p>
+        <ul className="grid gap-3 text-sm text-foreground/80 sm:grid-cols-2 sm:text-base">
+          {bullets.map((item) => (
+            <li key={item} className="mono-bullet rounded-lg border border-border bg-card/40 px-4 py-3">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+};
 
 export default function CustomStackInsightsSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-12 md:py-16">
-        <div className="mx-auto w-full max-w-[1296px] space-y-16 px-4 sm:px-6">
+        <div className="section-stack mx-auto w-full max-w-[1296px] px-4 sm:px-6">
           <div className="text-center">
-            <h2
-              className="mb-4 font-semibold"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
+            <h2 className="section-head mb-4">
               Custom Stack & Insights
             </h2>
-            <p
-              className="mx-auto max-w-none text-sm text-foreground/70 sm:text-base"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                textAlign: "center",
-                lineHeight: "1.35",
-              }}
-            >
+            <p className="section-subhead">
               Tailored modules, tech stacks, performance, and polish in focused product explorations.
             </p>
           </div>
 
-          <section className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)">
-              <CloudinaryImage
-                publicId={MOBILE_FIRST_PUBLIC_ID}
-                alt="Mobile-first design example"
-                fill
-                priority
-                className="object-cover"
-                version={MOBILE_FIRST_VERSION}
-              />
-            </div>
-
-            <div className="flex flex-col gap-5 text-foreground">
-              <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">Mobile-First Design</h3>
-              <p className="text-base leading-relaxed text-foreground/80 sm:text-lg">
-                Every interface we build starts with the smallest screen in mind. Responsive layouts, adaptive typography,
-                and touch-friendly interactions ensure your experience feels fast and polished from pocket to desktop.
-              </p>
-              <ul className="grid gap-3 text-sm text-foreground/80 sm:grid-cols-2 sm:text-base">
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Tailored breakpoints and fluid spacing
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Optimized imagery for every viewport
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Performance-first rendering strategy
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Touch-ready interactions and gestures
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="flex flex-col gap-5 text-foreground">
-              <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">Color & Theme Options</h3>
-              <p className="text-base leading-relaxed text-foreground/80 sm:text-lg">
-                We craft harmonious palettes and precise theme states—light, dark, and everything in between—so your brand
-                looks cohesive no matter the mode.
-              </p>
-              <ul className="grid gap-3 text-sm text-foreground/80 sm:text-base">
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Balanced contrast ratios for accessibility
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Adaptive gradients and surface treatments
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Smooth transitions between modes
-                </li>
-              </ul>
-            </div>
-
-            <div className="relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)">
-              <Compare
-                firstImage={withCloudinary ? colorThemeLightSrc : "/images/color-theme-light.jpg"}
-                secondImage={withCloudinary ? colorThemeDarkSrc : "/images/color-theme-dark.jpg"}
-                className="absolute inset-0 h-full! w-full!"
-                firstImageClassName="rounded-(--radius-surface) object-cover"
-                secondImageClassname="rounded-(--radius-surface) object-cover"
-                autoplay
-                autoplayDuration={5000}
-                slideMode="hover"
-                showHandlebar={false}
-              />
-            </div>
-          </section>
-
-          <section className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)">
-              <CloudinaryImage
-                publicId={PERFORMANCE_PUBLIC_ID}
-                alt="Performance and accessibility metrics"
-                fill
-                priority
-                className="object-cover"
-                version={PERFORMANCE_VERSION}
-              />
-            </div>
-
-            <div className="flex flex-col gap-5 text-foreground">
-              <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                SEO, Accessibility & Best Practices
-              </h3>
-              <p className="text-base leading-relaxed text-foreground/80 sm:text-lg">
-                We obsess over performance budgets, semantic structure, and resilient patterns so your product ranks higher,
-                reads better, and works for everyone—no matter the context.
-              </p>
-              <ul className="grid gap-3 text-sm text-foreground/80 sm:grid-cols-2 sm:text-base">
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Lighthouse 90+ score targeting
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  WCAG-compliant color contrast and semantics
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Structured data and meta hygiene baked in
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Performance budgets monitored throughout build
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="flex flex-col gap-5 text-foreground">
-              <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                Tech Stack & Multilingual Support
-              </h3>
-              <p className="text-base leading-relaxed text-foreground/80 sm:text-lg">
-                From frameworks to deployment workflows and language tooling, we assemble a stack that scales—and speak to
-                every audience you serve.
-              </p>
-              <ul className="grid gap-3 text-sm text-foreground/80 sm:grid-cols-2 sm:text-base">
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Next.js, TypeScript, Tailwind, and serverless-ready APIs
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  CMS and translation workflows for localized content
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Deployed on performant edge networks
-                </li>
-                <li className="rounded-lg border border-border bg-card/40 px-4 py-3">
-                  Automated testing and CI/CD pipelines baked in
-                </li>
-              </ul>
-            </div>
-
-            <div className="relative aspect-12/10 w-full overflow-hidden rounded-(--radius-surface)">
-              <CloudinaryImage
-                publicId={TECH_STACK_PUBLIC_ID}
-                alt="Tech stack and language support"
-                fill
-                priority
-                className={cn("hidden object-cover", "dark:block")}
-                version={TECH_STACK_LANGUAGE_VERSION}
-              />
-              <CloudinaryImage
-                publicId={TECH_STACK_LIGHT_PUBLIC_ID}
-                alt="Tech stack and language support"
-                fill
-                priority
-                className={cn("block object-cover", "dark:hidden")}
-                version={TECH_STACK_LANGUAGE_LIGHT_VERSION}
-              />
-            </div>
-          </section>
+          {featureBands.map((band, index) => (
+            <AnimatedContent
+              key={band.id}
+              direction="vertical"
+              distance={40}
+              duration={0.8}
+              ease="power3.out"
+              delay={index * 0.1}
+            >
+              <FeatureBand {...band} />
+            </AnimatedContent>
+          ))}
         </div>
       </section>
     </AnimatedContent>

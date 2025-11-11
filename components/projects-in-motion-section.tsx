@@ -2,7 +2,7 @@
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { ProjectsCarousel } from "@/components/projects-carousel";
-import { buildCloudinaryUrl, cloudinaryConfig } from "@/lib/cloudinary";
+import { cloudinaryConfig, getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const placeholderSrc = "/placeholder.svg";
 
@@ -16,12 +16,7 @@ const slides = [
       "Immersive tourism experiences showcased with cinematic storytelling, multi-day itinerary planning, and instant inquiry flows designed to convert high-intent travelers.",
     image: {
       src: withCloudinary
-        ? buildCloudinaryUrl("arcline/projects/mosexperiences/cover", {
-            quality: "auto",
-            format: "auto",
-            crop: "fill",
-            gravity: "auto",
-          })
+        ? getCloudinaryImageUrl("arcline/projects/mosexperiences/cover")
         : placeholderSrc,
       alt: "Mosexperiences website preview",
     },
@@ -55,12 +50,7 @@ const slides = [
       "A premium manufacturing catalog with configurators, lead capture, and spec downloads that help architects source bespoke interior solutions.",
     image: {
       src: withCloudinary
-        ? buildCloudinaryUrl("arcline/projects/danadoors/cover", {
-            quality: "auto",
-            format: "auto",
-            crop: "fill",
-            gravity: "auto",
-          })
+        ? getCloudinaryImageUrl("arcline/projects/danadoors/cover")
         : placeholderSrc,
       alt: "Dana Doors project screenshot",
     },
@@ -94,12 +84,7 @@ const slides = [
       "A modern SaaS marketing site with deep product storytelling, interactive feature tours, and conversion-focused CTAs for DevOps teams.",
     image: {
       src: withCloudinary
-        ? buildCloudinaryUrl("arcline/projects/rootly/cover", {
-            quality: "auto",
-            format: "auto",
-            crop: "fill",
-            gravity: "auto",
-          })
+        ? getCloudinaryImageUrl("arcline/projects/rootly/cover")
         : placeholderSrc,
       alt: "Rootly marketing site preview",
     },
@@ -134,29 +119,10 @@ export default function ProjectsInMotionSection() {
       <section className="py-10 md:py-14">
         <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
           <div className="mb-6 text-center md:mb-10">
-            <h2
-              className="mb-4 font-semibold"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(30px, 5.5vw, 48px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
+            <h2 className="section-head mb-4">
               Projects in Motion
             </h2>
-            <p
-              className="text-muted-foreground mx-auto max-w-none text-sm leading-tight sm:text-base"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-              }}
-            >
+            <p className="section-subhead">
               Launch snapshots from tourism, manufacturing, and SaaS workstreams.
             </p>
           </div>

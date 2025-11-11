@@ -1,11 +1,32 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { Check, Sparkles, X } from "lucide-react";
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { cn } from "@/lib/utils";
 
-const allFeatures = [
+type FeatureKey =
+  | "modernUI"
+  | "seo"
+  | "multiLang"
+  | "responsive"
+  | "performance"
+  | "contactForm"
+  | "socialMedia"
+  | "multiPages"
+  | "navigation"
+  | "contactPages"
+  | "auth"
+  | "dashboard"
+  | "userManagement"
+  | "rbac"
+  | "analytics"
+  | "backup"
+  | "security";
+
+const allFeatures: ReadonlyArray<{ name: string; key: FeatureKey }> = [
   { name: "Modern UI/UX", key: "modernUI" },
   { name: "SEO optimized", key: "seo" },
   { name: "Multi-language support (2-3 languages)", key: "multiLang" },
@@ -24,6 +45,15 @@ const allFeatures = [
   { name: "Backup system", key: "backup" },
   { name: "Advanced security", key: "security" },
 ];
+
+type PricingTierConfig = {
+  name: string;
+  description: string;
+  price: string;
+  currency: string;
+  includedFeatures: FeatureKey[];
+  popular?: boolean;
+};
 
 const pricingTiers = [
   {
@@ -87,7 +117,92 @@ const pricingTiers = [
     ],
     popular: false,
   },
-];
+] satisfies ReadonlyArray<PricingTierConfig>;
+
+type PricingTier = PricingTierConfig;
+
+const getCardStyle = (isPopular: boolean): CSSProperties =>
+  ({
+    "--card-border": isPopular ? "var(--accent-orange-60)" : "var(--border)",
+    "--card-border-hover": isPopular ? "var(--accent-orange-80)" : "var(--accent-orange-40)",
+    "--card-shadow": isPopular ? "var(--shadow-lg)" : "var(--shadow-md)",
+    "--card-shadow-hover": isPopular
+      ? "var(--shadow-xl), 0 0 40px var(--accent-orange-30)"
+      : "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
+  }) as CSSProperties;
+
+const PricingCard = ({ tier }: { tier: PricingTier }) => {
+  const isPopular = Boolean(tier.popular);
+  const cardStyle = getCardStyle(isPopular);
+
+  return (
+    <div
+      className={cn(
+        "group relative isolate overflow-hidden rounded-(--radius-surface) backdrop-blur-sm transition-all duration-300 hover:-translate-y-1",
+        isPopular ? "border-2 md:-mt-4 md:mb-4" : "border",
+        "border-(--card-border) shadow-(--card-shadow) hover:border-(--card-border-hover) hover:shadow-(--card-shadow-hover)"
+      )}
+      style={cardStyle}
+    >
+      {isPopular && (
+        <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+          <Sparkles className="h-3 w-3" /> Popular
+        </div>
+      )}
+
+      <div className="flex h-full flex-col gap-6 p-6 md:p-8">
+        <div>
+          <h3 className="text-foreground mb-2 text-2xl font-semibold" data-pricing-title>
+            {tier.name}
+          </h3>
+          <p className="mono-body text-foreground/70 text-sm leading-6">{tier.description}</p>
+        </div>
+
+        <div className="flex items-baseline gap-2">
+          <span className="text-foreground text-3xl font-bold" data-pricing-price>
+            {tier.price}
+          </span>
+          <span className="text-foreground/60 text-sm font-medium">{tier.currency}</span>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <h4 className="text-foreground/80 text-sm font-semibold uppercase tracking-[0.3em]">
+            Included Features
+          </h4>
+          <ul className="space-y-2 text-sm text-foreground/80">
+            {allFeatures.map((feature) => {
+              const included = tier.includedFeatures.includes(feature.key);
+
+              return (
+                <li key={feature.key} className="flex items-start gap-3">
+                  <span
+                    className={cn(
+                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border",
+                      included
+                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                        : "border-border/40 bg-transparent text-muted-foreground"
+                    )}
+                  >
+                    {included ? <Check className="h-3.5 w-3.5" /> : <X className="h-3.5 w-3.5" />}
+                  </span>
+                  <span className="mono-bullet leading-6">{feature.name}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <div className="mt-auto">
+          <ShineBorder
+            borderWidth={1}
+            duration={14}
+            shineColor={isPopular ? "var(--accent-orange-60)" : "rgba(255, 255, 255, 0.4)"}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function PricingSection() {
   return (
@@ -96,207 +211,22 @@ export default function PricingSection() {
         <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
           {/* Header */}
           <div className="mb-12 text-center md:mb-16">
-            <h2
-              className="mb-6 font-semibold"
-              style={{
-                backgroundImage: "var(--text-gradient)",
-                color: "transparent",
-                fontFamily: "var(--font-geist-sans)",
-                fontSize: "clamp(32px, 6vw, 52px)",
-                fontWeight: 600,
-                letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-                lineHeight: "1.15",
-                textAlign: "center",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-              }}
-            >
-              Pricing
-            </h2>
-            <p
-              className="text-foreground/70 mx-auto mb-8 max-w-none text-sm leading-tight sm:text-base"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                textAlign: "center",
-              }}
-            >
+            <h2 className="section-head mb-6">Pricing</h2>
+            <p className="section-subhead mb-8">
               Tailored project tiers for launches, relaunches, and refreshes.
             </p>
           </div>
 
           {/* Pricing Cards Grid */}
           <div className="mb-8 grid grid-cols-1 gap-6 md:mb-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {pricingTiers.map((tier, index) => (
-              <div
-                key={index}
-                className={`bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] backdrop-blur-sm transition-all duration-300 ${
-                  tier.popular
-                    ? "border-2 p-6 md:-mt-4 md:mb-4 md:p-8"
-                    : "border border-border p-6 md:p-8"
-                }`}
-                style={{
-                  borderColor: tier.popular ? "var(--accent-orange-60)" : undefined,
-                  boxShadow: tier.popular
-                    ? `var(--shadow-lg), 0 0 30px var(--accent-orange-20)`
-                    : "var(--shadow-md)",
-                }}
-                onMouseEnter={(e) => {
-                  const card = e.currentTarget;
-                  const title = card.querySelector("[data-pricing-title]");
-                  const price = card.querySelector("[data-pricing-price]");
-                  if (tier.popular) {
-                    card.style.borderColor = "var(--accent-orange-80)";
-                    card.style.boxShadow = `var(--shadow-xl), 0 0 40px var(--accent-orange-30)`;
-                  } else {
-                    card.style.borderColor = "var(--accent-orange-40)";
-                    card.style.boxShadow = `var(--shadow-lg), 0 0 20px var(--accent-orange-15)`;
-                  }
-                  card.style.transform = "translateY(-2px)";
-                  card.style.zIndex = "10";
-                  if (title) (title as HTMLElement).style.color = "var(--accent-orange)";
-                  if (price) (price as HTMLElement).style.color = "var(--accent-orange)";
-                }}
-                onMouseLeave={(e) => {
-                  const card = e.currentTarget;
-                  const title = card.querySelector("[data-pricing-title]");
-                  const price = card.querySelector("[data-pricing-price]");
-                  if (tier.popular) {
-                    card.style.borderColor = "var(--accent-orange-60)";
-                    card.style.boxShadow = `var(--shadow-lg), 0 0 30px var(--accent-orange-20)`;
-                  } else {
-                    card.style.borderColor = "";
-                    card.style.boxShadow = "var(--shadow-md)";
-                  }
-                  card.style.transform = "";
-                  card.style.zIndex = "";
-                  if (title) (title as HTMLElement).style.color = "";
-                  if (price) (price as HTMLElement).style.color = "";
-                }}
-              >
-                <ShineBorder
-                  borderWidth={tier.popular ? 2 : 1}
-                  duration={14}
-                  shineColor={tier.popular ? "var(--accent-orange-60)" : "rgba(255, 255, 255, 0.5)"}
-                />
-                <div className="relative z-10">
-                  {/* Popular Badge */}
-                  {tier.popular && (
-                    <div className="mb-4 flex items-center justify-center">
-                      <span
-                        className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold"
-                        style={{
-                          fontFamily: "var(--font-geist-mono)",
-                          color: "var(--accent-orange)",
-                          borderColor: "var(--accent-orange-40)",
-                          backgroundColor: "var(--accent-orange-20)",
-                        }}
-                      >
-                        <Sparkles className="h-3 w-3" />
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Title */}
-                  <h3
-                    data-pricing-title
-                    className="mb-2 text-center font-semibold text-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                      fontSize: "20px",
-                      lineHeight: "1.2",
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {tier.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p
-                    className="text-foreground/70 mb-4 text-center text-sm"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      lineHeight: "1.4",
-                    }}
-                  >
-                    {tier.description}
-                  </p>
-
-                  {/* Price */}
-                  <div className="mb-6 flex items-baseline justify-center gap-1">
-                    <span
-                      data-pricing-price
-                      className="text-3xl font-semibold text-foreground transition-colors duration-300 md:text-4xl"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        letterSpacing: "-0.02em",
-                      }}
-                    >
-                      {tier.price}
-                    </span>
-                    <span
-                      className="text-foreground/60 text-sm"
-                      style={{
-                        fontFamily: "var(--font-geist-mono)",
-                      }}
-                    >
-                      {tier.currency}
-                    </span>
-                  </div>
-
-                  {/* Features List */}
-                  <ul className="space-y-2.5">
-                    {allFeatures.map((feature) => {
-                      const isIncluded = tier.includedFeatures.includes(feature.key);
-                      return (
-                        <li
-                          key={feature.key}
-                          className="flex items-start gap-2"
-                          style={{
-                            fontFamily: "var(--font-geist-mono)",
-                          }}
-                        >
-                          {isIncluded ? (
-                            <Check
-                              className="mt-0.5 h-4 w-4 shrink-0"
-                              strokeWidth={2.5}
-                              style={{ color: "#22c55e" }}
-                            />
-                          ) : (
-                            <X
-                              className="mt-0.5 h-4 w-4 shrink-0"
-                              strokeWidth={2.5}
-                              style={{ color: "#ef4444" }}
-                            />
-                          )}
-                          <span
-                            className={`text-sm leading-relaxed ${
-                              isIncluded ? "text-foreground/80" : "text-foreground/40"
-                            }`}
-                            style={{
-                              fontFamily: "var(--font-geist-mono)",
-                            }}
-                          >
-                            {feature.name}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
+            {pricingTiers.map((tier) => (
+              <PricingCard key={tier.name} tier={tier} />
             ))}
           </div>
 
           {/* Note */}
           <div className="text-center">
-            <p
-              className="text-foreground/60 mx-auto max-w-2xl text-sm"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-                lineHeight: "1.5",
-              }}
-            >
+            <p className="mono-body text-foreground/60 mx-auto max-w-2xl text-sm">
               Prices are estimates. Final pricing depends on project complexity, custom
               requirements, and specific features. Payment gateway integration adds an additional
               charge. Contact me for a detailed quote tailored to your needs.

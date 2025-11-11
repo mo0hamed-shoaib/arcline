@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface LegalCardProps {
   children: ReactNode;
@@ -10,36 +11,19 @@ interface LegalCardProps {
 }
 
 export function LegalCard({ children, className }: LegalCardProps) {
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const icon = card.querySelector("svg");
-    const heading = card.querySelector("h2");
-    card.style.borderColor = "var(--accent-orange-40)";
-    card.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
-    card.style.transform = "translateY(-2px)";
-    if (icon) (icon as SVGElement).style.color = "var(--accent-orange)";
-    if (heading) (heading as HTMLElement).style.color = "var(--accent-orange)";
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const icon = card.querySelector("svg");
-    const heading = card.querySelector("h2");
-    card.style.borderColor = "";
-    card.style.boxShadow = "var(--shadow-md)";
-    card.style.transform = "";
-    if (icon) (icon as SVGElement).style.color = "";
-    if (heading) (heading as HTMLElement).style.color = "";
-  };
-
   return (
     <Card
-      className={`bg-card/50 border-border backdrop-blur-sm transition-all duration-300 ${className || ""}`}
-      style={{
-        boxShadow: "var(--shadow-md)",
-      }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={cn(
+        "legal-card bg-card/50 border backdrop-blur-sm transition-all duration-300",
+        className
+      )}
+      style={
+        {
+          "--card-shadow": "var(--shadow-md)",
+          "--card-border-hover": "var(--accent-orange-40)",
+          "--card-shadow-hover": "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
+        } as CSSProperties
+      }
     >
       <CardContent className="p-6 md:p-8">{children}</CardContent>
     </Card>

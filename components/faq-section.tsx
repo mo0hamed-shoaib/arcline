@@ -1,5 +1,7 @@
 "use client";
 
+import type { CSSProperties } from "react";
+
 import AnimatedContent from "@/components/AnimatedContent";
 import {
   Accordion,
@@ -84,21 +86,7 @@ export default function FAQSection() {
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="relative py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2
-            className="mb-12 text-center font-semibold md:mb-16"
-            style={{
-              backgroundImage: "var(--text-gradient)",
-              color: "transparent",
-              fontFamily: "var(--font-geist-sans)",
-              fontSize: "clamp(32px, 6vw, 52px)",
-              fontWeight: 600,
-              letterSpacing: "clamp(-1.5px, -0.04em, -2.08px)",
-              lineHeight: "1.15",
-              textAlign: "center",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-            }}
-          >
+          <h2 className="section-head mb-12 md:mb-16">
             Frequently Asked Questions
           </h2>
 
@@ -107,50 +95,22 @@ export default function FAQSection() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] border border-border backdrop-blur-sm transition-all duration-300"
-                style={{
-                  boxShadow: "var(--shadow-md)",
-                }}
-                onMouseEnter={(e) => {
-                  const item = e.currentTarget;
-                  const question = item.querySelector("[data-question]");
-                  item.style.borderColor = "var(--accent-orange-40)";
-                  item.style.boxShadow = "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
-                  item.style.transform = "translateY(-2px)";
-                  item.style.zIndex = "10";
-                  if (question) (question as HTMLElement).style.color = "var(--accent-orange)";
-                }}
-                onMouseLeave={(e) => {
-                  const item = e.currentTarget;
-                  const question = item.querySelector("[data-question]");
-                  item.style.borderColor = "";
-                  item.style.boxShadow = "var(--shadow-md)";
-                  item.style.transform = "";
-                  item.style.zIndex = "";
-                  if (question) (question as HTMLElement).style.color = "";
-                }}
+                className="faq-item bg-card/50 group relative isolate overflow-hidden rounded-[var(--radius-surface)] border backdrop-blur-sm transition-all duration-300"
+                style={
+                  {
+                    "--card-shadow": "var(--shadow-md)",
+                    "--card-border-hover": "var(--accent-orange-40)",
+                    "--card-shadow-hover": "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
+                  } as CSSProperties
+                }
               >
                 <AccordionTrigger className="px-5 py-4 hover:no-underline">
-                  <span
-                    data-question
-                    className="text-left font-medium text-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                      fontSize: "18px",
-                    }}
-                  >
+                  <span data-question className="text-left font-medium text-foreground transition-colors duration-300">
                     {faq.question}
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-5 pb-4 pt-0">
-                  <p
-                    className="text-foreground/80"
-                    style={{
-                      fontFamily: "var(--font-geist-mono)",
-                      fontSize: "15px",
-                      lineHeight: "1.5",
-                    }}
-                  >
+                  <p className="mono-body text-foreground/80 text-sm leading-6 md:text-[15px] md:leading-[1.5]">
                     {faq.answer}
                   </p>
                 </AccordionContent>
