@@ -119,7 +119,7 @@ export const AnimatedThemeToggler = ({
             changeTheme(theme === "light" ? "dark" : "light");
           }
         }}
-        className={cn("flex items-center justify-center", className)}
+        className={cn("hover-lift flex cursor-pointer items-center justify-center", className)}
         aria-label="Toggle theme"
         suppressHydrationWarning
       >
@@ -150,7 +150,7 @@ export const AnimatedThemeToggler = ({
           }
         }}
         className={cn(
-          "flex flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
+          "hover-lift flex cursor-pointer flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
           mounted && (theme === "light" || (!theme && !isDark))
             ? "bg-foreground text-background"
             : "bg-transparent text-foreground hover:bg-accent/50"
@@ -168,7 +168,7 @@ export const AnimatedThemeToggler = ({
           }
         }}
         className={cn(
-          "flex flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
+          "hover-lift flex cursor-pointer flex-1 items-center justify-center gap-2 px-3 py-2 text-sm font-semibold transition-colors",
           mounted && (theme === "dark" || (!theme && isDark))
             ? "bg-foreground text-background"
             : "bg-transparent text-foreground hover:bg-accent/50"

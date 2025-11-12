@@ -163,12 +163,11 @@ const FeatureMedia = ({ media, priority }: { media: FeatureBandMedia; priority?:
       <Compare
         firstImage={media.firstImage}
         secondImage={media.secondImage}
-        className="absolute inset-0 h-full! w-full!"
+        className="pointer-events-none absolute inset-0 h-full! w-full!"
         firstImageClassName="rounded-(--radius-surface) object-cover"
         secondImageClassname="rounded-(--radius-surface) object-cover"
         autoplay
-        autoplayDuration={5000}
-        slideMode="hover"
+        autoplayDuration={6500}
         showHandlebar={false}
         loading={priority ? "eager" : "lazy"}
       />

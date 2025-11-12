@@ -74,7 +74,12 @@ type CaseStudyDialogProps = {
 
 const CarouselNavigation = ({ onPrev, onNext }: NavigationProps) => (
   <div className="flex items-center gap-3">
-    <button type="button" onClick={onPrev} className={NAV_BUTTON_STYLES} aria-label="Previous slide">
+    <button
+      type="button"
+      onClick={onPrev}
+      className={NAV_BUTTON_STYLES}
+      aria-label="Previous slide"
+    >
       <ChevronLeft className="h-5 w-5" />
     </button>
     <button type="button" onClick={onNext} className={NAV_BUTTON_STYLES} aria-label="Next slide">
@@ -118,53 +123,75 @@ const SlideCard = ({ slide, onReadMore, priorityImage = false }: SlideCardProps)
     </div>
 
     <div className="w/full border-border/40 bg-background/70 flex flex-col gap-4 border-t px-5 py-4 sm:px-6 sm:py-5">
-      <div>
-        <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
-          {slide.id}
-        </span>
-        <h3 className="text-foreground mt-2 text-[1.45rem] font-semibold tracking-tight md:text-[1.7rem]">
-          {slide.title}
-        </h3>
-        <p
-          className="mono-body text-muted-foreground mt-3 text-[0.9rem] leading-6"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {slide.description}
-        </p>
+      <div className="space-y-4">
+        <div>
+          <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
+            {slide.id}
+          </span>
+          <h3 className="text-foreground mt-2 text-[1.45rem] font-semibold tracking-tight md:text-[1.7rem]">
+            {slide.title}
+          </h3>
+          <div className="mt-4 space-y-1">
+            <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
+              Summary
+            </span>
+            <p
+              className="mono-body text-foreground/75 text-[0.9rem] leading-6"
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {slide.description}
+            </p>
+          </div>
+        </div>
+
+        <Separator className="border-border/40" />
+
+        <div>
+          <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
+            Highlights
+          </span>
+          <ul className="mt-2 grid gap-1.5 text-[0.8rem] text-foreground/75 sm:grid-cols-2">
+            {slide.highlights.map((item) => (
+              <li key={item} className="relative pl-4 leading-snug">
+                <span className="absolute left-0 top-2 block h-1.5 w-1.5 rounded-full bg-[var(--accent-orange)]" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/40 pt-3">
         {slide.caseStudy && (
-          <Button
+          <button
             type="button"
-            variant="ghost"
-            size="sm"
             onClick={() => onReadMore(slide)}
             className={cn(
-              "mono-body cursor-pointer px-1.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-foreground hover:bg-transparent hover:text-accent-foreground"
+              "mono-body group inline-flex cursor-pointer items-center gap-2 px-0 py-1 text-[0.82rem] font-semibold uppercase tracking-[0.26em]",
+              "text-[var(--accent-orange)] transition-all duration-200 hover:text-[var(--accent-orange-80)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--accent-orange)] focus-visible:ring-offset-background"
             )}
           >
             Read More
-          </Button>
+            <span
+              aria-hidden
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </button>
         )}
-      </div>
 
-      <ul className="grid gap-2.5 sm:grid-cols-2">
-        {slide.highlights.map((item) => (
-          <li
-            key={item}
-            className="mono-bullet border-border/60 bg-card/40 text-foreground/90 rounded-(--radius-interactive) border px-3 py-2 text-[0.85rem] font-medium shadow-sm shadow-black/5"
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex flex-wrap items-center justify-center gap-3 pt-1 sm:justify-start">
         {slide.websiteUrl && (
-          <Button asChild size="sm" className="rounded-(--radius-interactive) cursor-pointer px-4 py-2">
+          <Button
+            asChild
+            size="sm"
+            className="rounded-(--radius-interactive) cursor-pointer px-4 py-2"
+          >
             <Link href={slide.websiteUrl} target="_blank" rel="noopener noreferrer">
               VIEW WEBSITE
             </Link>
@@ -206,11 +233,15 @@ const CaseStudyDialog = ({ slide, onClose }: CaseStudyDialogProps) => (
           <section className="grid gap-5 sm:grid-cols-2">
             <div>
               <h5 className="text-foreground text-sm font-semibold">Problem</h5>
-              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">{slide.caseStudy.problem}</p>
+              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">
+                {slide.caseStudy.problem}
+              </p>
             </div>
             <div>
               <h5 className="text-foreground text-sm font-semibold">Solution</h5>
-              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">{slide.caseStudy.solution}</p>
+              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">
+                {slide.caseStudy.solution}
+              </p>
             </div>
           </section>
 
@@ -218,7 +249,9 @@ const CaseStudyDialog = ({ slide, onClose }: CaseStudyDialogProps) => (
 
           <section>
             <h5 className="text-foreground text-sm font-semibold">Architecture</h5>
-            <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">{slide.caseStudy.architecture}</p>
+            <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">
+              {slide.caseStudy.architecture}
+            </p>
           </section>
 
           <Separator />
@@ -226,11 +259,15 @@ const CaseStudyDialog = ({ slide, onClose }: CaseStudyDialogProps) => (
           <section className="grid gap-5 sm:grid-cols-2">
             <div>
               <h5 className="text-foreground text-sm font-semibold">Challenges</h5>
-              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">{slide.caseStudy.challenges}</p>
+              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">
+                {slide.caseStudy.challenges}
+              </p>
             </div>
             <div>
               <h5 className="text-foreground text-sm font-semibold">Results</h5>
-              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">{slide.caseStudy.results}</p>
+              <p className="mono-body text-muted-foreground mt-2 text-sm leading-6">
+                {slide.caseStudy.results}
+              </p>
             </div>
           </section>
         </div>
@@ -239,19 +276,19 @@ const CaseStudyDialog = ({ slide, onClose }: CaseStudyDialogProps) => (
   </Dialog>
 );
 
-export function ProjectsCarousel({ slides, options = { loop: true, align: "start" } }: CarouselProps) {
+export function ProjectsCarousel({
+  slides,
+  options = { loop: true, align: "start" },
+}: CarouselProps) {
   const autoplay = Autoplay({ delay: 6000, stopOnInteraction: false });
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const [activeCaseStudy, setActiveCaseStudy] = useState<Slide | null>(null);
 
-  const onSelect = useCallback(
-    (api: EmblaCarouselType) => {
-      setSelectedIndex(api.selectedScrollSnap());
-    },
-    []
-  );
+  const onSelect = useCallback((api: EmblaCarouselType) => {
+    setSelectedIndex(api.selectedScrollSnap());
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -319,7 +356,11 @@ export function ProjectsCarousel({ slides, options = { loop: true, align: "start
 
         <div className="mt-4 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <CarouselNavigation onPrev={() => handleNav("prev")} onNext={() => handleNav("next")} />
-          <CarouselDots count={scrollSnaps.length} selectedIndex={selectedIndex} onSelect={handleDot} />
+          <CarouselDots
+            count={scrollSnaps.length}
+            selectedIndex={selectedIndex}
+            onSelect={handleDot}
+          />
         </div>
       </section>
 

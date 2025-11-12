@@ -1,32 +1,6 @@
 "use client";
 
 import React from "react";
-import {
-  Activity,
-  BookOpen,
-  Building,
-  Building2,
-  Calendar,
-  Code,
-  Cpu,
-  FileText,
-  Globe,
-  GraduationCap,
-  Heart,
-  HeartHandshake,
-  Home as HomeIcon,
-  LayoutDashboard,
-  Package,
-  Palette,
-  Rocket,
-  ShoppingCart,
-  Sparkles,
-  Target,
-  User,
-  UtensilsCrossed,
-  Zap,
-} from "lucide-react";
-
 import AnimatedContent from "@/components/AnimatedContent";
 import ClientTestimonialsSection from "@/components/client-testimonials-section";
 import CTASection from "@/components/cta-section";
@@ -36,9 +10,8 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import PricingSection from "@/components/pricing-section";
 import ProjectsInMotionSection from "@/components/projects-in-motion-section";
-import { Marquee } from "@/components/ui/marquee";
 import { Button } from "@/components/ui/button";
-import { buttonVariants, spacing, typography } from "@/lib/design-tokens";
+import { spacing, typography } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { GrainGradient } from "@paper-design/shaders-react";
 
@@ -148,7 +121,10 @@ export default function Home() {
                   asChild
                   size="lg"
                   variant="secondary"
-                  className="md:w-auto"
+                  className={cn(
+                    "md:w-auto bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-[var(--shadow-lg)] transition-shadow duration-300",
+                    "dark:bg-white! dark:text-slate-950! dark:hover:bg-white/85!"
+                  )}
                 >
                   <a href="https://x.com/jackjack_eth" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -163,197 +139,72 @@ export default function Home() {
         </section>
 
         <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-          <section className="bg-background py-12 md:py-16">
-            <div className="mx-auto mb-12 max-w-[1296px] px-4 text-center sm:px-6">
-              <h2
-                className="mb-4 font-semibold"
-                style={{
-                  backgroundImage: "var(--text-gradient)",
-                  color: "transparent",
-                  ...typography.heading.section,
-                  fontFamily: typography.fontSans,
-                  fontWeight: 600,
-                  textAlign: "center",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                }}
-              >
-                Services Tailored to You
-              </h2>
-              <p
-                className="section-subhead mb-8"
-              >
-                Launch-ready builds across tourism, SaaS, and commerce.
-              </p>
-            </div>
-
-            {/* Marquee Container */}
+          <section className="py-10 md:py-14">
             <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
-              <div className="relative w-full overflow-hidden">
-                {/* Services Marquee - Left to Right */}
-                <Marquee
-                  pauseOnHover
-                  repeat={3}
-                  className="mb-6 [--duration:50s] [--gap:1.5rem] md:mb-6"
+              <div className="mx-auto mb-8 max-w-[880px] text-center md:mb-10">
+                <h2
+                  className="section-head mb-4"
+                  style={{
+                    backgroundImage: "var(--text-gradient)",
+                    color: "transparent",
+                    ...typography.heading.section,
+                    fontFamily: typography.fontSans,
+                    fontWeight: 600,
+                    textAlign: "center",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                  }}
                 >
-                  {[
-                    { name: "Tourism Websites", icon: Globe },
-                    { name: "E-commerce Platforms", icon: ShoppingCart },
-                    { name: "Personal Portfolios", icon: User },
-                    { name: "Business Websites", icon: Building2 },
-                    { name: "Landing Pages", icon: Rocket },
-                    { name: "Admin Dashboards", icon: LayoutDashboard },
-                    { name: "Blog Platforms", icon: BookOpen },
-                    { name: "Booking Systems", icon: Calendar },
-                    { name: "Product Showcases", icon: Package },
-                    { name: "Corporate Sites", icon: Building },
-                    { name: "Real Estate", icon: HomeIcon },
-                    { name: "Restaurant Menus", icon: UtensilsCrossed },
-                    { name: "Event Pages", icon: Sparkles },
-                    { name: "SaaS Products", icon: Zap },
-                    { name: "Education Portals", icon: GraduationCap },
-                    { name: "Healthcare Sites", icon: Activity },
-                    { name: "Non-profit Sites", icon: HeartHandshake },
-                    { name: "Art Galleries", icon: Palette },
-                    { name: "Tech Startups", icon: Code },
-                    { name: "Custom Solutions", icon: Sparkles },
-                  ].map((service, index) => {
-                    const Icon = service.icon;
-                    return (
-                      <div
-                        key={`service-${index}`}
-                        className="bg-card/50 border-border rounded-(--radius-surface) relative isolate flex h-14 min-w-[180px] items-center justify-center gap-2 border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[200px] md:gap-3 md:px-6"
-                        style={{
-                          boxShadow: "var(--shadow-md)",
-                        }}
-                        onMouseEnter={(e) => {
-                          const card = e.currentTarget;
-                          const icon = card.querySelector("svg");
-                          const text = card.querySelector("span");
-                          card.style.borderColor = "var(--accent-orange-40)";
-                          card.style.boxShadow =
-                            "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
-                          card.style.transform = "translateY(-2px)";
-                          card.style.zIndex = "10";
-                          if (icon) icon.style.color = "var(--accent-orange)";
-                          if (text) text.style.color = "var(--accent-orange)";
-                        }}
-                        onMouseLeave={(e) => {
-                          const card = e.currentTarget;
-                          const icon = card.querySelector("svg");
-                          const text = card.querySelector("span");
-                          card.style.borderColor = "";
-                          card.style.boxShadow = "var(--shadow-md)";
-                          card.style.transform = "";
-                          card.style.zIndex = "";
-                          if (icon) icon.style.color = "";
-                          if (text) text.style.color = "";
-                        }}
-                      >
-                        <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
-                        <span
-                          className="text-foreground font-semibold transition-colors duration-300"
-                          style={{
-                            fontFamily: "var(--font-geist-sans)",
-                            fontSize: "16px",
-                            lineHeight: "1.2",
-                            letterSpacing: "-0.01em",
-                          }}
-                        >
-                          {service.name}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </Marquee>
+                  Services Tailored to You
+                </h2>
+                <p className="section-subhead">
+                  We keep things light: meet, shape, and ship without the noise.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                  {["Tourism Sites", "Local Shops", "E-commerce", "Emerging Products", "Portfolios"].map((item) => (
+                    <span
+                      key={item}
+                      className="border-border text-foreground/80 bg-card/70 rounded-full border px-4 py-1.5 font-medium tracking-tight"
+                      style={{ boxShadow: "var(--shadow-sm)" }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-                {/* Technologies Marquee - Right to Left */}
-                <Marquee
-                  pauseOnHover
-                  reverse
-                  repeat={3}
-                  className="[--duration:50s] [--gap:1.5rem]"
-                >
-                  {[
-                    { name: "Next.js", icon: Zap },
-                    { name: "TypeScript", icon: Code },
-                    { name: "Tailwind CSS", icon: Palette },
-                    { name: "shadcn/ui", icon: Package },
-                    { name: "Supabase", icon: Cpu },
-                    { name: "Framer Motion", icon: Sparkles },
-                    { name: "React", icon: Zap },
-                    { name: "Responsive Design", icon: Target },
-                    { name: "SEO Optimized", icon: Rocket },
-                    { name: "Fast Performance", icon: Zap },
-                    { name: "Modern UI/UX", icon: Sparkles },
-                    { name: "Accessible", icon: Heart },
-                    { name: "Mobile First", icon: Target },
-                    { name: "Clean Code", icon: FileText },
-                    { name: "Testing", icon: Target },
-                    { name: "Version Control", icon: Code },
-                    { name: "API Integration", icon: Zap },
-                    { name: "State Management", icon: Cpu },
-                    { name: "Component Library", icon: Package },
-                    { name: "Tailored Solutions", icon: Sparkles },
-                  ].map((tech, index) => {
-                    const Icon = tech.icon;
-                    return (
-                      <div
-                        key={`tech-${index}`}
-                        className="bg-card/50 border-border rounded-(--radius-surface) relative isolate flex h-14 min-w-[160px] items-center justify-center gap-2 border px-4 backdrop-blur-sm transition-all duration-300 md:h-16 md:min-w-[180px] md:gap-3 md:px-6"
-                        style={{
-                          boxShadow: "var(--shadow-md)",
-                        }}
-                        onMouseEnter={(e) => {
-                          const card = e.currentTarget;
-                          const icon = card.querySelector("svg");
-                          const text = card.querySelector("span");
-                          card.style.borderColor = "var(--accent-orange-40)";
-                          card.style.boxShadow =
-                            "var(--shadow-lg), 0 0 20px var(--accent-orange-15)";
-                          card.style.transform = "translateY(-2px)";
-                          card.style.zIndex = "10";
-                          if (icon) icon.style.color = "var(--accent-orange)";
-                          if (text) text.style.color = "var(--accent-orange)";
-                        }}
-                        onMouseLeave={(e) => {
-                          const card = e.currentTarget;
-                          const icon = card.querySelector("svg");
-                          const text = card.querySelector("span");
-                          card.style.borderColor = "";
-                          card.style.boxShadow = "var(--shadow-md)";
-                          card.style.transform = "";
-                          card.style.zIndex = "";
-                          if (icon) icon.style.color = "";
-                          if (text) text.style.color = "";
-                        }}
-                      >
-                        <Icon className="text-foreground/70 h-4 w-4 transition-colors duration-300 md:h-5 md:w-5" />
-                        <span
-                          className="text-foreground font-semibold transition-colors duration-300"
-                          style={{
-                            fontFamily: "var(--font-geist-sans)",
-                            fontSize: "16px",
-                            lineHeight: "1.2",
-                            letterSpacing: "-0.01em",
-                          }}
-                        >
-                          {tech.name}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </Marquee>
-
-                {/* Gradient Fade Overlays - Thinner and more subtle */}
-                <div
-                  className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-16"
-                  style={{ background: "var(--fade-gradient-left)" }}
-                ></div>
-                <div
-                  className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-16"
-                  style={{ background: "var(--fade-gradient-right)" }}
-                ></div>
+              <div className="mx-auto grid w-full max-w-[960px] gap-5 md:grid-cols-3 md:gap-6">
+                {[
+                  {
+                    title: "Plan",
+                    description: "We meet, audit what exists, and agree on what actually needs shipping.",
+                  },
+                  {
+                    title: "Design",
+                    description:
+                      "Layouts and components come together with your voice, tuned for every screen and easy hand-offs.",
+                  },
+                  {
+                    title: "Launch",
+                    description: "We ship in passes, tidy the edges, and make sure you’re set for the next round.",
+                  },
+                ].map((item, index) => (
+                  <AnimatedContent
+                    key={item.title}
+                    direction="vertical"
+                    distance={40}
+                    delay={0.1 * index}
+                    duration={0.9}
+                    ease="power3.out"
+                    animateOpacity
+                    className="h-full"
+                  >
+                    <div className="flex h-full flex-col bg-card/70 border border-border/60 rounded-(--radius-surface) rounded-all-devices p-6 text-left shadow-[var(--shadow-md)] backdrop-blur-sm transition-colors duration-300 md:p-7">
+                      <h3 className="text-foreground text-lg font-semibold">{item.title}</h3>
+                      <p className="mono-body mt-3 text-foreground/80">{item.description}</p>
+                    </div>
+                  </AnimatedContent>
+                ))}
               </div>
             </div>
           </section>
