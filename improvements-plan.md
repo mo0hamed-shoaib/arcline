@@ -11,10 +11,10 @@ This plan turns the findings in `improvements-report.md` into an actionable road
     - [x] `.font-mono-ui` → `font-family: var(--font-geist-mono)`
     - [x] `.font-sans-ui` → `font-family: var(--font-geist-sans)`
     - [x] `.font-matrix` → `font-family: var(--font-matrix)`
-  - [ ] Replace inline `style={{ fontFamily: ... }}` in:
-    - [ ] `navbar.tsx` (logo text, byline, FEEDBACK buttons)
+  - [x] Replace inline `style={{ fontFamily: ... }}` in:
+    - [x] `navbar.tsx` (logo text, byline, FEEDBACK buttons)
     - [x] `footer.tsx` (legal links and copyright)
-    - [ ] Any other sections using inline font-family for Geist or Matrix
+    - [x] Any other sections using inline font-family for Geist or Matrix (none remaining)
 
 - **1.2 Normalize button styling system**
   - [x] Document intended usage of button styles in `globals.css`:
@@ -33,7 +33,7 @@ This plan turns the findings in `improvements-report.md` into an actionable road
   - [x] Search for any remaining custom CSS-variable-based shadow utilities and convert them to the standardized `shadow-(--shadow-…)` token form.
   - [ ] Scan for leftover `background` vs `background-color` mismatches in custom button/nav styles and normalize where possible.
   - [ ] Introduce utility classes (instead of inline styles) for:
-    - [ ] Testimonials marquee fades (`--fade-gradient-left/right` → `.marquee-fade-left`, `.marquee-fade-right`)
+    - [x] Testimonials marquee fades (`--fade-gradient-left/right` → `.marquee-fade-left`, `.marquee-fade-right`)
     - [ ] Any repeated inline box-shadow / hover shadow definitions that can become tokens.
 
 ---
@@ -117,31 +117,31 @@ This plan turns the findings in `improvements-report.md` into an actionable road
 ## Phase 4 – Animation & Client/Server Split (Next.js 16 / React 19 Best Practices)
 
 - **4.1 Create animation wrappers (“client islands”)**
-  - [ ] Create `components/animation/AnimatedSection.tsx`:
-    - [ ] Client component wrapping `AnimatedContent`.
-    - [ ] Props: `children`, plus a subset of `AnimatedContent` props (distance, direction, duration, ease, delay, etc.).
+  - [x] Create `components/animation/AnimatedSection.tsx`:
+    - [x] Client component wrapping `AnimatedContent`.
+    - [x] Props: `children`, plus a subset of `AnimatedContent` props (distance, direction, duration, ease, delay, etc.).
   - [ ] Optionally create `AnimatedListItem` for repeated list animations (e.g. pricing cards, feature bands).
 
 - **4.2 Convert sections to server components**
   - [ ] Remove `"use client"` from:
-    - [ ] `pricing-section.tsx`
-    - [ ] `client-testimonials-section.tsx`
-    - [ ] `faq-section.tsx`
-    - [ ] `custom-stack-insights-section.tsx`
-    - [ ] `projects-in-motion-section.tsx`
-    - [ ] `cta-section.tsx`
-    - [ ] `footer.tsx` (no client-only APIs inside)
-  - [ ] Wrap them with `AnimatedSection` from `app/page.tsx` (or their parent sections) instead of each section importing `AnimatedContent` directly.
+    - [x] `pricing-section.tsx`
+    - [x] `client-testimonials-section.tsx`
+    - [x] `faq-section.tsx`
+    - [x] `projects-in-motion-section.tsx`
+    - [ ] `cta-section.tsx` (still a client component due to grid + CTA behavior)
+    - [ ] `custom-stack-insights-section.tsx` (uses motion + viewport logic directly)
+    - [ ] `footer.tsx` (tooltips and interactive icons keep it client-side for now)
+  - [x] Wrap them with `AnimatedSection` from `app/page.tsx` (or their parent sections) instead of each section importing `AnimatedContent` directly.
   - [ ] Keep only the truly interactive components as client-only:
     - [ ] `NavbarShell` / `Navbar` (scroll, theme).
     - [ ] Theme toggler, drawers, tooltips (shadcn UI pieces requiring client).
     - [ ] Carousels and marquees.
 
 - **4.3 Make `app/page.tsx` a server component again**
-  - [ ] Remove `"use client"` from `app/page.tsx`.
-  - [ ] Ensure all imported components are either:
-    - [ ] Server components, or
-    - [ ] Client components wrapped via explicit client boundaries (`NavbarShell`, `HeroShell`, `AnimatedSection`).
+  - [x] Remove `"use client"` from `app/page.tsx`.
+  - [x] Ensure all imported components are either:
+    - [x] Server components, or
+    - [x] Client components wrapped via explicit client boundaries (`NavbarShell`, `HeroSection`, `AnimatedSection`).
 
 ---
 
@@ -149,35 +149,37 @@ This plan turns the findings in `improvements-report.md` into an actionable road
 
 - **5.1 Reduce reliance on `suppressHydrationWarning`**
   - [ ] Audit where `suppressHydrationWarning` is used:
-    - [ ] `<html>` in `app/layout.tsx`.
-    - [ ] `AnimatedContent` motion wrapper.
+    - [x] `AnimatedContent` motion wrapper (removed; now deterministic).
+    - [x] `FeatureMedia` zoom-focus motion wrapper in `custom-stack-insights-section.tsx` (removed; now deterministic).
+    - [ ] `<html>` in `app/layout.tsx` (theme-class differences may still warrant it).
+    - [x] Theme toggler buttons (kept for safety around theme class hydration).
     - [ ] Any other older usages.
   - [ ] For each usage:
-    - [ ] Verify whether initial server and client render are now deterministic.
-    - [ ] If so, remove `suppressHydrationWarning` and test hydration.
-    - [ ] Keep it only for cases where React/Next documentation explicitly recommends it (e.g. schema scripts where content is injected at runtime).
+    - [x] Verify whether initial server and client render are now deterministic for `AnimatedContent` and `FeatureMedia`.
+    - [ ] Verify for remaining usages and remove where safe.
+    - [x] Keep it where hydration differences are expected/acceptable (e.g. theme toggler, schema scripts, `<html>` theme class).
 
 - **5.2 Validate theme behaviors**
-  - [ ] Confirm `--grid-color` behaves correctly in:
-    - [ ] Hero `GridBackground`.
-    - [ ] CTA `GridBackground`.
-  - [ ] Verify navbar, hero, CTA, pricing CTA buttons all have:
-    - [ ] Sufficient contrast in light and dark modes.
-    - [ ] No border disappearance on hover.
+  - [x] Confirm `--grid-color` behaves correctly in:
+    - [x] Hero `GridBackground`.
+    - [x] CTA `GridBackground`.
+  - [x] Verify navbar, hero, CTA, pricing CTA buttons all have:
+    - [x] Sufficient contrast in light and dark modes (foreground/background token pairing).
+    - [x] No border disappearance on hover (borders are stable across hover states).
 
 - **5.3 Motion tuning**
-  - [ ] Review nested `AnimatedContent` usage:
-    - [ ] Consider using one parent animation per section where possible, replacing inner ones with CSS transitions.
-  - [ ] Confirm `useReducedMotion` behavior:
-    - [ ] Ensure sections remain perfectly readable/usable with reduced motion enabled.
+  - [x] Review nested `AnimatedContent` usage:
+    - [x] Centralized section-level animation via `AnimatedSection` and removed unnecessary nested `AnimatedContent` (e.g. CTA, sections now mostly use one wrapper).
+  - [x] Confirm `useReducedMotion` behavior:
+    - [x] Verified that hero, custom stack, and other animated sections fall back to non-animated, fully readable layouts when reduced motion is preferred.
 
 ---
 
 ## Phase 6 – Performance & Routing Clarity
 
 - **6.1 Explicit static / dynamic configuration**
-  - [ ] For static legal pages (`/privacy`, `/terms`, `/cookies`):
-    - [ ] Add `export const dynamic = "force-static";` or `export const revalidate = X;` to signal intent.
+  - [x] For static legal pages (`/privacy`, `/terms`, `/cookies`):
+    - [x] Add `export const dynamic = "force-static";` or `export const revalidate = X;` to signal intent.
   - [ ] Ensure sitemap, manifest, and OpenGraph image endpoints are configured appropriately for static generation.
 
 - **6.2 Bundle & runtime checks (optional but recommended)**

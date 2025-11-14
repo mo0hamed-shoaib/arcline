@@ -101,7 +101,6 @@ const FeatureMedia = ({
                 }
           }
           viewport={shouldReduceMotion ? undefined : { amount: 0.6, once: false }}
-          suppressHydrationWarning
         >
           <Image
             src={media.src}

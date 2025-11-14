@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import { AnimatedSection } from "@/components/animation/AnimatedSection";
 import ClientTestimonialsSection from "@/components/client-testimonials-section";
 import CTASection from "@/components/cta-section";
 import CustomStackInsightsSection from "@/components/custom-stack-insights-section";
@@ -22,12 +21,29 @@ export default function Home() {
         {/* Hero Section */}
         <HeroSection />
 
-        <CustomStackInsightsSection />
-        <ProjectsInMotionSection />
-        <ClientTestimonialsSection />
-        <PricingSection />
-        <FAQSection />
-        <CTASection />
+        <AnimatedSection>
+          <CustomStackInsightsSection />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <ProjectsInMotionSection />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <ClientTestimonialsSection />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <PricingSection />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <FAQSection />
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <CTASection />
+        </AnimatedSection>
         <Footer />
       </main>
     </div>

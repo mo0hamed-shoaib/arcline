@@ -88,10 +88,9 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
             {!mounted && <div className="mr-3 h-7 w-7" />}
             <div className="flex flex-col">
               <span
-                className="logo-text"
+                className="logo-text font-mono-ui"
                 style={{
                   ...typography.brand.logo,
-                  fontFamily: typography.fontMono,
                   color: "var(--foreground)",
                   width: "auto",
                   height: "auto",
@@ -102,9 +101,9 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
               <span
                 style={{
                   ...typography.brand.byline,
-                  fontFamily: typography.fontMatrix,
                   color: "var(--foreground)",
                 }}
+                className="font-matrix"
               >
                 By Jimmy
               </span>

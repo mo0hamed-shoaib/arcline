@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -23,6 +21,8 @@ import {
 } from "@/components/legal-typography";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+
+export const dynamic = "force-static";
 
 export default function PrivacyPage() {
   return (

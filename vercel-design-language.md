@@ -30,6 +30,54 @@ As the design of this project commenced directly after [@rauchg](https://twitter
 
 Color variables are also rife throughout — we adopted [@kevvy](https://twitter.com/kevinrupert)'s new Vercel color system, optimized for accessibility, as color variables. With these new tools, the entire team can see pages adapted to dark mode at different sizes in seconds, rather than minutes.
 
+---
+
+## Arcline Implementation Notes
+
+While this essay describes Vercel’s own design language, the Arcline site applies similar principles with a focused, lightweight system:
+
+### Typography
+
+- **Hero & section headings**: `hero-heading`, `section-head`, `section-subhead` classes ensure consistent hierarchy and spacing.
+- **Body & mono text utilities**:
+  - `.font-sans-ui` → `var(--font-geist-sans)` for general UI copy.
+  - `.font-mono-ui` → `var(--font-geist-mono)` for legal/footer and meta text.
+  - `.font-matrix` → Matrix display font used in the brand byline.
+
+### Buttons
+
+- **Primary CTA**:
+  - `.btn-cta` (used via `PrimaryCTA` component) is the main call-to-action style for hero, CTA section, and pricing.
+  - Theme-aware via `var(--foreground)` / `var(--background)` and keeps borders visible on hover.
+- **Navbar actions**:
+  - `.btn-nav` for text‑only actions (e.g. FEEDBACK) with no background or border, plus hover tint only.
+  - `.btn-icon` for icon‑only actions (theme toggle) matching navbar visual weight.
+
+### Layout primitives
+
+- **Global width**: All main sections use a shared max width of `1296px` with edge‑aligned content.
+- **Section scaffolding**:
+  - `SectionShell` wraps sections with vertical spacing and the `max-w-[1296px]` container.
+  - `SectionHeader` standardizes title + subtitle presentation and alignment (center/left).
+
+### Backgrounds & motion
+
+- **Grid backgrounds**:
+  - `GridBackground` uses CSS `--grid-color` which switches with theme (`--grid-color-light`/`dark`).
+  - No JS theme detection; this avoids flashes on first render.
+- **Marquees**:
+  - `Marquee` is a client component that powers hero services and testimonial strips.
+  - `.marquee-fade-left` / `.marquee-fade-right` apply theme-aware gradient fades at edges.
+- **Animation**:
+  - `AnimatedContent` handles entrance/scroll animation with `useReducedMotion` support.
+  - `AnimatedSection` is a small client wrapper used from the page to animate otherwise server-rendered sections.
+
+### Content & structure
+
+- Structured content (pricing tiers, testimonials, FAQs, and custom stack feature bands) lives in `lib/content/*`, so sections are mostly render‑only and easy to reuse in schema or other contexts.
+
+These primitives aim to keep the implementation close to the spirit of the Vercel design language—grid‑driven, performant, and restrained—while staying maintainable in a small, focused codebase.
+
 ### Grid System
 
 After the initial designs were signed off we very quickly recognized the pivotal role of the grid and knew its foundation would be a key to our success. It was imperative for us to craft a grid system that seamlessly combined performance, responsiveness, and a strong DX while offering a suite of out of the box defaults to cater to common layout needs. We wanted to create a grid system component that could be used to build out entire pages of grid based layouts:

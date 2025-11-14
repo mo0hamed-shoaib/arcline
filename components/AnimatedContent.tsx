@@ -160,7 +160,6 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
         : { whileInView: animate, viewport: { once: true, amount: viewportAmount } })}
       transition={transition}
       onAnimationComplete={onComplete}
-      suppressHydrationWarning
     >
       {children}
     </motion.div>

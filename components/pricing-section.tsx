@@ -1,9 +1,6 @@
-"use client";
-
 import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 
-import AnimatedContent from "@/components/AnimatedContent";
 import { PrimaryCTA } from "@/components/primary-cta";
 import { cn } from "@/lib/utils";
 import { PRICING_ADDONS, PRICING_TIERS, type PricingTier } from "@/lib/content/pricing";
@@ -65,59 +62,48 @@ const PricingCard = ({ tier }: { tier: PricingTier }) => {
 
 export default function PricingSection() {
   return (
-    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-      <SectionShell>
-        <div className="flex w-full flex-col gap-12">
-          <SectionHeader
-            title="Pricing & Packages"
-            subtitle="Two starting points—one for launches, one for platforms. We tailor the rest around your roadmap."
-          />
+    <SectionShell>
+      <div className="flex w-full flex-col gap-12">
+        <SectionHeader
+          title="Pricing & Packages"
+          subtitle="Two starting points—one for launches, one for platforms. We tailor the rest around your roadmap."
+        />
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {PRICING_TIERS.map((tier, index) => (
-              <AnimatedContent
-                key={tier.name}
-                direction="vertical"
-                distance={36}
-                duration={0.85}
-                ease="power3.out"
-                delay={index * 0.1}
-              >
-                <PricingCard tier={tier} />
-              </AnimatedContent>
-            ))}
-          </div>
-
-          <div className="mx-auto max-w-3xl rounded-(--radius-surface) border border-border/50 bg-background/70 p-6 text-start shadow-sm">
-            <h3 className="text-foreground text-xl font-semibold text-center">Add-ons & Support</h3>
-            <p className="mono-body mt-2 text-sm text-foreground/70 text-center">
-              Extras are scoped during discovery so you only pay for what matters.
-            </p>
-            <ul className="mt-4 grid gap-3 text-sm text-foreground/85 sm:grid-cols-2">
-              {PRICING_ADDONS.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 rounded-(--radius-interactive) border border-border/50 bg-background/60 px-3 py-2 shadow-xs"
-                >
-                  <span
-                    className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground/40"
-                    aria-hidden="true"
-                  />
-                  <span className="mono-bullet leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mx-auto flex flex-col items-center gap-3 text-center">
-            <p className="mono-body text-sm text-foreground/60">
-              Every engagement starts with a discovery workshop, sitemap planning, and QA across
-              devices. Final pricing depends on scope, integrations, and timeline.
-            </p>
-            <PrimaryCTA href="https://tally.so/r/n0l7BB" label="Book a Meeting" />
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {PRICING_TIERS.map((tier) => (
+            <PricingCard key={tier.name} tier={tier} />
+          ))}
         </div>
-      </SectionShell>
-    </AnimatedContent>
+
+        <div className="mx-auto max-w-3xl rounded-(--radius-surface) border border-border/50 bg-background/70 p-6 text-start shadow-sm">
+          <h3 className="text-foreground text-xl font-semibold text-center">Add-ons & Support</h3>
+          <p className="mono-body mt-2 text-sm text-foreground/70 text-center">
+            Extras are scoped during discovery so you only pay for what matters.
+          </p>
+          <ul className="mt-4 grid gap-3 text-sm text-foreground/85 sm:grid-cols-2">
+            {PRICING_ADDONS.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 rounded-(--radius-interactive) border border-border/50 bg-background/60 px-3 py-2 shadow-xs"
+              >
+                <span
+                  className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground/40"
+                  aria-hidden="true"
+                />
+                <span className="mono-bullet leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mx-auto flex flex-col items-center gap-3 text-center">
+          <p className="mono-body text-sm text-foreground/60">
+            Every engagement starts with a discovery workshop, sitemap planning, and QA across
+            devices. Final pricing depends on scope, integrations, and timeline.
+          </p>
+          <PrimaryCTA href="https://tally.so/r/n0l7BB" label="Book a Meeting" />
+        </div>
+      </div>
+    </SectionShell>
   );
 }

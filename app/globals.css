@@ -89,6 +89,15 @@
     opacity: 0.9;
   }
 
+  /* Marquee gradient fades */
+  .marquee-fade-left {
+    background: var(--fade-gradient-left);
+  }
+
+  .marquee-fade-right {
+    background: var(--fade-gradient-right);
+  }
+
   /* Font utility classes for consistent typography */
   .font-mono-ui {
     font-family: var(--font-geist-mono);

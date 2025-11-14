@@ -1,6 +1,3 @@
-"use client";
-
-import AnimatedContent from "@/components/AnimatedContent";
 import { ProjectsCarousel } from "@/components/projects-carousel";
 import { cloudinaryConfig, getCloudinaryImageUrl } from "@/lib/cloudinary";
 
@@ -115,23 +112,21 @@ const slides = [
 
 export default function ProjectsInMotionSection() {
   return (
-    <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-      <section className="py-10 md:py-14">
-        <div className="mx-auto w-full max-w-[1296px]">
-          <div className="mb-6 text-center md:mb-10">
-            <h2 className="section-head mb-4">
-              Projects in Motion
-            </h2>
-            <p className="section-subhead">
-              Launch snapshots from tourism, manufacturing, and SaaS workstreams.
-            </p>
-          </div>
-
-          <div className="mx-auto w-full">
-            <ProjectsCarousel slides={slides} />
-          </div>
+    <section className="py-10 md:py-14">
+      <div className="mx-auto w-full max-w-[1296px]">
+        <div className="mb-6 text-center md:mb-10">
+          <h2 className="section-head mb-4">
+            Projects in Motion
+          </h2>
+          <p className="section-subhead">
+            Launch snapshots from tourism, manufacturing, and SaaS workstreams.
+          </p>
         </div>
-      </section>
-    </AnimatedContent>
+
+        <div className="mx-auto w-full">
+          <ProjectsCarousel slides={slides} />
+        </div>
+      </div>
+    </section>
   );
 }
