@@ -35,7 +35,7 @@ export default function Home() {
       </div>
 
       {/* Rest of the content */}
-      <main className="mx-auto flex w-full max-w-[1320px] flex-col px-6 md:px-8">
+      <main className="mx-auto flex w-full max-w-[1200px] flex-col px-6 md:px-8">
         {/* Hero Section */}
         <section
           className={cn(
@@ -82,7 +82,10 @@ export default function Home() {
               blurRadius={16}
             >
               <div className="mx-auto max-w-4xl">
-                <h1 className="hero-heading heading-with-selection mb-4 select-text" aria-label="Build Your Vision">
+                <h1
+                  className="hero-heading heading-with-selection mb-4 select-text"
+                  aria-label="Build Your Vision"
+                >
                   Build Your Vision
                 </h1>
               </div>
@@ -100,8 +103,9 @@ export default function Home() {
             >
               <div className="mx-auto max-w-3xl">
                 <p className="hero-subhead select-text">
-                  At Arcline, we craft standout modern websites—fast, responsive, and unforgettable—so your brand feels
-                  premium, converts more customers, and stays ahead with AI-powered development.
+                  At Arcline, we craft standout modern websites—fast, responsive, and
+                  unforgettable—so your brand feels premium, converts more customers, and stays
+                  ahead with AI-powered development.
                 </p>
               </div>
             </AnimatedContent>
@@ -123,11 +127,22 @@ export default function Home() {
                   variant="secondary"
                   className={cn(
                     "md:w-auto bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-[var(--shadow-lg)] transition-shadow duration-300",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                     "dark:bg-white! dark:text-slate-950! dark:hover:bg-white/85!"
                   )}
                 >
-                  <a href="https://x.com/jackjack_eth" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <a
+                    href="https://x.com/jackjack_eth"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <svg
+                      className="h-4 w-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                     Contact Me
@@ -140,7 +155,7 @@ export default function Home() {
 
         <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
           <section className="py-10 md:py-14">
-            <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
+            <div className="mx-auto w-full px-4 sm:px-6">
               <div className="mx-auto mb-8 max-w-[880px] text-center md:mb-10">
                 <h2
                   className="section-head mb-4"
@@ -161,7 +176,13 @@ export default function Home() {
                   We keep things light: meet, shape, and ship without the noise.
                 </p>
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                  {["Tourism Sites", "Local Shops", "E-commerce", "Emerging Products", "Portfolios"].map((item) => (
+                  {[
+                    "Tourism Sites",
+                    "Local Shops",
+                    "E-commerce",
+                    "Emerging Products",
+                    "Portfolios",
+                  ].map((item) => (
                     <span
                       key={item}
                       className="border-border text-foreground/80 bg-card/70 rounded-full border px-4 py-1.5 font-medium tracking-tight"
@@ -173,11 +194,12 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mx-auto grid w-full max-w-[960px] gap-5 md:grid-cols-3 md:gap-6">
+              <div className="grid w-full gap-5 md:grid-cols-3 md:gap-6">
                 {[
                   {
                     title: "Plan",
-                    description: "We meet, audit what exists, and agree on what actually needs shipping.",
+                    description:
+                      "We meet, audit what exists, and agree on what actually needs shipping.",
                   },
                   {
                     title: "Design",
@@ -186,7 +208,8 @@ export default function Home() {
                   },
                   {
                     title: "Launch",
-                    description: "We ship in passes, tidy the edges, and make sure you’re set for the next round.",
+                    description:
+                      "We ship in passes, tidy the edges, and make sure you’re set for the next round.",
                   },
                 ].map((item, index) => (
                   <AnimatedContent

@@ -66,6 +66,7 @@ export default function CTASection() {
                 variant="secondary"
                 className={cn(
                   "md:w-auto bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-[var(--shadow-lg)] transition-shadow duration-300",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   "dark:bg-white! dark:text-slate-950! dark:hover:bg-white/85!"
                 )}
               >

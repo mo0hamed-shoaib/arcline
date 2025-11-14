@@ -117,7 +117,7 @@ export default function ProjectsInMotionSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-10 md:py-14">
-        <div className="mx-auto w-full max-w-[1296px] px-4 sm:px-6">
+        <div className="mx-auto w-full px-4 sm:px-6">
           <div className="mb-6 text-center md:mb-10">
             <h2 className="section-head mb-4">
               Projects in Motion
@@ -127,7 +127,7 @@ export default function ProjectsInMotionSection() {
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-[1100px] px-1 sm:px-2">
+          <div className="mx-auto w-full px-1 sm:px-2">
             <ProjectsCarousel slides={slides} />
           </div>
         </div>

@@ -79,7 +79,8 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
                 alt="Arcline Logo"
                 width={28}
                 height={28}
-                className="mr-3"
+                className="mr-3 h-7 w-7"
+                sizes="28px"
                 priority
                 fetchPriority="high"
               />

@@ -1,206 +1,112 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { Check, Sparkles, X } from "lucide-react";
+import { Check } from "lucide-react";
 
 import AnimatedContent from "@/components/AnimatedContent";
-import { ShineBorder } from "@/components/ui/shine-border";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type FeatureKey =
-  | "modernUI"
-  | "seo"
-  | "multiLang"
-  | "responsive"
-  | "performance"
-  | "contactForm"
-  | "socialMedia"
-  | "multiPages"
-  | "navigation"
-  | "contactPages"
-  | "auth"
-  | "dashboard"
-  | "userManagement"
-  | "rbac"
-  | "analytics"
-  | "backup"
-  | "security";
-
-const allFeatures: ReadonlyArray<{ name: string; key: FeatureKey }> = [
-  { name: "Modern UI/UX", key: "modernUI" },
-  { name: "SEO optimized", key: "seo" },
-  { name: "Multi-language support (2-3 languages)", key: "multiLang" },
-  { name: "Responsive & mobile-first design", key: "responsive" },
-  { name: "Image optimization & fast loading", key: "performance" },
-  { name: "Contact form", key: "contactForm" },
-  { name: "Social media integration", key: "socialMedia" },
-  { name: "Multiple pages (5-10+)", key: "multiPages" },
-  { name: "Navigation system", key: "navigation" },
-  { name: "Contact pages", key: "contactPages" },
-  { name: "User authentication", key: "auth" },
-  { name: "Admin dashboard", key: "dashboard" },
-  { name: "User profiles & data management", key: "userManagement" },
-  { name: "Role-based access", key: "rbac" },
-  { name: "Analytics integration", key: "analytics" },
-  { name: "Backup system", key: "backup" },
-  { name: "Advanced security", key: "security" },
-];
-
-type PricingTierConfig = {
+type PricingTier = {
   name: string;
-  description: string;
+  headline: string;
   price: string;
   currency: string;
-  includedFeatures: FeatureKey[];
-  popular?: boolean;
+  subheading: string;
+  features: readonly string[];
 };
 
-const pricingTiers = [
+const pricingTiers: ReadonlyArray<PricingTier> = [
   {
-    name: "Landing Page",
-    description: "Single-page website perfect for showcasing your product or service",
-    price: "15,000",
+    name: "Website Launch",
+    headline:
+      "A polished marketing site with thoughtful copy, performance, and multilingual support.",
+    price: "18,000",
     currency: "EGP",
-    includedFeatures: [
-      "modernUI",
-      "seo",
-      "multiLang",
-      "responsive",
-      "performance",
-      "contactForm",
-      "socialMedia",
+    subheading: "Ideal for hospitality, local businesses, creatives, and early-stage brands.",
+    features: [
+      "Strategy workshop and page flow tailored to your offer",
+      "SEO groundwork: semantic HTML, sitemaps, metadata, and schema",
+      "Responsive layouts tuned for mobile-first browsing",
+      "Image delivery handled through Cloudinary (or your CDN)",
+      "Resend-powered contact form with confirmation and spam guard",
+      "Multi-language publishing setup for up to three locales",
     ],
-    popular: false,
   },
   {
-    name: "Complete Website",
-    description: "Multi-page website with optional multi-language support",
-    price: "25,000",
+    name: "Platform Build",
+    headline: "Everything from Website Launch plus admin tools, logins, and deeper integrations.",
+    price: "32,000",
     currency: "EGP",
-    includedFeatures: [
-      "modernUI",
-      "seo",
-      "multiLang",
-      "responsive",
-      "performance",
-      "contactForm",
-      "socialMedia",
-      "multiPages",
-      "navigation",
-      "contactPages",
+    subheading: "For products that need dashboards, approvals, or protected areas.",
+    features: [
+      "All Website Launch deliverables and structured content modelling",
+      "Secure authentication via Supabase or your identity provider",
+      "Role-based admin space to manage pages, users, and submissions",
+      "Engagement reporting across forms, SEO, and page activity",
+      "File storage and image handling with access policies applied",
+      "Automated backups, monitoring, and security checks",
     ],
-    popular: true,
   },
-  {
-    name: "Full Stack Solution",
-    description: "Complete website with dashboard and advanced features",
-    price: "35,000",
-    currency: "EGP",
-    includedFeatures: [
-      "modernUI",
-      "seo",
-      "multiLang",
-      "responsive",
-      "performance",
-      "contactForm",
-      "socialMedia",
-      "multiPages",
-      "navigation",
-      "contactPages",
-      "auth",
-      "dashboard",
-      "userManagement",
-      "rbac",
-      "analytics",
-      "backup",
-      "security",
-    ],
-    popular: false,
-  },
-] satisfies ReadonlyArray<PricingTierConfig>;
+] as const;
 
-type PricingTier = PricingTierConfig;
+const addOns: ReadonlyArray<string> = [
+  "Extra language translations beyond the core package",
+  "New landing pages or campaign-specific sections",
+  "Newsletter or CRM integrations wired to your stack",
+  "Monthly tune-ups covering fixes, tweaks, and advice",
+];
 
-const getCardStyle = (isPopular: boolean): CSSProperties =>
-  ({
-    "--card-border": isPopular ? "var(--accent-orange-60)" : "var(--border)",
-    "--card-border-hover": isPopular ? "var(--accent-orange-80)" : "var(--accent-orange-40)",
-    "--card-shadow": isPopular ? "var(--shadow-lg)" : "var(--shadow-md)",
-    "--card-shadow-hover": isPopular
-      ? "var(--shadow-xl), 0 0 40px var(--accent-orange-30)"
-      : "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
-  }) as CSSProperties;
+const cardStyle = {
+  "--card-border": "var(--border)",
+  "--card-border-hover": "var(--accent-orange-60)",
+  "--card-shadow": "var(--shadow-md)",
+  "--card-shadow-hover": "var(--shadow-lg), 0 0 20px var(--accent-orange-15)",
+} as CSSProperties;
 
 const PricingCard = ({ tier }: { tier: PricingTier }) => {
-  const isPopular = Boolean(tier.popular);
-  const cardStyle = getCardStyle(isPopular);
-
   return (
-    <div
+    <article
       className={cn(
-        "group relative isolate overflow-hidden rounded-(--radius-surface) backdrop-blur-sm transition-all duration-300 hover:-translate-y-1",
-        isPopular ? "border-2 md:-mt-4 md:mb-4" : "border",
-        "border-(--card-border) shadow-(--card-shadow) hover:border-(--card-border-hover) hover:shadow-(--card-shadow-hover)"
+        "group relative isolate flex h-full flex-col overflow-hidden rounded-(--radius-surface) border border-(--card-border) bg-card/85 shadow-(--card-shadow) transition-all duration-300 hover:-translate-y-1 hover:border-(--card-border-hover) hover:shadow-(--card-shadow-hover)"
       )}
       style={cardStyle}
     >
-      {isPopular && (
-        <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-          <Sparkles className="h-3 w-3" /> Popular
-        </div>
-      )}
-
       <div className="flex h-full flex-col gap-6 p-6 md:p-8">
-        <div>
-          <h3 className="text-foreground mb-2 text-2xl font-semibold" data-pricing-title>
+        <header className="space-y-3 text-left">
+          <h3 className="text-foreground text-2xl font-semibold" data-pricing-title>
             {tier.name}
           </h3>
-          <p className="mono-body text-foreground/70 text-sm leading-6">{tier.description}</p>
-        </div>
+          <p className="mono-body text-sm leading-6 text-foreground/75">{tier.headline}</p>
+          <div className="flex items-baseline gap-2">
+            <span className="text-foreground text-3xl font-bold" data-pricing-price>
+              {tier.price}
+            </span>
+            <span className="text-foreground/60 text-sm font-medium">{tier.currency}</span>
+          </div>
+        </header>
 
-        <div className="flex items-baseline gap-2">
-          <span className="text-foreground text-3xl font-bold" data-pricing-price>
-            {tier.price}
-          </span>
-          <span className="text-foreground/60 text-sm font-medium">{tier.currency}</span>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <h4 className="text-foreground/80 text-sm font-semibold uppercase tracking-[0.3em]">
-            Included Features
-          </h4>
-          <ul className="space-y-2 text-sm text-foreground/80">
-            {allFeatures.map((feature) => {
-              const included = tier.includedFeatures.includes(feature.key);
-
-              return (
-                <li key={feature.key} className="flex items-start gap-3">
-                  <span
-                    className={cn(
-                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border",
-                      included
-                        ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                        : "border-border/40 bg-transparent text-muted-foreground"
-                    )}
-                  >
-                    {included ? <Check className="h-3.5 w-3.5" /> : <X className="h-3.5 w-3.5" />}
-                  </span>
-                  <span className="mono-bullet leading-6">{feature.name}</span>
-                </li>
-              );
-            })}
+        <div className="flex flex-col gap-4 rounded-(--radius-surface) border border-border/60 bg-background/65 p-5 shadow-sm">
+          <div>
+            <h4 className="text-foreground text-sm font-semibold uppercase tracking-[0.28em]">
+              What’s Included
+            </h4>
+            <p className="mono-body mt-2 text-[0.82rem] text-foreground/68">{tier.subheading}</p>
+          </div>
+          <ul className="space-y-2 text-sm text-foreground/88">
+            {tier.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/15 text-emerald-300">
+                  <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                  <span className="sr-only">Included</span>
+                </span>
+                <span className="mono-bullet leading-6 text-foreground/82">{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
-
-        <div className="mt-auto">
-          <ShineBorder
-            borderWidth={1}
-            duration={14}
-            shineColor={isPopular ? "var(--accent-orange-60)" : "rgba(255, 255, 255, 0.4)"}
-          />
-        </div>
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -208,29 +114,70 @@ export default function PricingSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
       <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
-          {/* Header */}
-          <div className="mb-12 text-center md:mb-16">
-            <h2 className="section-head mb-6">Pricing</h2>
-            <p className="section-subhead mb-8">
-              Tailored project tiers for launches, relaunches, and refreshes.
+        <div className="mx-auto flex w-full max-w-[1296px] flex-col gap-12 px-4 sm:px-6">
+          <div className="text-center">
+            <h2 className="section-head mb-4">Pricing & Packages</h2>
+            <p className="section-subhead">
+              Two starting points—one for launches, one for platforms. We tailor the rest around
+              your roadmap.
             </p>
           </div>
 
-          {/* Pricing Cards Grid */}
-          <div className="mb-8 grid grid-cols-1 gap-6 md:mb-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {pricingTiers.map((tier) => (
-              <PricingCard key={tier.name} tier={tier} />
+          <div className="grid gap-6 md:grid-cols-2">
+            {pricingTiers.map((tier, index) => (
+              <AnimatedContent
+                key={tier.name}
+                direction="vertical"
+                distance={36}
+                duration={0.85}
+                ease="power3.out"
+                delay={index * 0.1}
+              >
+                <PricingCard tier={tier} />
+              </AnimatedContent>
             ))}
           </div>
 
-          {/* Note */}
-          <div className="text-center">
-            <p className="mono-body text-foreground/60 mx-auto max-w-2xl text-sm">
-              Prices are estimates. Final pricing depends on project complexity, custom
-              requirements, and specific features. Payment gateway integration adds an additional
-              charge. Contact me for a detailed quote tailored to your needs.
+          <div className="mx-auto max-w-3xl rounded-(--radius-surface) border border-border/50 bg-background/70 p-6 text-start shadow-sm">
+            <h3 className="text-foreground text-xl font-semibold text-center">Add-ons & Support</h3>
+            <p className="mono-body mt-2 text-sm text-foreground/70 text-center">
+              Extras are scoped during discovery so you only pay for what matters.
             </p>
+            <ul className="mt-4 grid gap-3 text-sm text-foreground/85 sm:grid-cols-2">
+              {addOns.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 rounded-(--radius-interactive) border border-border/50 bg-background/60 px-3 py-2 shadow-xs"
+                >
+                  <span
+                    className="mt-1 h-1.5 w-1.5 rounded-full bg-foreground/40"
+                    aria-hidden="true"
+                  />
+                  <span className="mono-bullet leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mx-auto flex flex-col items-center gap-3 text-center">
+            <p className="mono-body text-sm text-foreground/60">
+              Every engagement starts with a discovery workshop, sitemap planning, and QA across
+              devices. Final pricing depends on scope, integrations, and timeline.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className={cn(
+                "rounded-(--radius-interactive) bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-(--shadow-md) transition-shadow duration-300",
+                "rounded-(--radius-interactive) bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-(--shadow-md) transition-shadow duration-300",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              )}
+            >
+              <a href="https://tally.so/r/n0l7BB" target="_blank" rel="noopener noreferrer">
+                Book a Meeting
+              </a>
+            </Button>
           </div>
         </div>
       </section>
