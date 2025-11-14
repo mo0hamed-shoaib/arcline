@@ -4,81 +4,9 @@ import type { CSSProperties } from "react";
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { Marquee } from "@/components/ui/marquee";
-
-interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  testimonial: string;
-  avatar: string; // Initials for avatar generation
-}
-
-const testimonials: Testimonial[] = [
-  {
-    name: "Sarah Chen",
-    role: "Founder",
-    company: "TravelScape",
-    testimonial:
-      "Arcline transformed our tourism website into a modern, responsive platform. The AI-powered development process was incredibly fast, and the final result exceeded our expectations.",
-    avatar: "SC",
-  },
-  {
-    name: "Michael Rodriguez",
-    role: "CEO",
-    company: "EcoStore",
-    testimonial:
-      "Working with Arcline was seamless. They built our e-commerce platform with Next.js and TypeScript, and it performs beautifully across all devices. Highly recommend!",
-    avatar: "MR",
-  },
-  {
-    name: "Emily Watson",
-    role: "Creative Director",
-    company: "Portfolio Studio",
-    testimonial:
-      "The personal portfolio Arcline created for me is stunning. Clean design, fast performance, and the development process was so smooth. Exactly what I needed.",
-    avatar: "EW",
-  },
-  {
-    name: "David Kim",
-    role: "Marketing Director",
-    company: "TechStart Inc",
-    testimonial:
-      "Our business website needed a complete overhaul. Arcline delivered a modern, SEO-optimized site that's already driving more leads. Professional and efficient.",
-    avatar: "DK",
-  },
-  {
-    name: "Jessica Martinez",
-    role: "Product Manager",
-    company: "SaaS Platform",
-    testimonial:
-      "The admin dashboard Arcline built is perfect. Clean UI, excellent UX, and it integrates seamlessly with our backend. The team's attention to detail is impressive.",
-    avatar: "JM",
-  },
-  {
-    name: "Alex Thompson",
-    role: "Entrepreneur",
-    company: "Startup Co",
-    testimonial:
-      "From concept to launch, Arcline made the entire process easy. The AI-powered development saved us time and money while delivering a production-ready product.",
-    avatar: "AT",
-  },
-  {
-    name: "Rachel Green",
-    role: "Content Creator",
-    company: "Blog Network",
-    testimonial:
-      "My blog platform built by Arcline is beautiful and fast. The modern design perfectly matches my brand, and the user experience is exceptional. Couldn't be happier!",
-    avatar: "RG",
-  },
-  {
-    name: "James Wilson",
-    role: "Restaurant Owner",
-    company: "Fine Dining Group",
-    testimonial:
-      "The restaurant website Arcline created showcases our menu beautifully. The booking system works flawlessly, and customers love the modern interface. Great work!",
-    avatar: "JW",
-  },
-];
+import { TESTIMONIALS, type Testimonial } from "@/lib/content/testimonials";
+import { SectionHeader } from "@/components/layout/SectionHeader";
+import { SectionShell } from "@/components/layout/SectionShell";
 
 // Generate a consistent color for each avatar based on initials
 function getAvatarColor(initials: string): string {
@@ -139,17 +67,14 @@ function TestimonialCard({ name, role, company, testimonial, avatar }: Testimoni
 export default function ClientTestimonialsSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-      <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-[1296px] px-4 sm:px-6">
+      <SectionShell>
+        <div>
           {/* Header */}
-          <div className="mb-12 text-center md:mb-16">
-            <h2 className="section-head mb-6">
-              Client Feedback and Testimonials
-            </h2>
-            <p className="section-subhead mb-8">
-              Partner stories on collaboration, velocity, and measurable wins.
-            </p>
-          </div>
+          <SectionHeader
+            title="Client Feedback and Testimonials"
+            subtitle="Partner stories on collaboration, velocity, and measurable wins."
+            className="mb-8 md:mb-12"
+          />
 
           {/* Marquee Container */}
           <div className="relative w-full overflow-hidden">
@@ -159,7 +84,7 @@ export default function ClientTestimonialsSection() {
               repeat={3}
               className="mb-4 [--duration:80s] [--gap:1.5rem] md:mb-4 md:[--duration:50s]"
             >
-              {testimonials.map((testimonial, index) => (
+              {TESTIMONIALS.map((testimonial, index) => (
                 <TestimonialCard key={`first-${index}`} {...testimonial} />
               ))}
             </Marquee>
@@ -171,7 +96,7 @@ export default function ClientTestimonialsSection() {
               repeat={3}
               className="[--duration:80s] [--gap:1.5rem] md:[--duration:50s]"
             >
-              {testimonials.map((testimonial, index) => (
+              {TESTIMONIALS.map((testimonial, index) => (
                 <TestimonialCard key={`second-${index}`} {...testimonial} />
               ))}
             </Marquee>
@@ -187,7 +112,7 @@ export default function ClientTestimonialsSection() {
             ></div>
           </div>
         </div>
-      </section>
+      </SectionShell>
     </AnimatedContent>
   );
 }

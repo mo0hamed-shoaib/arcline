@@ -124,9 +124,9 @@ export const AnimatedThemeToggler = ({
         suppressHydrationWarning
       >
         {mounted && isDark ? (
-          <Sun className="h-5 w-5 text-foreground" />
+          <Sun className="h-5 w-5 text-current" />
         ) : (
-          <Moon className="h-5 w-5 text-foreground" />
+          <Moon className="h-5 w-5 text-current" />
         )}
       </button>
     );

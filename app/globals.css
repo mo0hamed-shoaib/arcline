@@ -88,6 +88,19 @@
     filter: brightness(1.1);
     opacity: 0.9;
   }
+
+  /* Font utility classes for consistent typography */
+  .font-mono-ui {
+    font-family: var(--font-geist-mono);
+  }
+
+  .font-sans-ui {
+    font-family: var(--font-geist-sans);
+  }
+
+  .font-matrix {
+    font-family: var(--font-matrix);
+  }
 }
 
 @layer base {
@@ -212,6 +225,9 @@
 
     /* Section subheading text color */
     --text-subhead: color-mix(in srgb, var(--foreground) 90%, var(--background) 10%);
+    /* Hero text colors (light theme defaults) */
+    --hero-heading-color: var(--foreground);
+    --hero-subhead-color: color-mix(in srgb, var(--foreground) 80%, var(--background) 20%);
 
     /* ========================================
        OVERLAY SYSTEM
@@ -318,6 +334,10 @@
     --overlay-light: rgba(255, 255, 255, 0.1);
     --overlay-dark: rgba(0, 0, 0, 0.7);
     --fade-from: rgba(0, 0, 0, 1);
+
+    /* Hero text colors (dark theme overrides) */
+    --hero-heading-color: oklch(0.98 0 0);
+    --hero-subhead-color: rgba(248, 250, 252, 0.86);
 
     /* Gradient fade overlays for dark mode - using background color for seamless blend */
     --fade-gradient-left: linear-gradient(to right, oklch(0 0 0), transparent);
@@ -588,6 +608,62 @@
 
   .testimonial-card:is(:hover, :focus-within) [data-name] {
     color: var(--accent-orange);
+  }
+
+  /* 
+    CTA / primary action button - theme-aware
+    Usage:
+    - For primary actions such as:
+      - Hero “Get Started”
+      - CTA section “Contact Me”
+      - Pricing “Book a Meeting”
+    - Apply via: <Button asChild className="btn-cta">…</Button>
+  */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius-interactive)] px-5 py-2.5 text-sm font-medium transition-colors border;
+    background-color: var(--foreground);
+    color: var(--background);
+    border-color: color-mix(in srgb, var(--foreground) 55%, var(--background) 45%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-cta:hover {
+    background-color: color-mix(in srgb, var(--foreground) 88%, var(--background) 12%);
+    border-color: color-mix(in srgb, var(--foreground) 65%, var(--background) 35%);
+  }
+
+  /* 
+    Navbar buttons - minimal text-only buttons (no background, no border)
+    Usage:
+    - For non-primary navbar actions such as FEEDBACK links
+    - Should be combined with typography utilities (e.g. font-sans-ui, tracking, etc.)
+  */
+  .btn-nav,
+  .btn-nav:hover,
+  .btn-nav:focus {
+    @apply inline-flex items-center justify-center rounded-[var(--radius-interactive)];
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--foreground) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 
+    Icon button (theme toggle, icon-only navbar actions)
+    Usage:
+    - For square icon buttons in the navbar (e.g. theme toggle)
+    - Shares visual style with .btn-nav (no background/border), but sized as icon buttons
+  */
+  .btn-icon,
+  .btn-icon:hover,
+  .btn-icon:focus {
+    @apply inline-flex items-center justify-center rounded-[var(--radius-interactive)];
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--foreground) !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .testimonial-card:is(:hover, :focus-within) blockquote p {

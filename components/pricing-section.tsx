@@ -4,58 +4,11 @@ import type { CSSProperties } from "react";
 import { Check } from "lucide-react";
 
 import AnimatedContent from "@/components/AnimatedContent";
-import { Button } from "@/components/ui/button";
+import { PrimaryCTA } from "@/components/primary-cta";
 import { cn } from "@/lib/utils";
-
-type PricingTier = {
-  name: string;
-  headline: string;
-  price: string;
-  currency: string;
-  subheading: string;
-  features: readonly string[];
-};
-
-const pricingTiers: ReadonlyArray<PricingTier> = [
-  {
-    name: "Website Launch",
-    headline:
-      "A polished marketing site with thoughtful copy, performance, and multilingual support.",
-    price: "18,000",
-    currency: "EGP",
-    subheading: "Ideal for hospitality, local businesses, creatives, and early-stage brands.",
-    features: [
-      "Strategy workshop and page flow tailored to your offer",
-      "SEO groundwork: semantic HTML, sitemaps, metadata, and schema",
-      "Responsive layouts tuned for mobile-first browsing",
-      "Image delivery handled through Cloudinary (or your CDN)",
-      "Resend-powered contact form with confirmation and spam guard",
-      "Multi-language publishing setup for up to three locales",
-    ],
-  },
-  {
-    name: "Platform Build",
-    headline: "Everything from Website Launch plus admin tools, logins, and deeper integrations.",
-    price: "32,000",
-    currency: "EGP",
-    subheading: "For products that need dashboards, approvals, or protected areas.",
-    features: [
-      "All Website Launch deliverables and structured content modelling",
-      "Secure authentication via Supabase or your identity provider",
-      "Role-based admin space to manage pages, users, and submissions",
-      "Engagement reporting across forms, SEO, and page activity",
-      "File storage and image handling with access policies applied",
-      "Automated backups, monitoring, and security checks",
-    ],
-  },
-] as const;
-
-const addOns: ReadonlyArray<string> = [
-  "Extra language translations beyond the core package",
-  "New landing pages or campaign-specific sections",
-  "Newsletter or CRM integrations wired to your stack",
-  "Monthly tune-ups covering fixes, tweaks, and advice",
-];
+import { PRICING_ADDONS, PRICING_TIERS, type PricingTier } from "@/lib/content/pricing";
+import { SectionHeader } from "@/components/layout/SectionHeader";
+import { SectionShell } from "@/components/layout/SectionShell";
 
 const cardStyle = {
   "--card-border": "var(--border)",
@@ -113,18 +66,15 @@ const PricingCard = ({ tier }: { tier: PricingTier }) => {
 export default function PricingSection() {
   return (
     <AnimatedContent direction="vertical" distance={50} duration={0.8} ease="power3.out">
-      <section className="py-12 md:py-16">
-        <div className="mx-auto flex w-full max-w-[1296px] flex-col gap-12 px-4 sm:px-6">
-          <div className="text-center">
-            <h2 className="section-head mb-4">Pricing & Packages</h2>
-            <p className="section-subhead">
-              Two starting points—one for launches, one for platforms. We tailor the rest around
-              your roadmap.
-            </p>
-          </div>
+      <SectionShell>
+        <div className="flex w-full flex-col gap-12">
+          <SectionHeader
+            title="Pricing & Packages"
+            subtitle="Two starting points—one for launches, one for platforms. We tailor the rest around your roadmap."
+          />
 
           <div className="grid gap-6 md:grid-cols-2">
-            {pricingTiers.map((tier, index) => (
+            {PRICING_TIERS.map((tier, index) => (
               <AnimatedContent
                 key={tier.name}
                 direction="vertical"
@@ -144,7 +94,7 @@ export default function PricingSection() {
               Extras are scoped during discovery so you only pay for what matters.
             </p>
             <ul className="mt-4 grid gap-3 text-sm text-foreground/85 sm:grid-cols-2">
-              {addOns.map((item) => (
+              {PRICING_ADDONS.map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-2 rounded-(--radius-interactive) border border-border/50 bg-background/60 px-3 py-2 shadow-xs"
@@ -164,23 +114,10 @@ export default function PricingSection() {
               Every engagement starts with a discovery workshop, sitemap planning, and QA across
               devices. Final pricing depends on scope, integrations, and timeline.
             </p>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className={cn(
-                "rounded-(--radius-interactive) bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-(--shadow-md) transition-shadow duration-300",
-                "rounded-(--radius-interactive) bg-white! text-slate-950! hover:bg-white/90! border border-white/30 shadow-(--shadow-md) transition-shadow duration-300",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              )}
-            >
-              <a href="https://tally.so/r/n0l7BB" target="_blank" rel="noopener noreferrer">
-                Book a Meeting
-              </a>
-            </Button>
+            <PrimaryCTA href="https://tally.so/r/n0l7BB" label="Book a Meeting" />
           </div>
         </div>
-      </section>
+      </SectionShell>
     </AnimatedContent>
   );
 }

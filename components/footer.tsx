@@ -7,44 +7,30 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 export default function Footer() {
   return (
     <footer className="border-t border-border py-8 md:py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-[1296px]">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:gap-0">
           {/* Left section: Copyright and legal links */}
           <div className="flex flex-col items-center gap-4 text-center md:flex-row md:gap-6 md:text-left">
-            <p
-              className="text-sm text-muted-foreground"
-              style={{
-                fontFamily: "var(--font-geist-mono)",
-              }}
-            >
+            <p className="text-sm text-muted-foreground font-mono-ui">
               © 2025 Arcline. All rights reserved.
             </p>
             <div className="hidden h-4 w-px bg-border md:block"></div>
             <div className="flex gap-4 md:gap-6">
               <Link
                 href="/privacy"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                }}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground font-mono-ui"
               >
                 Privacy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                }}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground font-mono-ui"
               >
                 Terms
               </Link>
               <Link
                 href="/cookies"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                style={{
-                  fontFamily: "var(--font-geist-mono)",
-                }}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground font-mono-ui"
               >
                 Cookies
               </Link>

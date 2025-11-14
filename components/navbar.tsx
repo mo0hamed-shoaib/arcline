@@ -61,9 +61,9 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
 
   return (
     <div
-      className={`${isBannerVisible ? "top-[44px] sm:top-12" : "top-0"} relative left-0 right-0 flex justify-center px-4 transition-all duration-300 sm:px-6 md:px-8`}
+      className={`${isBannerVisible ? "top-[44px] sm:top-12" : "top-0"} relative left-0 right-0 flex justify-center transition-all duration-300`}
     >
-      <div className="mt-4 w-[calc(100%-32px)] max-w-[1400px] sm:w-[calc(100%-24px)]">
+      <div className="mt-4 mx-auto w-full max-w-[1296px] px-6 md:px-8">
         <nav
           className="font-geist border-border/50 bg-background text-foreground flex h-16 items-center justify-between rounded-xl border p-2"
           style={navStyle}
@@ -115,23 +115,14 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
           <div className="hidden items-center gap-3 md:flex">
             <a href="https://tally.so/r/n0l7BB" target="_blank" rel="noopener noreferrer">
               <Button
-                className="hover:bg-accent/50 border-border rounded-md border bg-transparent"
-                style={{
-                  fontFamily: "var(--font-geist-sans)",
-                  fontSize: "14px",
-                  lineHeight: "18px",
-                  fontWeight: "600",
-                  letterSpacing: "0.32px",
-                  color: "var(--foreground)",
-                  height: "48px",
-                }}
+                className="btn-nav h-12 px-4 font-sans-ui text-[14px] leading-[18px] font-semibold tracking-[0.32px]"
               >
                 FEEDBACK
               </Button>
             </a>
             <AnimatedThemeToggler
               variant="icon"
-              className="hover:bg-accent/50 border-border flex h-12 w-12 items-center justify-center rounded-md border bg-transparent"
+              className="btn-icon h-12 w-12"
             />
           </div>
 
@@ -160,16 +151,7 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <Button
-                      className="hover:bg-accent/50 border-border w-full justify-start rounded-md border bg-transparent"
-                      style={{
-                        fontFamily: "var(--font-geist-sans)",
-                        fontSize: "14px",
-                        lineHeight: "18px",
-                        fontWeight: "600",
-                        letterSpacing: "0.32px",
-                        color: "var(--foreground)",
-                        height: "48px",
-                      }}
+                      className="btn-nav w-full justify-center h-12 px-4 font-sans-ui text-[14px] leading-[18px] font-semibold tracking-[0.32px]"
                     >
                       FEEDBACK
                     </Button>
@@ -177,11 +159,7 @@ export default function Navbar({ isBannerVisible }: NavbarProps) {
                   <AnimatedThemeToggler
                     variant="split"
                     onCloseMobileMenu={() => setMobileMenuOpen(false)}
-                    className="w-full"
-                    style={{
-                      fontFamily: "var(--font-geist-sans)",
-                      height: "48px",
-                    }}
+                    className="w-full font-sans-ui h-12"
                   />
                 </div>
               </DrawerContent>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import {
   motion,
   useReducedMotion,
@@ -25,6 +25,7 @@ interface AnimatedContentProps {
   tilt?: number;
   blurRadius?: number;
   perspective?: number;
+  animateOnMount?: boolean;
 }
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(Math.max(value, min), max);
@@ -86,18 +87,28 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   tilt = 0,
   blurRadius = 0,
   perspective = 900,
+  animateOnMount = false,
 }) => {
+  const [mounted, setMounted] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const initialOffset = reverse ? -distance : distance;
   const initialOpacityValue = animateOpacity ? initialOpacity : 1;
   const axis = direction === "horizontal" ? "x" : "y";
   const viewportAmountRaw = clamp(threshold);
   const viewportAmount = viewportAmountRaw === 0 ? 0.01 : viewportAmountRaw;
 
+  // On server and initial client render, assume no reduced motion to match
+  const shouldReduceMotion = mounted ? prefersReducedMotion : false;
+
   const initial: Target = {
     opacity: initialOpacityValue,
     scale,
-    [axis]: prefersReducedMotion ? 0 : initialOffset,
+    [axis]: shouldReduceMotion ? 0 : initialOffset,
   };
 
   const animate: Target = {
@@ -106,7 +117,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     [axis]: 0,
   };
 
-  if (tilt !== 0 && !prefersReducedMotion) {
+  if (tilt !== 0 && !shouldReduceMotion) {
     if (direction === "vertical") {
       initial.rotateX = tilt;
       animate.rotateX = 0;
@@ -118,7 +129,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     animate.transformPerspective = perspective;
   }
 
-  if (blurRadius > 0 && !prefersReducedMotion) {
+  if (blurRadius > 0 && !shouldReduceMotion) {
     initial.filter = `blur(${blurRadius}px)`;
     animate.filter = "blur(0px)";
   }
@@ -144,10 +155,12 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       className={className}
       style={mergedStyle}
       initial={initial}
-      whileInView={animate}
-      viewport={{ once: true, amount: viewportAmount }}
+      {...(animateOnMount
+        ? { animate }
+        : { whileInView: animate, viewport: { once: true, amount: viewportAmount } })}
       transition={transition}
       onAnimationComplete={onComplete}
+      suppressHydrationWarning
     >
       {children}
     </motion.div>
