@@ -12,12 +12,12 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#000000",
     icons: [
       {
-        src: "/dark_mode_logo/android-chrome-192x192.png",
+        src: "/arcline-icon.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "/dark_mode_logo/android-chrome-512x512.png",
+        src: "/arcline-icon.png",
         sizes: "512x512",
         type: "image/png",
       },
