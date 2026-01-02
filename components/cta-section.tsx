@@ -8,14 +8,12 @@ export default function CTASection() {
     <section className="group relative isolate mb-6 mt-12 flex min-h-[360px] w-full flex-col overflow-hidden rounded-(--radius-surface) rounded-all-devices text-foreground md:mt-16 md:min-h-[420px]">
       {/* Animated Grid Background */}
       <div className="pointer-events-none absolute inset-0 -z-20">
-        <GridBackground gridSize={22} fadeIntensity={26} />
+        <GridBackground gridSize={22} />
       </div>
 
       {/* Content Container */}
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1296px] flex-col items-center justify-center gap-6 py-12 text-center sm:py-14 md:gap-8 md:py-16">
-        <h2 className="hero-heading heading-with-selection select-text">
-          Ready to Get Started?
-        </h2>
+        <h2 className="hero-heading heading-with-selection select-text">Ready to Get Started?</h2>
 
         <p
           className="hero-subhead mx-auto select-text"

@@ -18,7 +18,7 @@ export default function HeroSection() {
       )}
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <GridBackground gridSize={22} fadeIntensity={26} />
+        <GridBackground gridSize={22} />
       </div>
 
       {/* Container 1: Heading Area - Centered */}
@@ -76,7 +76,11 @@ export default function HeroSection() {
           blurRadius={10}
         >
           <div className="flex w-full max-w-sm flex-col items-center gap-3">
-            <PrimaryCTA href="https://x.com/jackjack_eth" label="Get Started" className="md:w-auto" />
+            <PrimaryCTA
+              href="https://x.com/jackjack_eth"
+              label="Get Started"
+              className="md:w-auto"
+            />
           </div>
         </AnimatedContent>
       </div>
@@ -120,5 +124,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-

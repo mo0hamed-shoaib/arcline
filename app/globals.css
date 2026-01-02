@@ -167,8 +167,8 @@
     --accent-orange-80: rgba(251, 146, 60, 0.8);
 
     /* Grid colors - theme-aware */
-    --grid-color-light: rgba(0, 0, 0, 0.3);
-    --grid-color-dark: rgba(255, 255, 255, 0.3);
+    --grid-color-light: rgba(0, 0, 0, 0.06);
+    --grid-color-dark: rgba(255, 255, 255, 0.06);
     --grid-color: var(--grid-color-light);
 
     /* Gauge colors - theme-aware */
