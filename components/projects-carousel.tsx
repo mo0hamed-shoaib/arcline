@@ -60,10 +60,6 @@ type SlideCardProps = {
   slide: Slide;
   onReadMore: (slide: Slide) => void;
   priorityImage?: boolean;
-  onPrev: () => void;
-  onNext: () => void;
-  dots: DotProps;
-  isActive: boolean;
 };
 
 type CaseStudyDialogProps = {
@@ -91,139 +87,103 @@ const CarouselDots = ({ count, selectedIndex, onSelect }: DotProps) => (
   </div>
 );
 
-const SlideCard = ({
-  slide,
-  onReadMore,
-  priorityImage = false,
-  onPrev,
-  onNext,
-  dots,
-  isActive,
-}: SlideCardProps) => (
-  <article className="rounded-(--radius-surface) border-border/60 bg-card/80 ring-border/35 flex min-w-0 flex-[0_0_100%] flex-col overflow-hidden border shadow-md ring-1">
-    <div className="relative aspect-6/5 overflow-hidden rounded-t-(--radius-surface) sm:aspect-video">
-      <Image
-        src={slide.image.src}
-        alt={slide.image.alt}
-        fill
-        sizes="(min-width: 1024px) 60vw, (min-width: 640px) 80vw, 100vw"
-        className="object-cover"
-        priority={priorityImage}
-        loading={priorityImage ? "eager" : "lazy"}
-      />
-      {dots.count > 1 && (
-        <div
-          className={cn(
-            "group absolute inset-x-0 bottom-3 z-20 flex justify-center transition-opacity duration-200 sm:bottom-4",
-            isActive ? "opacity-100" : "opacity-0 group-focus-within:opacity-100"
-          )}
-        >
-          <div
-            className={cn(
-              "flex items-center gap-3 rounded-full border border-border/60 bg-background/90 px-3 py-1.5 text-foreground shadow-sm backdrop-blur transition-shadow duration-200 group-focus-within:shadow-[0_0_0_3px_var(--accent-orange-40)]",
-              isActive ? "pointer-events-auto" : "pointer-events-none"
-            )}
-          >
-            <button
-              type="button"
-              onClick={onPrev}
-              className={NAV_BUTTON_STYLES}
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <CarouselDots {...dots} />
-            <button
-              type="button"
-              onClick={onNext}
-              className={NAV_BUTTON_STYLES}
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-
-    <div className="w/full border-border/40 bg-background/70 flex flex-col gap-4 border-t px-5 py-4 sm:px-6 sm:py-5">
-      <div className="space-y-4">
-        <div>
-          <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
-            {slide.id}
-          </span>
-          <h3 className="text-foreground mt-2 text-[1.45rem] font-semibold tracking-tight md:text-[1.7rem]">
-            {slide.title}
-          </h3>
-          <div className="mt-4 space-y-1">
-            <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
-              Summary
-            </span>
-            <p
-              className="mono-body text-foreground/85 text-[0.9rem] leading-6"
-              style={{
-                display: "-webkit-box",
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
-            >
-              {slide.description}
-            </p>
-          </div>
-        </div>
-
-        <Separator className="border-border/40" />
-
-        <div>
-          <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
-            Highlights
-          </span>
-          <ul className="mt-2 grid gap-1.5 text-[0.82rem] text-foreground/90 sm:grid-cols-2">
-            {slide.highlights.map((item) => (
-              <li key={item} className="relative pl-4 leading-snug">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-2 block h-1.5 w-1.5 rounded-full bg-(--accent-orange)"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+const SlideCard = ({ slide, onReadMore, priorityImage = false }: SlideCardProps) => (
+  <article className="rounded-(--radius-surface) border-border/60 bg-card/80 ring-border/35 flex min-w-0 flex-[0_0_100%] overflow-hidden border shadow-md ring-1">
+    {/* Horizontal Split Layout */}
+    <div className="flex flex-col md:flex-row w-full">
+      {/* Left Half - Image */}
+      <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:min-h-[500px] overflow-hidden">
+        <Image
+          src={slide.image.src}
+          alt={slide.image.alt}
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+          priority={priorityImage}
+          loading={priorityImage ? "eager" : "lazy"}
+        />
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/40 pt-3">
-        {slide.caseStudy && (
-          <button
-            type="button"
-            onClick={() => onReadMore(slide)}
-            className={cn(
-              "mono-body group inline-flex cursor-pointer items-center gap-2 px-0 py-1 text-[0.82rem] font-semibold uppercase tracking-[0.26em]",
-              "text-(--accent-orange) transition-all duration-200 hover:text-(--accent-orange-80) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-background"
-            )}
-          >
-            Read More
-            <span
-              aria-hidden
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            >
-              →
+      {/* Right Half - Content */}
+      <div className="w-full md:w-1/2 border-t md:border-t-0 md:border-l border-border/40 bg-background/70 flex flex-col gap-4 px-5 py-4 sm:px-6 sm:py-5">
+        <div className="flex-1 space-y-4">
+          <div>
+            <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
+              {slide.id}
             </span>
-          </button>
-        )}
+            <h3 className="text-foreground mt-2 text-[1.45rem] font-semibold tracking-tight md:text-[1.7rem]">
+              {slide.title}
+            </h3>
+            <div className="mt-4 space-y-1">
+              <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
+                Summary
+              </span>
+              <p
+                className="mono-body text-foreground/85 text-[0.9rem] leading-6"
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {slide.description}
+              </p>
+            </div>
+          </div>
 
-        {slide.websiteUrl && (
-          <Button
-            asChild
-            size="sm"
-            className="rounded-(--radius-interactive) cursor-pointer px-4 py-2"
-          >
-            <Link href={slide.websiteUrl} target="_blank" rel="noopener noreferrer">
-              VIEW WEBSITE
-            </Link>
-          </Button>
-        )}
+          <Separator className="border-border/40" />
+
+          <div>
+            <span className="text-foreground/55 text-[0.7rem] font-semibold uppercase tracking-[0.3em]">
+              Highlights
+            </span>
+            <ul className="mt-2 grid gap-1.5 text-[0.82rem] text-foreground/90">
+              {slide.highlights.map((item) => (
+                <li key={item} className="relative pl-4 leading-snug">
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-2 block h-1.5 w-1.5 rounded-full bg-(--accent-orange)"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/40 pt-3">
+          {slide.caseStudy && (
+            <button
+              type="button"
+              onClick={() => onReadMore(slide)}
+              className={cn(
+                "mono-body group inline-flex cursor-pointer items-center gap-2 px-0 py-1 text-[0.82rem] font-semibold uppercase tracking-[0.26em]",
+                "text-(--accent-orange) transition-all duration-200 hover:text-(--accent-orange-80) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--accent-orange) focus-visible:ring-offset-background"
+              )}
+            >
+              Read More
+              <span
+                aria-hidden
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </button>
+          )}
+
+          {slide.websiteUrl && (
+            <Button
+              asChild
+              size="sm"
+              className="rounded-(--radius-interactive) cursor-pointer px-4 py-2"
+            >
+              <Link href={slide.websiteUrl} target="_blank" rel="noopener noreferrer">
+                VIEW WEBSITE
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   </article>
@@ -368,7 +328,7 @@ export function ProjectsCarousel({
 
   return (
     <>
-      <section className="relative">
+      <section className="relative space-y-4">
         <div className="rounded-(--radius-surface) border-border/60 bg-linear-to-br from-card/90 via-card to-card/80 ring-border/40 overflow-hidden border shadow-md ring-1 backdrop-blur-sm">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex touch-pan-y touch-pinch-zoom">
@@ -378,19 +338,34 @@ export function ProjectsCarousel({
                   slide={slide}
                   onReadMore={openCaseStudy}
                   priorityImage={index === 0}
-                  onPrev={goPrev}
-                  onNext={goNext}
-                  dots={{
-                    count: totalDots,
-                    selectedIndex,
-                    onSelect: handleDot,
-                  }}
-                  isActive={selectedIndex === index}
                 />
               ))}
             </div>
           </div>
         </div>
+
+        {/* Carousel Controls Below */}
+        {totalDots > 1 && (
+          <div className="flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={goPrev}
+              className={NAV_BUTTON_STYLES}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <CarouselDots count={totalDots} selectedIndex={selectedIndex} onSelect={handleDot} />
+            <button
+              type="button"
+              onClick={goNext}
+              className={NAV_BUTTON_STYLES}
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
       </section>
 
       <CaseStudyDialog slide={activeCaseStudy ?? null} onClose={closeCaseStudy} />
